@@ -1,6 +1,10 @@
 <div class="nav">
   <div class="nav__container container">
     <div class="nav__menu">
+      <div class="nav__button" (click)="isSidebarVisible = true;">
+        <span class="nav__icon">&nbsp;</span>
+      </div>
+
       <div class="nav__item">
         <a>kategorie</a>
       </div>
@@ -14,7 +18,7 @@
       </div>
     </div>
 
-    <img src="assets/images/logo.svg" alt="Logo sklepu meblowego Maxii Home" class="nav__logo">
+    <img src="assets/images/logo.svg" routerLink="/" alt="Logo sklepu meblowego Maxii Home" class="nav__logo">
 
     <div class="nav__actions">
       <form class="search">
@@ -24,20 +28,24 @@
         </button>
       </form>
 
-      <div class="nav__action">
-        <a class="nav__action__link">
-          <img class="nav__action__img" src="assets/images/favourite.svg" alt="Zapisane produkty">
-        </a>
+      <a class="nav__action__link">
+        <img class="nav__action__img" src="assets/images/favourite.svg" alt="Zapisane produkty">
+      </a>
 
-        <a class="nav__action__link">
-          <img class="nav__action__img" src="assets/images/person.svg" alt="Dane konta">
-        </a>
+      <a class="nav__action__link">
+        <img class="nav__action__img" src="assets/images/person.svg" alt="Dane konta">
+      </a>
 
-        <a class="nav__action__link nav__action__link--cart">
-          <img class="nav__action__img" src="assets/images/cart.svg" alt="Koszyk">
-          <div class="amount">2</div>
-        </a>
-      </div>
+      <a class="nav__action__link nav__action__link--cart">
+        <img class="nav__action__img" src="assets/images/cart.svg" alt="Koszyk">
+        <div class="amount">2</div>
+      </a>
     </div>
   </div>
+</div>
+
+<div class="sidebar" [ngClass]="{'visible': isSidebarVisible === true}">
+  <div class="sidebar__background" (click)="isSidebarVisible = false;"></div>
+  <img src="assets/images/close.svg" alt="Zamknij menu" class="close" (click)="isSidebarVisible = false;">
+  <img src="assets/images/logo-light.svg" alt="Logo sklepu meblowego Maxii Home" class="sidebar__logo">
 </div>

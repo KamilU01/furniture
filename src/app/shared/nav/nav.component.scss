@@ -2,17 +2,25 @@
 
 .nav {
   font-family: var(--font-secondary);
-  padding-top: .5rem;
+  padding: .5rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.11);
 
   &__container {
     display: grid;
-    grid-template-columns: 1fr 8.75vw 1fr;
+    grid-template-columns: 1fr 8.5vw 1fr;
     align-items: center;
     gap: 1.6rem;
   }
 
   &__logo {
     width: 100%;
+    cursor: pointer;
+    max-height: 10rem;
   }
 
   &__menu {
@@ -51,9 +59,56 @@
     }
   }
 
+  &__button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 2vw;
+  }
+
+  &__icon {
+    position: relative;
+    margin-top: -0.5rem;
+
+    &,
+    &::before,
+    &::after {
+      width: 4rem;
+      height: 3px;
+      background-color: var(--color-dark);
+      display: inline-block;
+      border-radius: 15px;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: .2s all;
+    }
+
+    &::before {
+      width: 3rem;
+      top: -.9rem;
+    }
+
+    &::after {
+      top: .9rem;
+    }
+  }
+
+  &__button:hover &__icon::before {
+    transform: translateY(-.2rem);
+  }
+
+  &__button:hover &__icon::after {
+    transform: translateY(.2rem);
+  }
+
   &__actions {
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
     justify-content: flex-end;
     width: 100%;
   }
@@ -61,12 +116,10 @@
   .search {
     flex-grow: 1 !important;
     max-width: 40rem;
+    margin-right: 1rem;
   }
 
   &__action {
-    display: flex;
-    gap: 2rem;
-
     &__link {
       background-color: transparent;
       border-radius: 50%;
@@ -109,5 +162,52 @@
       height: 3rem;
       filter: var(--color-dark-filter);
     }
+  }
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--color-dark);
+  width: 40rem;
+  z-index: 2000;
+  padding: 3rem 2rem;
+  transition: all var(--animation-1) .5s;
+  transform: translateX(-400px);
+  display: grid;
+
+  &.visible {
+    transform: translateX(0);
+  }
+
+  .close {
+    filter: var(--color-light-filter);
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  &__background {
+    width: 100vw;
+    height: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: transparent;
+    display: none;
+  }
+
+  &.visible &__background {
+    display: block;
+  }
+
+  &__logo {
+    justify-self: center;
   }
 }
