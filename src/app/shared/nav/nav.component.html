@@ -1,1 +1,43 @@
-<p>nav works!</p>
+<div class="nav">
+  <div class="nav__container container">
+    <div class="nav__menu">
+      <div class="nav__item">
+        <a>kategorie</a>
+      </div>
+
+      <div class="nav__item" routerLink="/o-nas" routerLinkActive="active">
+        <a>o nas</a>
+      </div>
+
+      <div class="nav__item" routerLink="/kontakt" routerLinkActive="active">
+        <a>kontakt</a>
+      </div>
+    </div>
+
+    <img src="assets/images/logo.svg" alt="Logo sklepu meblowego Maxii Home" class="nav__logo">
+
+    <div class="nav__actions">
+      <form class="search">
+        <input type="text" class="search__input" placeholder="Szukaj mebli...">
+        <button class="search__button">
+          <img src="assets/images/search.svg" alt="Szukaj" class="search__icon">
+        </button>
+      </form>
+
+      <div class="nav__action">
+        <a class="nav__action__link">
+          <img class="nav__action__img" src="assets/images/favourite.svg" alt="Zapisane produkty">
+        </a>
+
+        <a class="nav__action__link">
+          <img class="nav__action__img" src="assets/images/person.svg" alt="Dane konta">
+        </a>
+
+        <a class="nav__action__link nav__action__link--cart">
+          <img class="nav__action__img" src="assets/images/cart.svg" alt="Koszyk">
+          <div class="amount">2</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

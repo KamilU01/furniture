@@ -11,13 +11,13 @@
 
 ::-moz-selection {
   color: var(--color-light) !important;
-  background: var(--color-primary) !important;
+  background: var(--color-primary-darker) !important;
   -webkit-text-fill-color: initial;
 }
 
 ::selection {
   color: var(--color-light) !important;
-  background: var(--color-primary) !important;
+  background: var(--color-primary-darker) !important;
   -webkit-text-fill-color: initial;
 }
 

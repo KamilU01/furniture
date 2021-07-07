@@ -10,9 +10,23 @@
   --color-light-2: #fefefe;
 
   --color-dark: #212626;
+  --color-dark-filter: invert(8%) sepia(21%) saturate(390%) hue-rotate(131deg) brightness(94%) contrast(84%);
 
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+
+  --color-grey-dark-3-filter: invert(68%) sepia(1%) saturate(0%) hue-rotate(160deg) brightness(91%) contrast(86%);
 
   /* FONT VARIABLES */
   --font-primary: 'Nunito', sans-serif;
   --font-secondary: 'Josefin Sans', sans-serif;
+
+  /* ANIMATIONS BEZIERS */
+  --animation-1: cubic-bezier(0.83, 0, 0.17, 1);
 }
