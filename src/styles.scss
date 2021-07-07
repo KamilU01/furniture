@@ -1,1 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;700&family=Nunito:wght@300;400;700&display=swap');
+@import url('assets/scss/_variables.scss');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+::-moz-selection {
+  color: var(--color-light) !important;
+  background: var(--color-primary) !important;
+  -webkit-text-fill-color: initial;
+}
+
+::selection {
+  color: var(--color-light) !important;
+  background: var(--color-primary) !important;
+  -webkit-text-fill-color: initial;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  @media only screen and (max-width: 1300px) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--color-dark);
+  font-weight: 300;
+  line-height: 1.6;
+  background-color: var(--color-light-2);
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) rgb(236, 236, 236);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(236, 236, 236);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 20px;
+  border: 3px solid rgb(236, 236, 236);
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
