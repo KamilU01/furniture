@@ -1,0 +1,97 @@
+@import "/src/assets/scss/typography";
+
+.footer {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  font-weight: 400;
+  padding: 7.5rem 0;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5.2vw;
+
+    @media only screen and (max-width: 1000px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media only screen and (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+      text-align: center;
+    }
+  }
+
+  &__item--desc {
+    display: grid;
+    justify-content: center;
+  }
+
+  &__logo {
+    margin-bottom: 4rem;
+    justify-self: center;
+    cursor: pointer;
+  }
+
+  h4 {
+    margin-bottom: 1.6rem;
+  }
+
+  &__paragraph {
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+
+  &__heading {
+    margin-bottom: 3.4rem;
+  }
+
+  &__item {
+
+    @media only screen and (max-width: 768px) {
+      &:not(:last-of-type) {
+        border-bottom: 1px solid var(--color-light);
+        padding-bottom: 1.6rem;
+      }
+    }
+  }
+
+  &__list {
+    list-style: none;
+    font-size: 1.6rem;
+
+    &__item {
+      margin-bottom: 1.4rem;
+
+      &:hover {
+        color: var(--color-primary-darker);
+      }
+
+      &--mail {
+        color: var(--color-secondary);
+
+        &:hover {
+          color: var(--color-secondary-darker);
+        }
+      }
+
+      &--phone:hover {
+        color: var(--color-secondary);
+      }
+    }
+  }
+
+  &__hours {
+    font-size: 1.6rem;
+    margin-top: 1.8rem;
+
+    h4 {
+      margin-bottom: .5rem;
+    }
+  }
+
+  &__hour {
+    font-weight: 300;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+}

@@ -1,0 +1,23 @@
+.heading {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+
+  &--primary {
+    font-size: 3.6rem;
+    line-height: 1.2;
+  }
+
+  &--secondary {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+  }
+
+  &--tertiary {
+    font-size: 2rem;
+  }
+
+  &--fourth {
+    font-size: 1.8rem;
+    font-family: var(--font-primary);
+  }
+}
