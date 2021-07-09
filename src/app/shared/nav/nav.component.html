@@ -5,8 +5,12 @@
         <span class="nav__icon">&nbsp;</span>
       </div>
 
-      <div class="nav__item">
-        <a>kategorie</a>
+      <div class="control__popout">
+        <a>kategorie <img class="arrow" src="assets/images/arrow.svg"></a>
+        <div class="control__popout__pad"></div>
+        <div class="control__popout__window">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </div>
       </div>
 
       <div class="nav__item" routerLink="/o-nas" routerLinkActive="active">
@@ -19,6 +23,8 @@
     </div>
 
     <img src="assets/images/logo.svg" routerLink="/" alt="Logo sklepu meblowego Maxii Home" class="nav__logo">
+    <img src="assets/images/simple-logo.svg" routerLink="/" alt="Logo sklepu meblowego Maxii Home"
+      class="nav__logo--simple">
 
     <div class="nav__actions">
       <form class="search">
@@ -29,14 +35,14 @@
       </form>
 
       <a class="nav__action__link">
-        <img class="nav__action__img" src="assets/images/favourite.svg" alt="Zapisane produkty">
+        <img class="nav__action__img" routerLink="/zapisane" src="assets/images/favourite.svg" alt="Zapisane produkty">
       </a>
 
       <a class="nav__action__link">
-        <img class="nav__action__img" src="assets/images/person.svg" alt="Dane konta">
+        <img class="nav__action__img" routerLink="/konto" src="assets/images/person.svg" alt="Dane konta">
       </a>
 
-      <a class="nav__action__link nav__action__link--cart">
+      <a class="nav__action__link nav__action__link--cart" routerLink="/koszyk">
         <img class="nav__action__img" src="assets/images/cart.svg" alt="Koszyk">
         <div class="amount">2</div>
       </a>
@@ -48,4 +54,28 @@
   <div class="sidebar__background" (click)="isSidebarVisible = false;"></div>
   <img src="assets/images/close.svg" alt="Zamknij menu" class="close" (click)="isSidebarVisible = false;">
   <img src="assets/images/logo-light.svg" alt="Logo sklepu meblowego Maxii Home" class="sidebar__logo">
+</div>
+
+<div class="mobile-nav">
+  <div class="mobile-nav__container">
+    <a class="mobile-nav__item">
+      <img src="assets/images/home.svg" routerLink="/" routerLinkActive="active" alt="Strona główna">
+    </a>
+
+    <a class="mobile-nav__item">
+      <img src="assets/images/cart.svg" routerLink="/koszyk" routerLinkActive="active" alt="Koszyk">
+    </a>
+
+    <a class="mobile-nav__item">
+      <img src="assets/images/favourite.svg" routerLink="/zapisane" routerLinkActive="active" alt="Zapisane produkty">
+    </a>
+
+    <a class="mobile-nav__item">
+      <img src="assets/images/person.svg" routerLink="/konto" routerLinkActive="active" alt="Konto">
+    </a>
+
+    <a class="mobile-nav__item">
+      <img src="assets/images/menu.svg" alt="Menu">
+    </a>
+  </div>
 </div>
