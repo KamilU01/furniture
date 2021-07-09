@@ -25,6 +25,8 @@
     <img src="assets/images/logo.svg" routerLink="/" alt="Logo sklepu meblowego Maxii Home" class="nav__logo">
     <img src="assets/images/simple-logo.svg" routerLink="/" alt="Logo sklepu meblowego Maxii Home"
       class="nav__logo--simple">
+    <img src="assets/images/mobile-logo.svg" routerLink="/" alt="Logo sklepu meblowego Maxii Home"
+      class="nav__logo--mobile">
 
     <div class="nav__actions">
       <form class="search">
@@ -74,7 +76,7 @@
       <img src="assets/images/person.svg" routerLink="/konto" routerLinkActive="active" alt="Konto">
     </a>
 
-    <a class="mobile-nav__item">
+    <a class="mobile-nav__item" (click)="isSidebarVisible = !isSidebarVisible;">
       <img src="assets/images/menu.svg" alt="Menu">
     </a>
   </div>

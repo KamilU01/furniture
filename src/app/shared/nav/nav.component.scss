@@ -15,6 +15,16 @@
     grid-template-columns: 1fr 8.5vw 1fr;
     align-items: center;
     gap: 1.6rem;
+
+    @media only screen and (max-width: 1000px) {
+      grid-template-columns: 5vw 1fr;
+    }
+
+    @media only screen and (max-width: 768px) {
+      width: 100%;
+      grid-template-columns: 15vw 1fr;
+      padding: .5rem .8rem !important;
+    }
   }
 
   &__logo {
@@ -36,6 +46,27 @@
     @media only screen and (max-width: 1300px) {
       display: block;
     }
+
+    @media only screen and (max-width: 1000px) {
+      display: none;
+    }
+
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+
+  &__logo--mobile {
+    width: 100%;
+    cursor: pointer;
+    max-height: 7rem;
+    display: none;
+    height: 3.5rem;
+
+    @media only screen and (max-width: 768px) {
+      display: block;
+    }
   }
 
   &__menu {
@@ -43,6 +74,10 @@
     gap: 5rem;
     justify-self: flex-start;
     align-items: center;
+
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
   }
 
   &__item {
@@ -72,6 +107,11 @@
 
     a.active {
       color: var(--color-primary);
+    }
+
+
+    @media only screen and (max-width: 1000px) {
+      display: none;
     }
   }
 
@@ -142,6 +182,10 @@
 
       display: none;
     }
+
+    @media only screen and (max-width: 1000px) {
+      display: none;
+    }
   }
 
   &__button {
@@ -150,6 +194,10 @@
     align-items: center;
     margin-right: 2vw;
     height: 3.7rem;
+
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
   }
 
   &__icon {
@@ -203,6 +251,14 @@
     flex-grow: 1 !important;
     max-width: 40rem;
     margin-right: 1rem;
+
+    @media only screen and (max-width: 1000px) {
+      max-width: none;
+    }
+
+    @media only screen and (max-width: 768px) {
+      margin-right: 0;
+    }
   }
 
   &__action {
@@ -216,6 +272,10 @@
       align-items: center;
       cursor: pointer;
       transition: background-color .2s ease;
+
+      @media only screen and (max-width: 768px) {
+        display: none;
+      }
 
       &:hover {
         background-color: var(--color-primary-lighter);
@@ -307,12 +367,16 @@
   box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.06);
   background-color: var(--color-light);
   height: 6rem;
+  display: none;
+
+  @media only screen and (max-width: 768px) {
+    display: block;
+  }
 
   &__container {
     margin: 0 auto;
-    padding: 0 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: 100%;
   }
