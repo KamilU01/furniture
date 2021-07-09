@@ -5,7 +5,27 @@ const routes: Routes = [
     {
         path: '',
         loadChildren: () => import("./pages/homepage/homepage.module").then(m => m.HomepageModule)
-    }
+    },
+    {
+        path: 'autoryzacja',
+        loadChildren: () => import("./pages/auth/auth.module").then(m => m.AuthModule)
+    },
+    {
+        path: 'konto',
+        loadChildren: () => import("./pages/account/account.module").then(m => m.AccountModule)
+    },
+    {
+        path: 'faq',
+        loadChildren: () => import("./pages/faq/faq.module").then(m => m.FaqModule)
+    },
+    {
+        path: 'polityka-prywatnosci',
+        loadChildren: () => import("./pages/privacy-policy/privacy-policy.module").then(m => m.PrivacyPolicyModule)
+    },
+    {
+        path: 'regulamin',
+        loadChildren: () => import("./pages/regulations/regulations.module").then(m => m.RegulationsModule)
+    },
 ]
 
 @NgModule({
