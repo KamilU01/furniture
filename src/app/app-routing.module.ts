@@ -26,6 +26,10 @@ const routes: Routes = [
         path: 'regulamin',
         loadChildren: () => import("./pages/regulations/regulations.module").then(m => m.RegulationsModule)
     },
+    {
+        path: 'o-nas',
+        loadChildren: () => import("./pages/about-us/about-us.module").then(m => m.AboutUsModule)
+    },
 ]
 
 @NgModule({
