@@ -4,7 +4,8 @@
   background-color: var(--color-dark);
   color: var(--color-light);
   font-weight: 400;
-  padding: 7.5rem 0;
+  padding-top: 7.5rem;
+  margin-top: 10rem;
 
   &__container {
     display: grid;
@@ -93,5 +94,25 @@
     font-weight: 300;
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
+  }
+
+  &__copyright {
+    text-align: center;
+    padding-bottom: 1rem;
+    margin-top: 5rem;
+    font-size: 1.6rem;
+
+    a {
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .rodo {
+      font-weight: 300;
+    }
+
+    @media only screen and (max-width: 768px) {
+      margin-bottom: 7rem;
+    }
   }
 }
