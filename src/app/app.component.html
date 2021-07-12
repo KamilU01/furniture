@@ -9,3 +9,11 @@
 <footer>
   <app-footer></app-footer>
 </footer>
+
+<div class="cookies" *ngIf="!isCookies">
+  Strona do poprawnego działania potrzebuje wykorzystywać <a target="_blank" href="assets/cookies.pdf">pliki
+    cookies</a>.
+  Zaakceptuj je, by móc w pełni
+  korzystać z funkcjonalności.<br>
+  <div class="cookies__accept btn-text-light" (click)="acceptCookies()">Ok</div>
+</div>

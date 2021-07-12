@@ -8,7 +8,7 @@
   }
 
   &--secondary {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
 
   &--tertiary {
@@ -18,5 +18,12 @@
   &--fourth {
     font-size: 1.8rem;
     font-family: var(--font-primary);
+  }
+}
+
+.text {
+  &--primary {
+    font-weight: 700;
+    color: var(--color-primary-darker);
   }
 }

@@ -30,6 +30,14 @@ const routes: Routes = [
         path: 'o-nas',
         loadChildren: () => import("./pages/about-us/about-us.module").then(m => m.AboutUsModule)
     },
+    {
+        path: 'kontakt',
+        loadChildren: () => import("./pages/contact/contact.module").then(m => m.ContactModule)
+    },
+    {
+        path: 'zapisane-produkty',
+        loadChildren: () => import("./pages/favourites/favourites.module").then(m => m.FavouritesModule)
+    },
 ]
 
 @NgModule({
