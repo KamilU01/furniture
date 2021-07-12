@@ -1,0 +1,130 @@
+@import "/src/assets/scss/animations";
+
+.btn {
+
+  &,
+  &:link,
+  &:visited {
+    text-decoration: none;
+    display: inline-block;
+    transition: all .2s;
+    border-radius: 0;
+    position: relative;
+
+    border: none;
+    cursor: pointer;
+  }
+
+  &--primary {
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    padding: 1.3rem 2.5rem;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(var(--color-primary), 0.2);
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px;
+    }
+  }
+
+  &--blue {
+    color: var(--color-light);
+    background-color: var(--color-blue);
+    padding: 1.3rem 2.5rem;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+      transform: translateY(-1px);
+    }
+  }
+
+  &--gradient,
+  &--secondary {
+    padding: 1.3rem 4rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+      transform: translateY(-1px);
+    }
+  }
+
+
+  &--secondary {
+    background-color: var(--color-light) !important;
+    border: 1px solid var(--color-dark) !important;
+    color: var(--color-dark) !important;
+  }
+}
+
+.btn-text {
+  display: inline-block;
+  cursor: pointer;
+
+  &,
+  &:link,
+  &:visited {
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    border-bottom: 1px solid var(--color-primary);
+    position: relative;
+    border-radius: 0 !important;
+  }
+
+  &:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    box-shadow: 0 1rem 2rem rgba(var(--color-dark), .15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 1rem 2rem rgba(var(--color-dark), .15);
+    transform: translateY(0);
+  }
+}
+
+.btn-text-light {
+  display: inline-block;
+  cursor: pointer;
+
+  &,
+  &:link,
+  &:visited {
+    color: var(--color-light);
+    font-size: 1.6rem;
+    border-bottom: 1px solid var(--color-light);
+    position: relative;
+    border-radius: 0 !important;
+  }
+
+  &:hover {
+    background-color: var(--color-light);
+    color: var(--color-primary);
+    box-shadow: 0 1rem 2rem rgba(var(--color-dark), .15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 1rem 2rem rgba(var(--color-dark), .15);
+    transform: translateY(0);
+  }
+}

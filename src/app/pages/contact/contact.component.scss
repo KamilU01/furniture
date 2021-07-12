@@ -1,0 +1,140 @@
+@import "/src/assets/scss/typography";
+@import "/src/assets/scss/button";
+@import "/src/assets/scss/form";
+
+.contact {
+  padding: 0 5vw;
+  max-width: 130rem;
+  margin: 0 auto;
+  margin-top: 10rem;
+  font-size: 1.6rem;
+
+  &__heading {
+    border-bottom: 1px solid var(--color-dark);
+    color: var(--color-dark);
+    margin-bottom: 4rem;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+
+    @media only screen and (max-width: 900px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  &__detail {
+    display: flex;
+    gap: 3.6vw;
+    align-items: center;
+    font-weight: 400;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1.6rem;
+    }
+
+    &__img {
+      width: 3rem;
+      filter: var(--color-dark-filter);
+    }
+
+    a {
+
+      &:hover {
+        color: var(--color-primary-darker);
+      }
+    }
+  }
+
+  &__map {
+    width: 100% !important;
+  }
+
+  &__form {
+    grid-column: 1 / span 2;
+
+    @media only screen and (max-width: 900px) {
+      grid-column: 1;
+
+    }
+
+    &__header {
+      color: var(--color-dark);
+      font-weight: 700;
+      font-size: 2rem;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .form {
+    display: grid;
+    margin-top: 3rem;
+    column-gap: 2rem;
+    grid-template-areas:
+      "name phone"
+      "email email"
+      "text text"
+      "validation validation"
+      "regulations regulations"
+      ". btn"
+    ;
+    width: 100%;
+
+    @media only screen and (max-width: 1100px) {
+      grid-template-areas:
+        "name name"
+        "phone phone"
+        "email email"
+        "text text"
+        "validation validation"
+        "regulations regulations"
+        ". btn"
+      ;
+    }
+
+    &__group {
+      &--name {
+        grid-area: name;
+      }
+
+      &--phone {
+        grid-area: phone;
+      }
+
+      &--email {
+        grid-area: email;
+      }
+
+      &--text {
+        grid-area: text;
+      }
+
+      &--btn {
+        grid-area: btn;
+        justify-self: end;
+        margin-top: 1.6rem;
+      }
+
+      &--regulations {
+        grid-area: regulations;
+        font-size: 1.6rem;
+      }
+
+      &--validation {
+        grid-area: validation;
+        color: var(--color-secondary);
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+      }
+    }
+  }
+
+  &__btn {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+}
