@@ -2,6 +2,7 @@
 @import "/src/assets/scss/button";
 @import "/src/assets/scss/form";
 @import "/src/assets/scss/alerts";
+@import "/src/assets/scss/loading-spinner";
 
 .contact {
   padding: 0 5vw;
@@ -19,12 +20,26 @@
   .content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
+    gap: 2.4rem;
 
     @media only screen and (max-width: 900px) {
       grid-template-columns: repeat(1, 1fr);
       gap: 2rem;
     }
+  }
+
+  .loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    border-radius: 5px;
+    width: 100%;
+    background-color: rgba(190, 160, 120, .8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__detail {
@@ -56,6 +71,7 @@
 
   &__form {
     grid-column: 1 / span 2;
+    position: relative;
 
     @media only screen and (max-width: 900px) {
       grid-column: 1;

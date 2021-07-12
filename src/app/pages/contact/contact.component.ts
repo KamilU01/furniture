@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +13,7 @@ export class ContactComponent implements OnInit {
   isLoading: boolean = false;
   isNotValid: boolean = false;
 
-  constructor() { }
+  constructor(private contactService: ContactService) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +31,7 @@ export class ContactComponent implements OnInit {
 
     this.isLoading = true;
 
-    /* this.contactService.sendMessage(name, phone, email, message).subscribe(res => {
+    this.contactService.sendMessage(name, phone, email, message).subscribe(res => {
       this.isNotValid = false;
       this.isLoading = false;
       this.isSuccess = true;
@@ -40,6 +41,6 @@ export class ContactComponent implements OnInit {
       this.isLoading = false;
       this.isSuccess = false;
       this.isError = true;
-    }) */
+    })
   }
 }

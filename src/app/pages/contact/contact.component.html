@@ -44,7 +44,7 @@
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2152.9801731379184!2d18.212912947592038!3d50.07993321714619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471168025c8b2899%3A0xd241189a8e1435b1!2sTadeusza%20Ko%C5%9Bciuszki%2047%2C%2047-400%20Racib%C3%B3rz!5e0!3m2!1spl!2spl!4v1625918398867!5m2!1spl!2spl"
         height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
-    <form class="contact__form">
+    <form class="contact__form" #form="ngForm" (ngSubmit)="onSubmit(form)">
       <h3 class="contact__form__header">Formularz kontaktowy</h3>
       <div class="form">
         <div class="form__group form__group--name">
@@ -80,6 +80,18 @@
         <div class="form__group form__group--regulations">
           <input type="checkbox" name="regulations" id="regulations" ngModel #regulations="ngModel" required>
           Wyrażam zgodę na przetwarzanie danych osobowych.
+        </div>
+      </div>
+      <div class="loading" *ngIf="isLoading">
+        <div class="lds-roller">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
       </div>
     </form>
