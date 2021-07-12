@@ -1,0 +1,21 @@
+.section {
+  &:not(:last-of-type) {
+    margin-bottom: 7rem;
+  }
+
+  &__header {
+    font-family: var(--font-secondary);
+    font-weight: 300;
+    font-size: 3.6rem;
+    line-height: 1.2;
+  }
+
+  &__desc {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  &__content {
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,32 @@
+.advantages {
+  background-color: var(--color-primary);
+  padding: 5rem 15vw;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8.8vw;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.advantage {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+
+  &__header {
+    color: var(--color-dark);
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+}
