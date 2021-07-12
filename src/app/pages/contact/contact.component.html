@@ -85,3 +85,13 @@
     </form>
   </div>
 </div>
+
+<div class="alert alert--success" *ngIf="isSuccess == true && isError == false"
+  (click)="isSuccess = false; isError = false;">
+  Wiadomość została wysłana. Skontaktujemy się najszybciej jak to możliwe!
+</div>
+
+<div class="alert alert--error" *ngIf="isSuccess == false && isError == true"
+  (click)="isSuccess = false; isError = false;">
+  Wiadomość nie została wysłana :( Prosimy o ponowną wiadomość lub wybór innej formy kontaku.
+</div>
