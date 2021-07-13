@@ -1,0 +1,32 @@
+<div class="data">
+  <h2 class="data__heading heading heading--tertiary">Dane dotyczące konta</h2>
+  <h3 class="data__desc">Poniżej przedstawiamy wszystkie dane dotyczące Twojego konta.</h3>
+  <div class="content">
+    <div class="form" *ngIf="!isLoading">
+      <div class="form__group form__group--email">
+        <input id="email" name="email" type="email" class="form__input" placeholder="Email" [(ngModel)]="user!.email"
+          disabled>
+        <label for="email" class="form__label">Email</label>
+      </div>
+
+      <div class="form__group form__group--name">
+        <input id="name" name="name" type="text" class="form__input" placeholder="Imię i nazwisko"
+          [(ngModel)]="user!.name" disabled>
+        <label for="name" class="form__label">Imię i nazwisko</label>
+      </div>
+    </div>
+
+    <div class="loading" *ngIf="isLoading">
+      <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>

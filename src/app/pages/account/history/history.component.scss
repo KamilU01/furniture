@@ -1,0 +1,37 @@
+@import "/src/assets/scss/typography";
+@import "/src/assets/scss/loading-spinner";
+
+.history {
+  font-size: 1.6rem;
+
+  &__heading {
+    color: var(--color-dark);
+  }
+
+  &__desc {
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+
+  .content {
+    position: relative;
+    min-height: 20rem;
+  }
+
+  .loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+    border-radius: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .lds-roller div:after {
+      background: var(--color-dark);
+    }
+  }
+}

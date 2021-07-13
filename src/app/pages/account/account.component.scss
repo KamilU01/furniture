@@ -1,0 +1,73 @@
+@import "/src/assets/scss/typography";
+
+.account {
+  padding: 0 5vw;
+  max-width: 130rem;
+  margin: 0 auto;
+  margin-top: 10rem;
+  font-size: 1.6rem;
+  color: var(--color-dark);
+
+  &__desc {
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin-bottom: 4rem;
+    color: var(--color-primary-darker);
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    @media only screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__content {
+    background-color: #fff;
+    box-shadow: 0px 2px 10px 0px rgb(0 0 0 / 16%);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 30px 20px;
+    height: 100%;
+  }
+
+  &__sidenav {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: var(--color-light);
+    padding: 30px 20px;
+    height: 100%;
+    box-shadow: 0px 5px 15px 0px rgb(0 0 0 / 12%);
+
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    font-weight: 400;
+    cursor: pointer;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1.2rem;
+    }
+
+    &.active {
+      font-weight: 700;
+
+      .account__img {
+        filter: var(--color-primary-filter);
+      }
+    }
+  }
+
+  &__img {
+    width: 3rem;
+    filter: var(--color-dark-filter);
+  }
+}

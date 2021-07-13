@@ -7,6 +7,7 @@ import { NavComponent } from './shared/nav/nav.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { JwtInterceptorService } from './services/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule
   ],
   providers: [
-    /* { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true } */
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { LoginResponse, LOGIN_MUTATION, ME_QUERY, RefreshTokenResponse, REFRESH_TOKEN_MUTATION, RegisterResponse, REGISTER_MUTATION, Tokens, User } from '../models/graphql';
+import { LoginResponse, LOGIN_MUTATION, MeQueryResponse, ME_QUERY, RefreshTokenResponse, REFRESH_TOKEN_MUTATION, RegisterResponse, REGISTER_MUTATION, Tokens, User } from '../models/graphql';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -47,6 +47,19 @@ export class AuthService {
         password
       }
     })
+  }
+
+  getMe() {
+    return this.apollo.query<MeQueryResponse>({
+      query: ME_QUERY
+    })
+      .pipe(
+        tap(user => this.doSaveUser(user.data.me))
+      )
+  }
+
+  private doSaveUser(user: User) {
+    this.USER.next(user);
   }
 
   private doLoginUser(email: string, token: string, refreshToken: string, expiresTime: number) {
@@ -99,6 +112,10 @@ export class AuthService {
 
   getJwtToken() {
     return localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  getRefreshToken() {
+    return localStorage.getItem(this.REFRESH_TOKEN);
   }
 
   autoLogin() {

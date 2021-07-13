@@ -68,7 +68,7 @@ query ME_QUERY {
     id,
     email,
     name,
-    isAdmin,
+    role
   }
 }
 `;
