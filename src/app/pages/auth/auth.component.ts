@@ -18,7 +18,6 @@ export class AuthComponent implements OnInit {
     if (!form.valid) {
       return
     }
-    console.log("chuj")
 
     this.isLoading = true;
 
@@ -32,6 +31,8 @@ export class AuthComponent implements OnInit {
       this.isNotValid = true;
       return
     }
+
+    console.log(form.value.regulamin)
 
     if (form.value.password !== form.value.passwordConfirm) {
       this.isNotValid = true;

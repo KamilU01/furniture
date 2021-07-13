@@ -40,6 +40,7 @@
       "email email"
       "password password"
       "passwordConfirm passwordConfirm"
+      "regulamin regulamin"
       "validation validation"
       ". btn"
     ;
@@ -60,6 +61,25 @@
       &--btn {
         grid-area: btn;
         justify-self: end;
+      }
+
+      &--regulamin {
+        grid-area: regulamin;
+        font-size: 1.6rem;
+
+        margin: 1rem 0;
+
+        a {
+          color: var(--color-primary-darker);
+        }
+
+        sup {
+          color: var(--color-danger);
+        }
+
+        input {
+          margin-right: 0.5rem;
+        }
       }
 
       &--validation {

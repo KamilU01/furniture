@@ -35,6 +35,10 @@
         <label for="password" class="form__label">Hasło min. 8 znaków</label>
       </div>
 
+      <div class="form__group--regulamin">
+        <input type="checkbox" name="regulamin" id="regulamin" ngModel #regulamin="ngModel" required>Akceptuję <a
+          routerLink="/regulamin" target="_blank">regulamin</a> sklepu <sup>*</sup></div>
+
       <div class="form__group--validation" *ngIf="isNotValid">Proszę poprawnie uzupełnić wszystkie pola oraz sprawdzić
         zgodność haseł!</div>
 
