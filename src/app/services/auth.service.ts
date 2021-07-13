@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { LoginResponse, LOGIN_MUTATION, ME_QUERY, RegisterResponse, REGISTER_MUTATION, Tokens } from '../models/graphql';
+import { LoginResponse, LOGIN_MUTATION, ME_QUERY, RefreshTokenResponse, REFRESH_TOKEN_MUTATION, RegisterResponse, REGISTER_MUTATION, Tokens, User } from '../models/graphql';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +14,13 @@ export class AuthService {
   private readonly JWT_EXPIRES = 'JWT_EXPIRES';
   private readonly REFRESH_EXPIRES = 'REFRESH_EXPIRES';
 
-  private loggedUser!: string;
+  private loggedUser!: string | null;
 
-  constructor(private apollo: Apollo) { }
+  private tokenExpirationTimer: any;
+
+  USER = new BehaviorSubject<User | null>(null);
+
+  constructor(private apollo: Apollo, private router: Router) { }
 
   login(email: string, password: string) {
     return this.apollo.mutate<LoginResponse>({
@@ -55,6 +61,97 @@ export class AuthService {
     localStorage.setItem(this.REFRESH_EXPIRES, REFRESH_EXPIRES.toString());
     localStorage.setItem(this.REFRESH_TOKEN, refreshToken);
 
-    /* this.autoRefreshToken((+JWT_EXPIRES) - (currDate.getTime() / 1000)) */
+    this.autoRefreshToken((+JWT_EXPIRES) - (currDate.getTime() / 1000))
+  }
+
+  autoRefreshToken(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.refreshToken().subscribe(res => {
+        this.autoRefreshToken(res.data!.refreshToken.expiresTime)
+
+      }, err => {
+        this.logoutUser()
+      })
+    }, expirationDuration * 1000)
+  }
+
+  refreshToken() {
+    return this.apollo.mutate<RefreshTokenResponse>({
+      mutation: REFRESH_TOKEN_MUTATION
+    })
+      .pipe
+      (
+        tap(tokens => this.storeJwtToken(tokens.data!.refreshToken.token, tokens.data!.refreshToken.expiresTime))
+      )
+  }
+
+  logoutUser() {
+    this.loggedUser = null;
+    this.router.navigate(["/autoryzacja"])
+    this.removeTokens();
+    this.USER.next(null)
+    clearTimeout(this.tokenExpirationTimer)
+  }
+
+  isLoggedIn() {
+    return !!this.getJwtToken();
+  }
+
+  getJwtToken() {
+    return localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  autoLogin() {
+    const JWT_TOKEN = localStorage.getItem("JWT_TOKEN")
+    const JWT_EXPIRES = localStorage.getItem("JWT_EXPIRES")
+    const REFRESH_EXPIRES = localStorage.getItem("REFRESH_EXPIRES")
+    const REFRESH_TOKEN = localStorage.getItem("REFRESH_TOKEN")
+
+    if (!JWT_TOKEN || !JWT_EXPIRES || !REFRESH_EXPIRES || !REFRESH_TOKEN) {
+      this.logoutUser()
+      return
+    }
+
+    if (this.isExpired(+REFRESH_EXPIRES) == true) {
+      this.logoutUser()
+      return
+    }
+
+    if (this.isExpired(+JWT_EXPIRES) == true) {
+      this.refreshToken().subscribe(res => {
+        this.autoRefreshToken(res.data!.refreshToken.expiresTime)
+      }, err => {
+        this.logoutUser()
+      })
+    } else {
+      const currDate = new Date();
+      this.autoRefreshToken((+JWT_EXPIRES) - (currDate.getTime() / 1000))
+    }
+  }
+
+  isExpired(time: number) {
+    const currDate = new Date();
+
+    if ((currDate.getTime() / 1000) <= time) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  private storeJwtToken(jwt: string, expires: number) {
+    let currDate = new Date();
+
+    const JWT_EXPIRES = (currDate.getTime() / 1000) + expires;
+
+    localStorage.setItem(this.JWT_TOKEN, jwt);
+    localStorage.setItem(this.JWT_EXPIRES, JWT_EXPIRES.toString());
+  }
+
+  private removeTokens() {
+    localStorage.removeItem(this.JWT_TOKEN);
+    localStorage.removeItem(this.REFRESH_TOKEN);
+    localStorage.removeItem(this.REFRESH_EXPIRES);
+    localStorage.removeItem(this.JWT_EXPIRES);
   }
 }

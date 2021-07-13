@@ -1,11 +1,13 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { DashboardGuard } from "src/app/services/dashboard.guard";
 import { AccountComponent } from "./account.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: AccountComponent
+        component: AccountComponent,
+        canActivate: [DashboardGuard]
     }
 ]
 
