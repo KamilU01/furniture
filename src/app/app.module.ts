@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { GraphQLModule } from './graphql.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -20,7 +20,9 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    /* { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true } */
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

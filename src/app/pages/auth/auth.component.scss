@@ -1,0 +1,110 @@
+@import "/src/assets/scss/button";
+@import "/src/assets/scss/form";
+@import "/src/assets/scss/alerts";
+@import "/src/assets/scss/loading-spinner";
+@import "/src/assets/scss/typography";
+
+.auth {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 6.25vw;
+  row-gap: 4rem;
+  color: var(--color-dark);
+  max-width: 130rem;
+
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .heading {
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .login {
+    border: 1px solid var(--color-primary-lighter);
+    align-self: flex-start;
+    padding: 1.6rem;
+    border-radius: 4px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form {
+    display: grid;
+    row-gap: 1/6rem;
+    grid-template-areas:
+      "email email"
+      "password password"
+      "passwordConfirm passwordConfirm"
+      "validation validation"
+      ". btn"
+    ;
+
+    &__group {
+      &--email {
+        grid-area: email;
+      }
+
+      &--password {
+        grid-area: password;
+      }
+
+      &--passwordConfirm {
+        grid-area: passwordConfirm;
+      }
+
+      &--btn {
+        grid-area: btn;
+        justify-self: end;
+      }
+
+      &--validation {
+        grid-area: validation;
+        font-size: 1.6rem;
+        color: var(--color-danger);
+      }
+    }
+  }
+
+  .register-advantages {
+    grid-column: 2;
+
+    @media only screen and (max-width: 900px) {
+      grid-column: 1;
+    }
+  }
+
+  .advantage {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.6rem;
+
+    &:not(:last-of-type) {
+      margin-bottom: 3rem;
+    }
+
+    &__img {
+      width: 4rem;
+      filter: var(--color-dark-filter);
+    }
+  }
+
+  .loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+    border-radius: 0;
+    width: 100%;
+    background-color: rgba(190, 160, 120, .8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
