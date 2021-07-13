@@ -37,6 +37,7 @@
     display: grid;
     row-gap: 1/6rem;
     grid-template-areas:
+      "name name"
       "email email"
       "password password"
       "passwordConfirm passwordConfirm"
@@ -61,6 +62,10 @@
       &--btn {
         grid-area: btn;
         justify-self: end;
+      }
+
+      &--name {
+        grid-area: name;
       }
 
       &--regulamin {

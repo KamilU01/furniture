@@ -29,10 +29,22 @@
         <label for="email" class="form__label">Email</label>
       </div>
 
+      <div class="form__group form__group--name">
+        <input id="name" name="name" type="text" class="form__input" placeholder="Imię i nazwisko" ngModel required
+          #name="ngModel">
+        <label for="name" class="form__label">Imię i nazwisko</label>
+      </div>
+
       <div class="form__group form__group--password">
         <input id="password" name="password" type="password" class="form__input" placeholder="Hasło min. 8 znaków"
           ngModel required #password="ngModel" minlength="8">
         <label for="password" class="form__label">Hasło min. 8 znaków</label>
+      </div>
+
+      <div class="form__group form__group--passwordConfirm">
+        <input id="passwordConfirm" name="passwordConfirm" type="password" class="form__input"
+          placeholder="Potwierdź hasło" ngModel required #passwordConfirm="ngModel">
+        <label for="passwordConfirm" class="form__label">Potwierdź hasło</label>
       </div>
 
       <div class="form__group--regulamin">
@@ -41,12 +53,6 @@
 
       <div class="form__group--validation" *ngIf="isNotValid">Proszę poprawnie uzupełnić wszystkie pola oraz sprawdzić
         zgodność haseł!</div>
-
-      <div class="form__group form__group--passwordConfirm">
-        <input id="passwordConfirm" name="passwordConfirm" type="passwordConfirm" class="form__input"
-          placeholder="Potwierdź hasło" ngModel required #passwordConfirm="ngModel">
-        <label for="passwordConfirm" class="form__label">Potwierdź hasło</label>
-      </div>
 
       <div class="form__group form__group--btn">
         <button type="submit" class="contact__btn btn btn--primary btn--animated">Zarejestruj się</button>
@@ -84,4 +90,19 @@
       <div></div>
     </div>
   </div>
+</div>
+
+<div class="alert alert--error" *ngIf="isSuccess == false && isError == true"
+  (click)="isSuccess = false; isError = false;">
+  Nie udało się zalogować :( Prosimy o ponowienie próby za chwilę lub o kontakt.
+</div>
+
+<div class="alert alert--success" *ngIf="isRegisterSuccess == true && isRegisterError == false"
+  (click)="isRegisterSuccess = false; isRegisterSuccess = false;">
+  Konto zostało utworzone :) Prosimy o zalogowanie się.
+</div>
+
+<div class="alert alert--error" *ngIf="isRegisterSuccess == false && isRegisterError == true"
+  (click)="isRegisterSuccess = false; isRegisterSuccess = false;">
+  Nie udało się utworzyć konta :( Prosimy o ponowienie próby za chwilę lub o kontakt.
 </div>

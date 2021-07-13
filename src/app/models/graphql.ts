@@ -48,6 +48,20 @@ export interface LoginResponse {
     }
 }
 
+export const REGISTER_MUTATION = gql`
+mutation RegisterMutation ($name: String!, $email: String!, $password: String!) {
+    register(registerInput: {name: $name, email: $email, password: $password}) {
+    id
+}
+}
+`;
+
+export interface RegisterResponse {
+    register: {
+        id: string
+    }
+}
+
 export const ME_QUERY = gql`
 query ME_QUERY {
   me {
