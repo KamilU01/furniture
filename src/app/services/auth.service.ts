@@ -100,7 +100,6 @@ export class AuthService {
 
   logoutUser() {
     this.loggedUser = null;
-    this.router.navigate(["/"])
     this.removeTokens();
     this.USER.next(null)
     clearTimeout(this.tokenExpirationTimer)

@@ -98,3 +98,23 @@ export interface Tokens {
     refreshToken: string;
     expiresTime: number;
 }
+
+export const GET_FAQS_QUERY = gql`
+query GET_FAQS_QUERY {
+    faqs {
+      id,
+      question,
+      answer
+    }
+  }
+`;
+
+export interface faq {
+    id?: string,
+    question: string,
+    answer: string,
+}
+
+export interface getFaqsQuery {
+    faqs: Array<faq>
+}

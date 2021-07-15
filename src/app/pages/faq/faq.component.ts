@@ -1,4 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { faq } from 'src/app/models/graphql';
+import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
   selector: 'app-faq',
@@ -6,10 +8,16 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
+  faqs!: Array<faq>;
+  isLoading: boolean = true;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private shopService: ShopService) { }
 
   ngOnInit(): void {
+    this.shopService.getAllFaqs().subscribe(res => {
+      this.faqs = res.data.faqs;
+      this.isLoading = false;
+    })
   }
 
   toggleClass(event: any, className: string) {
