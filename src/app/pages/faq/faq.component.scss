@@ -1,4 +1,5 @@
 @import "/src/assets/scss/typography";
+@import "/src/assets/scss/loading-spinner";
 
 .faq {
   padding: 0 5vw;
@@ -6,6 +7,7 @@
   margin: 0 auto;
   margin-top: 10rem;
   font-size: 1.6rem;
+  position: relative;
 
   &__heading {
     border-bottom: 1px solid var(--color-dark);
@@ -52,4 +54,8 @@
       }
     }
   }
+}
+
+.lds-roller div:after {
+  background: var(--color-dark);
 }
