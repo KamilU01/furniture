@@ -1,0 +1,27 @@
+<div class="login container">
+  <h1 class="login__header heading heading--primary">Przywróć hasło</h1>
+  <form class="login__form form" #formLogin="ngForm" (ngSubmit)="onSubmit(formLogin)">
+    <div class="form__group form__group--email">
+      <input id="loginEmail" name="loginEmail" type="email" class="form__input" placeholder="Email" ngModel required
+        #loginEmail="ngModel">
+      <label for="loginEmail" class="form__label">Email</label>
+    </div>
+
+    <div class="reset form__group--reset" routerLink="/autoryzacja/logowanie">
+      Powrót do logowania
+    </div>
+
+    <div class="form__group form__group--btn">
+      <button type="submit" class="contact__btn btn btn--primary btn--animated">Przywróć hasło</button>
+    </div>
+  </form>
+</div>
+<div class="alert alert--error" *ngIf="isSuccess == false && isError == true"
+  (click)="isSuccess = false; isError = false;">
+  Nie udało się przywrócić hasła :( Prosimy o ponowienie próby za chwilę lub o kontakt.
+</div>
+
+<div class="alert alert--success" *ngIf="isSuccess == true && isError == false"
+  (click)="isSuccess = false; isError = false;">
+  Wiadomość zostałą wysłana! Prosimy sprawdzić skrzynkę pocztową.
+</div>

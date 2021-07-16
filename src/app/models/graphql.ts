@@ -136,3 +136,37 @@ export interface Category {
 export interface GetCategories {
     categories: Array<Category>
 }
+
+export const CREATE_PASSWORD_RESET_MUTATION = gql`
+mutation CreatePasswordResetMutation
+(
+$createPasswordResetInput: CreatePasswordResetInput!
+)
+{
+resetPassword
+(createPasswordResetInput: $createPasswordResetInput)
+{
+    id,
+}
+}
+`;
+
+export interface CreatePasswordResetResponse {
+    passwordReset: {
+        id: string,
+    }
+}
+
+export const GET_PASSWORD_RESET_MUTATION = gql`
+mutation GetPasswordResetMutation
+(
+$getPasswordResetInput: GetPasswordResetInput!
+)
+{
+getResetPassword
+(getPasswordResetInput: $getPasswordResetInput)
+{
+    id,
+}
+}
+`;

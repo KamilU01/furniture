@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { LoginResponse, LOGIN_MUTATION, MeQueryResponse, ME_QUERY, RefreshTokenResponse, REFRESH_TOKEN_MUTATION, RegisterResponse, REGISTER_MUTATION, Tokens, User } from '../models/graphql';
+import { CreatePasswordResetResponse, CREATE_PASSWORD_RESET_MUTATION, GET_PASSWORD_RESET_MUTATION, LoginResponse, LOGIN_MUTATION, MeQueryResponse, ME_QUERY, RefreshTokenResponse, REFRESH_TOKEN_MUTATION, RegisterResponse, REGISTER_MUTATION, Tokens, User } from '../models/graphql';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -153,6 +153,30 @@ export class AuthService {
     } else {
       return true;
     }
+  }
+
+  resetPassword(email: string) {
+    return this.apollo.mutate<CreatePasswordResetResponse>({
+      mutation: CREATE_PASSWORD_RESET_MUTATION,
+      variables: {
+        createPasswordResetInput: {
+          email
+        }
+      }
+    })
+  }
+
+  resetPasswordConfirmation(id: string, password: string, passwordConfirm: string) {
+    return this.apollo.mutate<CreatePasswordResetResponse>({
+      mutation: GET_PASSWORD_RESET_MUTATION,
+      variables: {
+        getPasswordResetInput: {
+          id,
+          password,
+          passwordConfirm
+        }
+      }
+    })
   }
 
   private storeJwtToken(jwt: string, expires: number) {

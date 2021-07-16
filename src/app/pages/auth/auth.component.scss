@@ -36,15 +36,6 @@
   .form {
     display: grid;
     row-gap: 1.6rem;
-    grid-template-areas:
-      "name name"
-      "email email"
-      "password password"
-      "passwordConfirm passwordConfirm"
-      "regulamin regulamin"
-      "validation validation"
-      ". btn"
-    ;
 
     &__group {
       &--email {
@@ -92,6 +83,13 @@
         font-size: 1.6rem;
         color: var(--color-danger);
       }
+
+      &--reset {
+        grid-area: reset;
+        font-size: 1.6rem;
+        cursor: pointer;
+        color: var(--color-primary-darker);
+      }
     }
   }
 
@@ -132,4 +130,26 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+
+.register__form {
+  grid-template-areas:
+    "name name"
+    "email email"
+    "password password"
+    "passwordConfirm passwordConfirm"
+    "regulamin regulamin"
+    "validation validation"
+    ". btn"
+     !important;
+}
+
+.login__form {
+  grid-template-areas:
+    "email email"
+    "password password"
+    "reset reset"
+    ". btn"
+     !important;
 }

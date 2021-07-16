@@ -38,6 +38,14 @@ const routes: Routes = [
         path: 'zapisane-produkty',
         loadChildren: () => import("./pages/favourites/favourites.module").then(m => m.FavouritesModule)
     },
+    {
+        path: 'reset',
+        loadChildren: () => import("./pages/reset/reset.module").then(m => m.ResetModule)
+    },
+    {
+        path: 'password-reset',
+        loadChildren: () => import("./pages/password-reset/password-reset.module").then(m => m.PasswordResetModule)
+    },
 ]
 
 @NgModule({

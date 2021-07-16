@@ -1,0 +1,76 @@
+@import "/src/assets/scss/button";
+@import "/src/assets/scss/form";
+@import "/src/assets/scss/alerts";
+@import "/src/assets/scss/loading-spinner";
+@import "/src/assets/scss/typography";
+
+.login {
+  max-width: 60rem;
+  display: grid;
+  row-gap: 2.5rem;
+}
+
+.form {
+  display: grid;
+  row-gap: 2rem;
+  margin-top: 2rem;
+  grid-template-areas:
+    "email email"
+    "reset reset"
+    ". btn";
+
+  &__group {
+    &--email {
+      grid-area: email;
+    }
+
+    &--password {
+      grid-area: password;
+    }
+
+    &--passwordConfirm {
+      grid-area: passwordConfirm;
+    }
+
+    &--btn {
+      grid-area: btn;
+      justify-self: end;
+    }
+
+    &--name {
+      grid-area: name;
+    }
+
+    &--regulamin {
+      grid-area: regulamin;
+      font-size: 1.6rem;
+
+      margin: 1rem 0;
+
+      a {
+        color: var(--color-primary-darker);
+      }
+
+      sup {
+        color: var(--color-danger);
+      }
+
+      input {
+        margin-right: 0.5rem;
+      }
+    }
+
+    &--validation {
+      grid-area: validation;
+      font-size: 1.6rem;
+      color: var(--color-danger);
+    }
+
+    &--reset {
+      grid-area: reset;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--color-primary-darker);
+    }
+  }
+}
