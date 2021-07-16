@@ -118,3 +118,21 @@ export interface faq {
 export interface getFaqsQuery {
     faqs: Array<faq>
 }
+
+export const GET_CATEGORIES_QUERY = gql`
+query {
+    categories {
+    id, 
+    name
+    }
+}
+`;
+
+export interface Category {
+    id?: string,
+    name: string
+}
+
+export interface GetCategories {
+    categories: Array<Category>
+}

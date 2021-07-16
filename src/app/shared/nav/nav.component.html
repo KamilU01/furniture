@@ -9,7 +9,17 @@
         <a>kategorie <img class="arrow" src="assets/images/arrow.svg"></a>
         <div class="control__popout__pad"></div>
         <div class="control__popout__window">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="window__content">
+            <div class="categories">
+              <div class="categories__header">Kategorie</div>
+              <div class="categories__content">
+                <a [routerLink]="['kategoria', category.id]" class="categories__item"
+                  *ngFor="let category of categories">{{ category.name }}</a>
+              </div>
+            </div>
+
+            <a routerLink="/aranzacje" class="arrangaments window__link">Zobacz wszystkie aranżacje</a>
+          </div>
         </div>
       </div>
 

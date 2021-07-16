@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { getFaqsQuery, GET_FAQS_QUERY } from '../models/graphql';
+import { GetCategories, getFaqsQuery, GET_CATEGORIES_QUERY, GET_FAQS_QUERY } from '../models/graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,12 @@ export class ShopService {
   getAllFaqs() {
     return this.apollo.query<getFaqsQuery>({
       query: GET_FAQS_QUERY,
+    })
+  }
+
+  getAllCategories() {
+    return this.apollo.query<GetCategories>({
+      query: GET_CATEGORIES_QUERY,
     })
   }
 }
