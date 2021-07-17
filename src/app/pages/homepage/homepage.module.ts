@@ -7,6 +7,8 @@ import { AdvantagesComponent } from './sections/advantages/advantages.component'
 import { NewestProductsComponent } from './sections/newest-products/newest-products.component';
 import { CategoriesComponent } from './sections/categories/categories.component';
 import { LatestProductsComponent } from './sections/latest-products/latest-products.component';
+import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
+import { SafePipe } from 'src/app/services/pipes/safe.pipe';
 
 
 
@@ -17,11 +19,13 @@ import { LatestProductsComponent } from './sections/latest-products/latest-produ
     AdvantagesComponent,
     NewestProductsComponent,
     CategoriesComponent,
-    LatestProductsComponent
+    LatestProductsComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,
-    HomepageRoutingModule
+    HomepageRoutingModule,
+    ProductCardModule
   ]
 })
 export class HomepageModule { }

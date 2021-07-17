@@ -1,1 +1,35 @@
-<p>categories works!</p>
+<div class="rooms">
+  <div class="room" *ngFor="let room of rooms" [routerLink]="['/pomieszczenie', room.id]">
+    <div [innerHtml]="room.icon | safe:'html'" class="room__img"></div>
+    <a [routerLink]="['/pomieszczenie', room.id]" class="room__link">{{room.name}}</a>
+  </div>
+  <div class="room" *ngFor="let room of rooms" [routerLink]="['/pomieszczenie', room.id]">
+    <div [innerHtml]="room.icon | safe:'html'" class="room__img"></div>
+    <a [routerLink]="['/pomieszczenie', room.id]" class="room__link">{{room.name}}</a>
+  </div>
+  <div class="room" *ngFor="let room of rooms" [routerLink]="['/pomieszczenie', room.id]">
+    <div [innerHtml]="room.icon | safe:'html'" class="room__img"></div>
+    <a [routerLink]="['/pomieszczenie', room.id]" class="room__link">{{room.name}}</a>
+  </div>
+  <div class="room" *ngFor="let room of rooms" [routerLink]="['/pomieszczenie', room.id]">
+    <div [innerHtml]="room.icon | safe:'html'" class="room__img"></div>
+    <a [routerLink]="['/pomieszczenie', room.id]" class="room__link">{{room.name}}</a>
+  </div>
+  <div class="room" *ngFor="let room of rooms" [routerLink]="['/pomieszczenie', room.id]">
+    <div [innerHtml]="room.icon | safe:'html'" class="room__img"></div>
+    <a [routerLink]="['/pomieszczenie', room.id]" class="room__link">{{room.name}}</a>
+  </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

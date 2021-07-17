@@ -170,3 +170,79 @@ getResetPassword
 }
 }
 `;
+
+
+export interface Arrangament {
+    id?: string,
+    name: string,
+    photo?: string,
+    description?: string,
+}
+
+export interface GetArrangaments {
+    arrangaments: Array<Arrangament>
+}
+
+export interface MutationArrangamentResponse {
+    arrangament: {
+        id: string
+    }
+}
+
+export interface Room {
+    id: string,
+    name: string,
+    icon: string,
+}
+
+export interface GetRooms {
+    rooms: Array<Room>
+}
+
+export interface MutationRoomResponse {
+    room: {
+        id: string
+    }
+}
+
+export interface Product {
+    id?: string,
+    name: string,
+    price: number,
+    description: string,
+    amount: number,
+    photo: string,
+    room: Room | null,
+    category: Category | null
+}
+
+export interface GetProducts {
+    products: Array<Product>
+}
+
+export interface MutationProductResponse {
+    product: {
+        id: string
+    }
+}
+
+export const GET_NEWEST_PRODUCTS_QUERY = gql`
+query {
+    products {
+    id, 
+    name,
+    price,
+    photo,
+    }
+}
+`;
+
+export const GET_ROOMS_QUERY = gql`
+query {
+    rooms {
+    id, 
+    name,
+    icon
+    }
+}
+`;

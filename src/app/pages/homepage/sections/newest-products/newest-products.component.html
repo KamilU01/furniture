@@ -1,1 +1,17 @@
-<p>newest-products works!</p>
+<div class="products-wrap">
+  <app-product-card [product]="product" *ngFor="let product of products"></app-product-card>
+  <app-product-card [product]="product" *ngFor="let product of products"></app-product-card>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
