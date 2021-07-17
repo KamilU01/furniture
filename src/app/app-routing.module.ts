@@ -39,6 +39,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/favourites/favourites.module").then(m => m.FavouritesModule)
     },
     {
+        path: 'koszyk',
+        loadChildren: () => import("./pages/cart/cart.module").then(m => m.CartModule)
+    },
+    {
         path: 'reset',
         loadChildren: () => import("./pages/reset/reset.module").then(m => m.ResetModule)
     },

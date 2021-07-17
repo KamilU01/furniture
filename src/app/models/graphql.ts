@@ -246,3 +246,9 @@ query {
     }
 }
 `;
+
+export interface cartItem {
+    product: Product,
+    quantity: number,
+    value?: number
+}
