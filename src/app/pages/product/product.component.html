@@ -35,13 +35,13 @@
     <h2 class="product__heading heading heading--primary">{{product.name}}</h2>
     <p class="product__desc" [innerHtml]="product.description"></p>
     <div class="product__price">{{ product.price }} zł</div>
-    <a class="btn btn--secondary">Dodaj do koszyka</a>
+    <a class="btn btn--secondary" (click)="addToCart(product)">Dodaj do koszyka</a>
     <div class="product__amount">Dostępność: <span>{{ amountText }}</span></div>
   </div>
 </div>
 
 <div class="loading" *ngIf="isLoading">
-  <div class="lds-roller lds-roller">
+  <div class="lds-roller lds-roller--dark">
     <div></div>
     <div></div>
     <div></div>

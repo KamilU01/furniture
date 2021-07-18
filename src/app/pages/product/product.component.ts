@@ -42,4 +42,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
     this.urlSubscription.unsubscribe();
   }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart({ product: product, quantity: 1 });
+  }
 }

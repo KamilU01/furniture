@@ -1,8 +1,14 @@
 <div class="product">
-  <img src="assets/images/favourite.svg" alt="Zapisz do polubionych" class="product__save">
-  <img [routerLink]="['/produkt', product.id]" class="product__img"
-    [src]="product.photo ? url+'photos/'+product.photo : 'assets/images/logo.svg'" [alt]="product.name">
+  <div class="product__save">
+    <img src="assets/images/favourite.svg" alt="Zapisz do polubionych">
+  </div>
+  <div class="product__img">
+    <img [routerLink]="['/produkt', product.id]"
+      [src]="product.photo ? url+'photos/'+product.photo : 'assets/images/logo.svg'" [alt]="product.name">
+  </div>
   <a [routerLink]="['/produkt', product.id]" class="product__name">{{ product.name }}</a>
   <div [routerLink]="['/produkt', product.id]" class="product__price">{{ product.price }} zł</div>
-  <img (click)="addToCart(product)" src="assets/images/cart.svg" alt="Dodaj do koszyka" class="product__cart">
+  <div class="product__cart">
+    <img (click)="addToCart(product)" src="assets/images/cart.svg" alt="Dodaj do koszyka">
+  </div>
 </div>
