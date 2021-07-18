@@ -47,6 +47,18 @@ const routes: Routes = [
         loadChildren: () => import("./pages/product/product.module").then(m => m.ProductModule)
     },
     {
+        path: 'pomieszczenie',
+        loadChildren: () => import("./pages/room/room.module").then(m => m.RoomModule)
+    },
+    {
+        path: 'kategoria',
+        loadChildren: () => import("./pages/category/category.module").then(m => m.CategoryModule)
+    },
+    {
+        path: 'aranzacja',
+        loadChildren: () => import("./pages/arrangment/arrangment.module").then(m => m.ArrangmentModule)
+    },
+    {
         path: 'reset',
         loadChildren: () => import("./pages/reset/reset.module").then(m => m.ResetModule)
     },
