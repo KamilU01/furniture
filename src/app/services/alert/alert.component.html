@@ -1,0 +1,3 @@
+<div *ngFor="let alert of alerts" class="{{cssClass(alert)}}" (click)="removeAlert(alert)">
+  {{alert.message}}
+</div>

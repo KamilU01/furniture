@@ -8,6 +8,7 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptorService } from './services/jwt.interceptor';
+import { AlertModule } from './services/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { JwtInterceptorService } from './services/jwt.interceptor';
     BrowserModule,
     GraphQLModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AlertModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }

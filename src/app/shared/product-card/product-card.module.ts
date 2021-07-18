@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './product-card.component';
 import { RouterModule } from '@angular/router';
+import { AlertModule } from 'src/app/services/alert/alert.module';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    AlertModule
   ],
   exports: [
     ProductCardComponent
