@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { BehaviorSubject } from 'rxjs';
-import { GetCategories, getFaqsQuery, getProductResponse, GetProducts, GetRooms, GET_CATEGORIES_QUERY, GET_FAQS_QUERY, GET_NEWEST_PRODUCTS_QUERY, GET_PRODUCT_QUERY, GET_ROOMS_QUERY, Product } from '../models/graphql';
+import { GetCategories, getCategoryProductsResponse, getFaqsQuery, getProductResponse, GetProducts, GetRooms, GET_CATEGORIES_QUERY, GET_CATEGORY_PRODUCTS_QUERY, GET_FAQS_QUERY, GET_NEWEST_PRODUCTS_QUERY, GET_PRODUCT_QUERY, GET_ROOMS_QUERY, Product } from '../models/graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,15 @@ export class ShopService {
   getAllCategories() {
     return this.apollo.query<GetCategories>({
       query: GET_CATEGORIES_QUERY,
+    })
+  }
+
+  getCategoryProducts(id: string) {
+    return this.apollo.query<getCategoryProductsResponse>({
+      query: GET_CATEGORY_PRODUCTS_QUERY,
+      variables: {
+        id
+      }
     })
   }
 

@@ -30,7 +30,7 @@
   </div>
   <div class="product__right">
     <div class="product__favourite">
-      <img src="assets/images/favourite.svg" alt="Dodaj do polubionych">
+      <img src="assets/images/favourite.svg" alt="Dodaj do polubionych" (click)="addToFavourites(product)">
     </div>
     <h2 class="product__heading heading heading--primary">{{product.name}}</h2>
     <p class="product__desc" [innerHtml]="product.description"></p>

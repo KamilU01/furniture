@@ -59,6 +59,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/arrangment/arrangment.module").then(m => m.ArrangmentModule)
     },
     {
+        path: 'aranzacje',
+        loadChildren: () => import("./pages/arrangments/arrangments.module").then(m => m.ArrangmentsModule)
+    },
+    {
         path: 'reset',
         loadChildren: () => import("./pages/reset/reset.module").then(m => m.ResetModule)
     },

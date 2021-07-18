@@ -6,6 +6,7 @@ import { ShopService } from 'src/app/services/shop.service';
 import { Product } from 'src/app/models/graphql';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AlertService } from 'src/app/services/alert/alert.service';
 
 @Component({
   selector: 'app-product',
@@ -23,7 +24,12 @@ export class ProductComponent implements OnInit, OnDestroy {
   url = environment.apiUrl;
   amountText!: string;
 
-  constructor(private router: Router, private location: Location, private cartService: CartService, private route: ActivatedRoute, private shopService: ShopService) { }
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+
+  constructor(private router: Router, protected alertService: AlertService, private cartService: CartService, private route: ActivatedRoute, private shopService: ShopService) { }
 
   ngOnInit(): void {
     this.urlSubscription = this.route.params.subscribe(params => {
@@ -45,5 +51,11 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   addToCart(product: Product) {
     this.cartService.addToCart({ product: product, quantity: 1 });
+    this.alertService.success('Produkt został dodany do koszyka!', this.options)
+  }
+
+  addToFavourites(product: Product) {
+    this.alertService.success('Produkt został zapisany!', this.options)
+    this.shopService.addToFavourites(product);
   }
 }

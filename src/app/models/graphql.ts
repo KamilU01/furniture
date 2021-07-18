@@ -130,7 +130,8 @@ query {
 
 export interface Category {
     id?: string,
-    name: string
+    name: string,
+    products: Array<Product>
 }
 
 export interface GetCategories {
@@ -280,4 +281,33 @@ query
 
 export interface getProductResponse {
     product: Product
+}
+
+export const GET_CATEGORY_PRODUCTS_QUERY = gql`
+query 
+(
+  $id: String!
+)
+{
+    category(id: $id) {
+    id, 
+    name,
+    products {
+      id
+      name,
+    price,
+    description,
+    amount,
+    photo,
+    }
+    }
+}
+`;
+
+export interface getCategoryProductsResponse {
+    category: {
+        id: string,
+        name: string,
+        products: Array<Product>
+    }
 }
