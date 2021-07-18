@@ -1,0 +1,54 @@
+<div class="product container" *ngIf="!isLoading">
+  <div class="product__left">
+    <div class="product__img">
+      <img [src]="product.photo ? url+'photos/'+product.photo : 'assets/images/logo.svg'" [alt]="product.name">
+    </div>
+    <div class="products__similar">
+      <h3 class="products__similar__heading heading heading--tertiary">Podobne produkty</h3>
+      <div class="products__similar__wrap">
+        <a [routerLink]="['/produkt', product.id]" class="product__similar">
+          <img src="assets/images/logo.svg" [alt]="product.name" class="product__similar__img">
+          <div class="product__similar__content">
+            <div class="product__similar__name">Komoda</div>
+            <div class="product__similar__price">550 zł</div>
+          </div>
+        </a><a [routerLink]="['/produkt', product.id]" class="product__similar">
+          <img src="assets/images/logo.svg" [alt]="product.name" class="product__similar__img">
+          <div class="product__similar__content">
+            <div class="product__similar__name">Komoda</div>
+            <div class="product__similar__price">550 zł</div>
+          </div>
+        </a><a [routerLink]="['/produkt', product.id]" class="product__similar">
+          <img src="assets/images/logo.svg" [alt]="product.name" class="product__similar__img">
+          <div class="product__similar__content">
+            <div class="product__similar__name">Komoda</div>
+            <div class="product__similar__price">550 zł</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="product__right">
+    <div class="product__favourite">
+      <img src="assets/images/favourite.svg" alt="Dodaj do polubionych">
+    </div>
+    <h2 class="product__heading heading heading--primary">{{product.name}}</h2>
+    <p class="product__desc" [innerHtml]="product.description"></p>
+    <div class="product__price">{{ product.price }} zł</div>
+    <a class="btn btn--secondary">Dodaj do koszyka</a>
+    <div class="product__amount">Dostępność: <span>{{ amountText }}</span></div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

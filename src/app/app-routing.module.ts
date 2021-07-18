@@ -43,6 +43,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/cart/cart.module").then(m => m.CartModule)
     },
     {
+        path: 'produkt',
+        loadChildren: () => import("./pages/product/product.module").then(m => m.ProductModule)
+    },
+    {
         path: 'reset',
         loadChildren: () => import("./pages/reset/reset.module").then(m => m.ResetModule)
     },

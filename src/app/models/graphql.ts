@@ -252,3 +252,32 @@ export interface cartItem {
     quantity: number,
     value?: number
 }
+
+export const GET_PRODUCT_QUERY = gql`
+query 
+(
+  $id: String!
+)
+{
+    product(id: $id) {
+    id, 
+    name,
+    price,
+    description,
+    amount,
+    photo,
+    room {
+        id,
+        name,
+    },
+    category {
+        id,
+        name
+    }
+    }
+}
+`;
+
+export interface getProductResponse {
+    product: Product
+}
