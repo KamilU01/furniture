@@ -1,4 +1,4 @@
-<div class="category container">
+<div class="category container" *ngIf="!isLoading">
   <h1 class="category__heading heading heading--primary">{{category.name}}</h1>
   <div class="products-wrap">
     <app-product-card *ngFor="let product of category.products" [product]="product"></app-product-card>

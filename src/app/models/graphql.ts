@@ -194,6 +194,7 @@ export interface Room {
     id: string,
     name: string,
     icon: string,
+    products: Array<Product>
 }
 
 export interface GetRooms {
@@ -308,6 +309,37 @@ export interface getCategoryProductsResponse {
     category: {
         id: string,
         name: string,
+        products: Array<Product>
+    }
+}
+
+export const GET_ROOM_PRODUCTS_QUERY = gql`
+query 
+(
+  $id: String!
+)
+{
+    room(id: $id) {
+    id, 
+    name,
+    icon,
+    products {
+      id
+      name,
+    price,
+    description,
+    amount,
+    photo,
+    }
+    }
+}
+`;
+
+export interface getRoomProductsResponse {
+    room: {
+        id: string,
+        name: string,
+        icon: string,
         products: Array<Product>
     }
 }
