@@ -458,6 +458,7 @@
   background-color: var(--color-light);
   height: 6rem;
   display: none;
+  z-index: 1000;
 
   @media only screen and (max-width: 768px) {
     display: block;

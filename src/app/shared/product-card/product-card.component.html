@@ -1,6 +1,9 @@
 <div class="product">
-  <div class="product__save">
+  <div class="product__save" *ngIf="!isFavourite" (click)="addToFavourites(product)">
     <img src="assets/images/favourite.svg" alt="Zapisz do polubionych">
+  </div>
+  <div class="product__save" *ngIf="isFavourite" (click)="removeFromFavourites(product)">
+    <img src="assets/images/close.svg" alt="Usuń z zapisanych">
   </div>
   <div class="product__img">
     <img [routerLink]="['/produkt', product.id]"

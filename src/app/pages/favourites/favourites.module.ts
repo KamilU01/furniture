@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FavouritesComponent } from './favourites.component';
 import { FavouritesRoutingModule } from './favourites-routing.module';
+import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
 
 
 
@@ -11,7 +12,8 @@ import { FavouritesRoutingModule } from './favourites-routing.module';
   ],
   imports: [
     CommonModule,
-    FavouritesRoutingModule
+    FavouritesRoutingModule,
+    ProductCardModule
   ]
 })
 export class FavouritesModule { }

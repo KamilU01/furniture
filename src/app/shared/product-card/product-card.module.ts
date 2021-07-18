@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './product-card.component';
 import { RouterModule } from '@angular/router';
-import { AlertModule } from 'src/app/services/alert/alert.module';
-
-
 
 @NgModule({
   declarations: [
@@ -13,7 +10,6 @@ import { AlertModule } from 'src/app/services/alert/alert.module';
   imports: [
     CommonModule,
     RouterModule,
-    AlertModule
   ],
   exports: [
     ProductCardComponent

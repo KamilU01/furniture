@@ -8,6 +8,7 @@ import { GetCategories, getFaqsQuery, getProductResponse, GetProducts, GetRooms,
 })
 export class ShopService {
   lastViewedList: BehaviorSubject<Array<Product>> = new BehaviorSubject<Array<Product>>([]);
+  favouritesList: BehaviorSubject<Array<Product>> = new BehaviorSubject<Array<Product>>([]);
 
   constructor(private apollo: Apollo) { }
 
@@ -75,5 +76,42 @@ export class ShopService {
     let lastViewedProducts: any = localStorage.getItem('lastViewedList')
     if (lastViewedProducts)
       this.lastViewedList.next(JSON.parse(lastViewedProducts));
+  }
+
+  addToFavourites(product: Product) {
+    let current = this.favouritesList.getValue();
+
+    let dup = current.find(c => c.id === product.id);
+    if (dup) {
+      let index = current.indexOf(dup);
+      if (index > -1) {
+        current.splice(index, 1);
+      }
+      current.unshift(product);
+    }
+    else {
+      current.unshift(product);
+    }
+
+    this.favouritesList.next(current);
+
+    localStorage.setItem('favouritesList', JSON.stringify(current));
+  }
+
+  loadFavourites() {
+    let favouritesList: any = localStorage.getItem('favouritesList')
+    if (favouritesList)
+      this.favouritesList.next(JSON.parse(favouritesList));
+  }
+
+  removeFromFavourites(product: Product) {
+    let current = this.favouritesList.getValue();
+
+    let index = current.findIndex(i => i == product)
+
+    current.splice(index, 1);
+    this.favouritesList.next(current);
+
+    localStorage.setItem('favouritesList', JSON.stringify(current));
   }
 }

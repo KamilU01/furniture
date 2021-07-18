@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
     this.authService.autoLogin();
     this.cartService.loadSavedCart();
     this.shopService.loadLastViewedProducts();
+    this.shopService.loadFavourites();
   }
 
   acceptCookies() {
