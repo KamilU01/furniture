@@ -19,6 +19,7 @@ export class AuthService {
   private tokenExpirationTimer: any;
 
   USER = new BehaviorSubject<User | null>(null);
+  public isLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private apollo: Apollo, private router: Router) { }
 
@@ -74,6 +75,8 @@ export class AuthService {
     localStorage.setItem(this.REFRESH_EXPIRES, REFRESH_EXPIRES.toString());
     localStorage.setItem(this.REFRESH_TOKEN, refreshToken);
 
+    this.isLogged.next(true);
+
     this.autoRefreshToken((+JWT_EXPIRES) - (currDate.getTime() / 1000))
   }
 
@@ -81,7 +84,6 @@ export class AuthService {
     this.tokenExpirationTimer = setTimeout(() => {
       this.refreshToken().subscribe(res => {
         this.autoRefreshToken(res.data!.refreshToken.expiresTime)
-
       }, err => {
         this.logoutUser()
       })
@@ -103,6 +105,7 @@ export class AuthService {
     this.removeTokens();
     this.USER.next(null)
     clearTimeout(this.tokenExpirationTimer)
+    this.isLogged.next(false);
   }
 
   isLoggedIn() {
@@ -136,6 +139,7 @@ export class AuthService {
     if (this.isExpired(+JWT_EXPIRES) == true) {
       this.refreshToken().subscribe(res => {
         this.autoRefreshToken(res.data!.refreshToken.expiresTime)
+        this.isLogged.next(true);
       }, err => {
         this.logoutUser()
       })

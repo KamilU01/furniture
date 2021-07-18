@@ -13,7 +13,7 @@
             <div class="categories">
               <div class="categories__header">Kategorie</div>
               <div class="categories__content">
-                <a [routerLink]="['kategoria', category.id]" class="categories__item"
+                <a [routerLink]="['/kategoria', category.id]" class="categories__item"
                   *ngFor="let category of categories">{{ category.name }}</a>
               </div>
             </div>
@@ -67,6 +67,35 @@
   <div class="sidebar__background" (click)="isSidebarVisible = false;"></div>
   <img src="assets/images/close.svg" alt="Zamknij menu" class="close" (click)="isSidebarVisible = false;">
   <img src="assets/images/logo-light.svg" alt="Logo sklepu meblowego Maxii Home" class="sidebar__logo">
+
+  <div class="sidebar__menu">
+    <div class="sidebar__menu__item">
+      <span (click)="isDropdownActive = !isDropdownActive"><img src="assets/images/categories.svg">kategorie <img
+          class="arrow" src="assets/images/arrow-light.svg"></span>
+      <ul *ngIf="isDropdownActive">
+        <li *ngFor="let category of categories"><a [routerLink]="['/kategoria', category.id]"
+            class="category__item">{{ category.name }}</a></li>
+      </ul>
+    </div>
+    <div class="sidebar__menu__item">
+      <a routerLink="/o-nas"><img src="assets/images/info.svg">o nas</a>
+    </div>
+    <div class="sidebar__menu__item">
+      <a routerLink="/kontakt"><img src="assets/images/phone.svg">kontakt</a>
+    </div>
+    <div class="sidebar__menu__item">
+      <a routerLink="/zapisane-produkty"><img src="assets/images/favourite.svg">zapisane produkty</a>
+    </div>
+    <div class="sidebar__menu__item">
+      <a routerLink="/konto"><img src="assets/images/person.svg">konto</a>
+    </div>
+    <div class="sidebar__menu__item">
+      <a routerLink="/koszyk"><img src="assets/images/cart.svg">koszyk</a>
+    </div>
+    <div class="sidebar__menu__item" *ngIf="isLoggedIn">
+      <a class="btn btn--primary" (click)="logout()">Wyloguj się</a>
+    </div>
+  </div>
 </div>
 
 <div class="mobile-nav">

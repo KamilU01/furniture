@@ -1,4 +1,5 @@
 @import "/src/assets/scss/search";
+@import "/src/assets/scss/button";
 
 .nav {
   font-family: var(--font-secondary);
@@ -368,6 +369,8 @@
   transition: all var(--animation-1) .5s;
   transform: translateX(-400px);
   display: grid;
+  grid-template-rows: 17rem auto;
+  color: var(--color-light);
 
   &.visible {
     transform: translateX(0);
@@ -385,7 +388,7 @@
 
   &__background {
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
@@ -399,6 +402,49 @@
   }
 
   &__logo {
+    justify-self: center;
+  }
+
+  &__menu {
+
+    &__item {
+      margin-bottom: 1.6rem;
+
+      span,
+      a {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-family: var(--font-secondary);
+        font-size: 2rem;
+        gap: .8rem;
+      }
+
+      img {
+        filter: var(--color-light-filter);
+        width: 3rem;
+      }
+
+      ul {
+        font-size: 1.6rem;
+        list-style: none;
+
+        li {
+          margin-top: 1rem;
+          margin-left: 4rem;
+        }
+      }
+
+      .arrow {
+        transform: rotate(90deg);
+        filter: none !important;
+        width: 2.5rem;
+      }
+    }
+  }
+
+  .btn {
+    margin-top: 4rem;
     justify-self: center;
   }
 }
