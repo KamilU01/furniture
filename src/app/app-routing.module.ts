@@ -63,6 +63,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/arrangments/arrangments.module").then(m => m.ArrangmentsModule)
     },
     {
+        path: 'szukaj',
+        loadChildren: () => import("./pages/search/search.module").then(m => m.SearchModule)
+    },
+    {
         path: 'reset',
         loadChildren: () => import("./pages/reset/reset.module").then(m => m.ResetModule)
     },

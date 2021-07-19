@@ -392,3 +392,24 @@ export interface getArrangments {
 export interface getArrangmentProductsResponse {
     arrangment: Arrangment
 }
+
+export const GET_SEARCH_RESULT = gql`
+query 
+(
+  $phrase: String!
+)
+{
+    findProducts(phrase: $phrase) {
+      id
+      name,
+    price,
+    description,
+    amount,
+    photo,
+    }
+}
+`;
+
+export interface getSearchResult {
+    findProducts: Array<Product>
+}

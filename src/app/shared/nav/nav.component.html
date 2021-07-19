@@ -39,9 +39,10 @@
       class="nav__logo--mobile">
 
     <div class="nav__actions">
-      <form class="search">
-        <input type="text" class="search__input" placeholder="Szukaj mebli...">
-        <button class="search__button">
+      <form class="search" #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <input type="text" id="phrase" name="phrase" ngModel #phrase="ngModel" class="search__input"
+          placeholder="Szukaj mebli...">
+        <button type="submit" class="search__button">
           <img src="assets/images/search.svg" alt="Szukaj" class="search__icon">
         </button>
       </form>
