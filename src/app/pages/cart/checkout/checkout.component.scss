@@ -1,0 +1,216 @@
+@import "/src/assets/scss/button";
+@import "/src/assets/scss/form";
+@import "/src/assets/scss/alerts";
+@import "/src/assets/scss/loading-spinner";
+@import "/src/assets/scss/typography";
+
+.checkout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  background-color: var(--color-light);
+  z-index: 2000;
+  overflow-y: scroll;
+  padding-bottom: 10rem;
+
+  &__header {
+    border-bottom: 1px solid var(--color-dark);
+
+    @media only screen and (max-width: 900px) {
+      text-align: center;
+    }
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    padding: 0 5vw;
+    max-width: 130rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+  }
+}
+
+.auth {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 6.25vw;
+  row-gap: 4rem;
+  color: var(--color-dark);
+  max-width: 130rem;
+  margin-top: 5rem;
+
+  .no-login {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: flex-start;
+    margin-top: -20rem;
+
+    @media only screen and (max-width: 900px) {
+      grid-row: auto;
+      margin-top: 0;
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .heading {
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .login {
+    border: 1px solid var(--color-primary-lighter);
+    align-self: flex-start;
+    padding: 1.6rem;
+    border-radius: 4px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .register {
+    grid-column: 2;
+    grid-row: 1;
+
+    @media only screen and (max-width: 900px) {
+      grid-row: auto;
+      grid-column: 1;
+    }
+  }
+
+  .form {
+    display: grid;
+    row-gap: 1.6rem;
+
+    &__group {
+      &--email {
+        grid-area: email;
+      }
+
+      &--password {
+        grid-area: password;
+      }
+
+      &--passwordConfirm {
+        grid-area: passwordConfirm;
+      }
+
+      &--btn {
+        grid-area: btn;
+        justify-self: end;
+      }
+
+      &--name {
+        grid-area: name;
+      }
+
+      &--regulamin {
+        grid-area: regulamin;
+        font-size: 1.6rem;
+
+        margin: 1rem 0;
+
+        a {
+          color: var(--color-primary-darker);
+        }
+
+        sup {
+          color: var(--color-danger);
+        }
+
+        input {
+          margin-right: 0.5rem;
+        }
+      }
+
+      &--validation {
+        grid-area: validation;
+        font-size: 1.6rem;
+        color: var(--color-danger);
+      }
+
+      &--reset {
+        grid-area: reset;
+        font-size: 1.6rem;
+        cursor: pointer;
+        color: var(--color-primary-darker);
+      }
+    }
+  }
+
+  .register-advantages {
+    grid-column: 2;
+
+    @media only screen and (max-width: 900px) {
+      grid-column: 1;
+    }
+  }
+
+  .advantage {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.6rem;
+
+    &:not(:last-of-type) {
+      margin-bottom: 3rem;
+    }
+
+    &__img {
+      width: 4rem;
+      filter: var(--color-dark-filter);
+    }
+  }
+
+  .loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+    border-radius: 0;
+    width: 100%;
+    background-color: rgba(190, 160, 120, .8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+.register__form {
+  grid-template-areas:
+    "name name"
+    "email email"
+    "password password"
+    "passwordConfirm passwordConfirm"
+    "regulamin regulamin"
+    "validation validation"
+    ". btn"
+     !important;
+}
+
+.login__form {
+  grid-template-areas:
+    "email email"
+    "password password"
+    "reset reset"
+    ". btn"
+     !important;
+}

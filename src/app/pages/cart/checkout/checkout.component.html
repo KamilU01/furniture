@@ -1,0 +1,109 @@
+<div class="checkout">
+  <div class="checkout__content">
+    <div class="checkout__header">
+      <img routerLink="/" src="assets/images/logo.svg" alt="Logo Sklepu Meblowego Maxii Home">
+    </div>
+    <div class="auth">
+      <div class="login">
+        <h2 class="login__header heading heading--secondary">Zaloguj się</h2>
+        <form class="login__form form" #formLogin="ngForm" (ngSubmit)="onSubmitLogin(formLogin)">
+          <div class="form__group form__group--email">
+            <input id="loginEmail" name="loginEmail" type="email" class="form__input" placeholder="Email" ngModel
+              required #loginEmail="ngModel">
+            <label for="loginEmail" class="form__label">Email</label>
+          </div>
+
+          <div class="form__group form__group--password">
+            <input id="loginPassword" name="loginPassword" type="password" class="form__input" placeholder="Hasło"
+              ngModel required #loginPassword="ngModel">
+            <label for="loginPassword" class="form__label">Hasło</label>
+          </div>
+
+          <div class="reset form__group--reset" routerLink="/reset">
+            Zapomniałeś hasła?
+          </div>
+
+          <div class="form__group form__group--btn">
+            <button type="submit" class="contact__btn btn btn--primary btn--animated">Zaloguj się</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="no-login">
+        <a routerLink="/podsumowanie-zamowienia" class="btn btn--primary">Kontynuuj bez rejestracji</a>
+      </div>
+
+      <div class="register">
+        <h2 class="register__header heading heading--secondary">Nie posiadasz konta?</h2>
+        <form class="register__form form" #formRegister="ngForm" (ngSubmit)="onSubmitRegister(formRegister)">
+          <div class="form__group form__group--email">
+            <input id="email" name="email" type="email" class="form__input" placeholder="Email" ngModel required
+              #email="ngModel">
+            <label for="email" class="form__label">Email</label>
+          </div>
+
+          <div class="form__group form__group--name">
+            <input id="name" name="name" type="text" class="form__input" placeholder="Imię i nazwisko" ngModel required
+              #name="ngModel">
+            <label for="name" class="form__label">Imię i nazwisko</label>
+          </div>
+
+          <div class="form__group form__group--password">
+            <input id="password" name="password" type="password" class="form__input" placeholder="Hasło min. 8 znaków"
+              ngModel required #password="ngModel" minlength="8">
+            <label for="password" class="form__label">Hasło min. 8 znaków</label>
+          </div>
+
+          <div class="form__group form__group--passwordConfirm">
+            <input id="passwordConfirm" name="passwordConfirm" type="password" class="form__input"
+              placeholder="Potwierdź hasło" ngModel required #passwordConfirm="ngModel">
+            <label for="passwordConfirm" class="form__label">Potwierdź hasło</label>
+          </div>
+
+          <div class="form__group--regulamin">
+            <input type="checkbox" name="regulamin" id="regulamin" ngModel #regulamin="ngModel" required>Akceptuję <a
+              routerLink="/regulamin" target="_blank">regulamin</a> sklepu <sup>*</sup></div>
+
+          <div class="form__group--validation" *ngIf="isNotValid">Proszę poprawnie uzupełnić wszystkie pola oraz
+            sprawdzić
+            zgodność haseł!</div>
+
+          <div class="form__group form__group--btn">
+            <button type="submit" class="contact__btn btn btn--primary btn--animated">Zarejestruj się</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="register-advantages">
+        <h3 class="register-advantages__header heading heading--tertiary">Dlaczego warto założyć konto?</h3>
+        <div class="advantage">
+          <img src="assets/images/shipping.svg" alt="zamawiaj szybciej" class="advantage__img">
+          <div class="advantage__text">zamawiaj szybciej</div>
+        </div>
+
+        <div class="advantage">
+          <img src="assets/images/status.svg" alt="śledź status zamówienia" class="advantage__img">
+          <div class="advantage__text">śledź status zamówienia</div>
+        </div>
+
+        <div class="advantage">
+          <img src="assets/images/history.svg" alt="historia zamówień" class="advantage__img">
+          <div class="advantage__text">historia zamówień</div>
+        </div>
+      </div>
+
+      <div class="loading" *ngIf="isLoading">
+        <div class="lds-roller">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

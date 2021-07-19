@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/models/graphql';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ShopService } from 'src/app/services/shop.service';
@@ -17,8 +18,11 @@ export class NavComponent implements OnInit {
   cartItems!: number;
   isDropdownActive: boolean = false;
   isLoggedIn!: boolean;
-
-  constructor(private shopService: ShopService, private cartService: CartService, private authService: AuthService, private router: Router) { }
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: true
+  };
+  constructor(private shopService: ShopService, private alertService: AlertService, private cartService: CartService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.shopService.getAllCategories().subscribe(res => {
@@ -37,6 +41,8 @@ export class NavComponent implements OnInit {
   logout() {
     this.authService.logoutUser();
     this.isSidebarVisible = false;
+    this.alertService.success('Zostałeś wylogowany!', this.options)
+
   }
 
   onSubmit(form: NgForm) {

@@ -67,6 +67,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/search/search.module").then(m => m.SearchModule)
     },
     {
+        path: 'podsumowanie-zamowienia',
+        loadChildren: () => import("./pages/order-summary/order-summary.module").then(m => m.OrderSummaryModule)
+    },
+    {
         path: 'reset',
         loadChildren: () => import("./pages/reset/reset.module").then(m => m.ResetModule)
     },

@@ -146,6 +146,7 @@ export class AuthService {
     } else {
       const currDate = new Date();
       this.autoRefreshToken((+JWT_EXPIRES) - (currDate.getTime() / 1000))
+      this.isLogged.next(true);
     }
   }
 

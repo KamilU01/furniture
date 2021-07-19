@@ -1,4 +1,4 @@
-<div class="cart container" *ngIf="!isLoading">
+<div class="cart container" *ngIf="!isLoading && !isCheckout">
   <h1 class="cart__heading heading heading--primary">Koszyk</h1>
   <div class="cart__content">
     <div class="cart__row row--header">
@@ -48,6 +48,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="checkout" *ngIf="isCheckout">
+  <app-checkout></app-checkout>
 </div>
 
 <div class="loading" *ngIf="isLoading">

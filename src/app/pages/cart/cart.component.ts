@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { cartItem } from 'src/app/models/graphql';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -18,7 +19,9 @@ export class CartComponent implements OnInit {
 
   url = environment.apiUrl;
 
-  constructor(private cartService: CartService, private authService: AuthService) { }
+  isCheckout: boolean = true;
+
+  constructor(private cartService: CartService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cartService.cartList.subscribe(res => {
@@ -47,6 +50,10 @@ export class CartComponent implements OnInit {
   }
 
   confirm() {
-
+    if (!this.isLoggedIn) {
+      this.isCheckout = true;
+    } else {
+      this.router.navigate(["/podsumowanie-zamowienia"]);
+    }
   }
 }
