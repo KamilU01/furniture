@@ -354,6 +354,29 @@ query {
 }
 `;
 
+export const GET_ARRANGMENT_PRODUCTS_QUERY = gql`
+query 
+(
+  $id: String!
+)
+{
+    arrangment(id: $id) {
+    id, 
+    name,
+    photo,
+    description,
+    products {
+      id
+      name,
+    price,
+    description,
+    amount,
+    photo,
+    }
+    }
+}
+`;
+
 export interface Arrangment {
     id: string,
     photo: string,
@@ -364,4 +387,8 @@ export interface Arrangment {
 
 export interface getArrangments {
     arrangments: Array<Arrangment>
+}
+
+export interface getArrangmentProductsResponse {
+    arrangment: Arrangment
 }

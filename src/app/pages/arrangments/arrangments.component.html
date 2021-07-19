@@ -8,49 +8,6 @@
         <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
       </div>
     </div>
-
-    <div class="arrangment" *ngFor="let item of arrangments"
-      [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
-      <div class="arrangment__name">{{item.name}}</div>
-      <div class="arrangment__link">
-        <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
-      </div>
-    </div>
-    <div class="arrangment" *ngFor="let item of arrangments"
-      [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
-      <div class="arrangment__name">{{item.name}}</div>
-      <div class="arrangment__link">
-        <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
-      </div>
-    </div>
-    <div class="arrangment" *ngFor="let item of arrangments"
-      [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
-      <div class="arrangment__name">{{item.name}}</div>
-      <div class="arrangment__link">
-        <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
-      </div>
-    </div>
-    <div class="arrangment" *ngFor="let item of arrangments"
-      [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
-      <div class="arrangment__name">{{item.name}}</div>
-      <div class="arrangment__link">
-        <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
-      </div>
-    </div>
-    <div class="arrangment" *ngFor="let item of arrangments"
-      [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
-      <div class="arrangment__name">{{item.name}}</div>
-      <div class="arrangment__link">
-        <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
-      </div>
-    </div>
-    <div class="arrangment" *ngFor="let item of arrangments"
-      [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
-      <div class="arrangment__name">{{item.name}}</div>
-      <div class="arrangment__link">
-        <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
-      </div>
-    </div>
   </div>
   <div class="arrangment__empty" *ngIf="arrangments.length == 0">
     <p>

@@ -1,1 +1,33 @@
-<p>arrangment works!</p>
+<div class="arrangment container" *ngIf="!isLoading">
+  <div class="arrangment__header">
+    <div class="arrangment__content">
+      <h1 class="arrangment__heading heading heading--primary">{{arrangment.name}}</h1>
+      <p class="arrangment__desc" [innerHtml]="arrangment.description"></p>
+    </div>
+    <div class="arrangment__img">
+      <img [src]="arrangment.photo ? url+'photos/'+arrangment.photo : 'assets/images/logo.svg'" [alt]="arrangment.name">
+    </div>
+  </div>
+  <div class="products-wrap__heading heading heading--secondary">Produkty</div>
+  <div class="products-wrap">
+    <app-product-card *ngFor="let product of arrangment.products" [product]="product"></app-product-card>
+  </div>
+  <div class="category__empty" *ngIf="arrangment.products.length == 0">
+    <p>
+      Przepraszamy, nie ma żadnych produktów w tej kolekcji.
+    </p>
+  </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller lds-roller--dark">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
