@@ -1,1 +1,64 @@
-<p>cart works!</p>
+<div class="cart container" *ngIf="!isLoading">
+  <h1 class="cart__heading heading heading--primary">Koszyk</h1>
+  <div class="cart__content">
+    <div class="cart__row row--header">
+      <div class="cart__row__item text--left">Nazwa produktu</div>
+      <div class="cart__row__item">Ilość</div>
+      <div class="cart__row__item">Wartość</div>
+      <div class="cart__row__item">Akcja</div>
+    </div>
+
+    <div class="cart__row" *ngFor="let product of cart; let i = index">
+      <div class="cart__row__item row--name">
+        <div class="item__image">
+          <img [src]="product.product.photo ? url+'photos/'+product.product.photo : 'assets/images/logo.svg'"
+            [alt]="product.product.name">
+        </div>
+        <div class="item__text">
+          <div class="item__text__name" [routerLink]="['/produkt', product.product.id]">{{product.product.name}}</div>
+        </div>
+      </div>
+      <div class="cart__row__item">
+        <input type="number" class="quantity" name="quantity" min="1" step="1" (change)="onChangeQuantity(product)"
+          [(ngModel)]="product.quantity">
+      </div>
+      <div class="cart__row__item row--price">
+        <span class="f-700">{{ $any(product.value)| number : '1.2-2'}} zł</span>
+      </div>
+      <div class="cart__row__item row--action">
+        <a (click)="removeFromCart(i)">
+          <img src="assets/images/delete.svg" alt="Usuń z koszyka" title="Usuń produkt">
+        </a>
+      </div>
+    </div>
+
+    <div class="cart__summary">
+      <div class="cart__summary__text">Łącznie:</div>
+      <div class="cart__summary__value">
+        <span class="f-700">{{ totalValue | number : '1.2-2'}} zł</span>
+      </div>
+    </div>
+
+    <div class="cart__checkout">
+      <div class="cart__checkout__continue" routerLink="/">Kontynuj zakupy</div>
+      <div class="cart__checkout__checkout">
+        <button [disabled]="cart.length === 0" class="cart__checkout__button btn btn--primary" (click)="confirm()">
+          Dokonaj zakupu
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller lds-roller--dark">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
