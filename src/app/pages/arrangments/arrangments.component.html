@@ -1,1 +1,31 @@
-<p>arrangments works!</p>
+<div class="arrangments container" *ngIf="!isLoading">
+  <h1 class="arrangments__heading heading heading--primary">Aranżacje</h1>
+  <div class="arrangments__wrap">
+    <div class="arrangment" *ngFor="let item of arrangments"
+      [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
+      <div class="arrangment__name">{{item.name}}</div>
+      <div class="arrangment__link">
+        <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
+      </div>
+    </div>
+  </div>
+  <div class="arrangment__empty" *ngIf="arrangments.length == 0">
+    <p>
+      Przepraszamy, nie ma żadnych aranżacji.
+    </p>
+  </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller lds-roller--dark">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<!-- [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')' -->

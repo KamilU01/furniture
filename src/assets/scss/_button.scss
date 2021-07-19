@@ -50,7 +50,8 @@
   }
 
   &--gradient,
-  &--secondary {
+  &--secondary,
+  &--tertiary {
     padding: 1.3rem 4rem;
     font-size: 1.6rem;
     font-weight: 700;
@@ -76,6 +77,24 @@
     &:hover {
       background-color: var(--color-dark);
       color: var(--color-light);
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+      transform: translateY(-1px);
+    }
+  }
+
+  &--tertiary {
+    background-color: transparent;
+    border: 2px solid var(--color-light) !important;
+    color: var(--color-light);
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: var(--color-light);
+      color: var(--color-dark);
     }
 
     &:active,

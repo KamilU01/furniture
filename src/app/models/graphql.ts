@@ -343,3 +343,25 @@ export interface getRoomProductsResponse {
         products: Array<Product>
     }
 }
+
+export const GET_ARRANGMENTS_QUERY = gql`
+query {
+    arrangments {
+    id, 
+    name,
+    photo
+    }
+}
+`;
+
+export interface Arrangment {
+    id: string,
+    photo: string,
+    name: string,
+    description: string,
+    products: Array<Product>
+}
+
+export interface getArrangments {
+    arrangments: Array<Arrangment>
+}
