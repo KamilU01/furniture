@@ -1,1 +1,27 @@
-<p>arrangements works!</p>
+<div class="arrangments">
+  <div class="arrangment" *ngFor="let item of arrangments"
+    [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
+    <div class="arrangment__name">{{item.name}}</div>
+    <div class="arrangment__link">
+      <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
+    </div>
+  </div>
+  <a class="arrangment--more" routerLink="/arrangments">
+
+    <img src="assets/images/arrangment.svg" alt="Aranżacje">
+    <p>Zobacz wszystkie
+      nasze aranżacje</p>
+  </a>
+</div>
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
