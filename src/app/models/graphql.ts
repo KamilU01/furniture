@@ -215,7 +215,8 @@ export interface Product {
     amount: number,
     photo: string,
     room: Room | null,
-    category: Category | null
+    category: Category | null,
+    similarProducts: Array<Product>
 }
 
 export interface GetProducts {
@@ -275,6 +276,12 @@ query
     category {
         id,
         name
+    },
+    similarProducts {
+        id,
+        name,
+        price,
+        photo
     }
     }
 }
