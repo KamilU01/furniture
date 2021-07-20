@@ -14,7 +14,7 @@ export class CheckoutComponent implements OnInit {
   isNotValid: boolean = false;
 
   options = {
-    autoClose: false,
+    autoClose: true,
     keepAfterRouteChange: true
   };
 

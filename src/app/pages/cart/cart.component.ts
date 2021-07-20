@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
 
   url = environment.apiUrl;
 
-  isCheckout: boolean = true;
+  isCheckout: boolean = false;
 
   constructor(private cartService: CartService, private router: Router, private authService: AuthService) { }
 

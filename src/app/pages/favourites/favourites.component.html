@@ -4,6 +4,11 @@
     <div class="products-wrap">
       <app-product-card *ngFor="let product of products" [product]="product" [isFavourite]="true"></app-product-card>
     </div>
+    <div class="favourites__empty" *ngIf="products.length == 0">
+      <p>
+        Nie masz żadnych zapisanych produktów.
+      </p>
+    </div>
     <div class="loading" *ngIf="isLoading">
       <div class="lds-roller lds-roller--dark">
         <div></div>

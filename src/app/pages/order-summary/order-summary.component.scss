@@ -1,0 +1,43 @@
+@import "/src/assets/scss/button";
+@import "/src/assets/scss/form";
+@import "/src/assets/scss/alerts";
+@import "/src/assets/scss/loading-spinner";
+@import "/src/assets/scss/typography";
+
+.checkout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  background-color: var(--color-light);
+  z-index: 2000;
+  overflow-y: scroll;
+  padding-bottom: 10rem;
+
+  &__header {
+    border-bottom: 1px solid var(--color-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    p {
+      text-transform: uppercase;
+      font-size: 2rem;
+      font-weight: 400;
+    }
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    padding: 0 5vw;
+    max-width: 130rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+  }
+}
