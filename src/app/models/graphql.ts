@@ -28,6 +28,22 @@ export interface User {
     email: string,
     name: string,
     role: number,
+    orders: Array<Order>
+}
+
+export interface Order {
+    id: string,
+    pickupInPerson: number,
+    orderStart: Date,
+    orderEnd: Date,
+    totalPrice: number,
+    orderProducts: Array<Product>,
+    status: number,
+    name: string,
+    town: string,
+    street: string,
+    postCode: string,
+    email: string
 }
 
 export const LOGIN_MUTATION = gql`
@@ -68,7 +84,15 @@ query ME_QUERY {
     id,
     email,
     name,
-    role
+    role,
+    orders {
+        id,
+        orderStart,
+        orderEnd,
+        totalPrice,
+        status,
+        name
+    }
   }
 }
 `;

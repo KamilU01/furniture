@@ -2,6 +2,26 @@
   <h2 class="history__heading heading heading--tertiary">Historia zamówień</h2>
   <h3 class="history__desc">Poniżej znajdują się wszystkie dokonane zamówienia.</h3>
   <div class="content">
+    <table class="history__table">
+      <tr>
+        <th>Nr<br>zamówienia</th>
+        <th>Data<br>rozpoczęcia</th>
+        <th>Data<br>zakończenia</th>
+        <th>Kwota</th>
+        <th>Status</th>
+        <th>Szczegóły<br>zamówienia</th>
+      </tr>
+      <tr *ngFor="let order of user.orders">
+        <td class="table__name">{{ order.name }}</td>
+        <td>{{ order.orderStart | date: 'dd/MM/yyyy, H:mm'}}</td>
+        <td>{{ order.orderEnd | date: 'dd/MM/yyyy, H:mm'}}</td>
+        <td>{{ order.totalPrice }} zł</td>
+        <td class="text--danger" *ngIf="order.status == 1">Przyjęte</td>
+        <td class="text--warning" *ngIf="order.status == 2">Zapłącone</td>
+        <td class="text--success" *ngIf="order.status == 3">Dostarczone</td>
+        <td><a [routerLink]="['/produkt', order.id]" class="btn btn--primary">Szczegóły</a></td>
+      </tr>
+    </table>
 
     <div class="loading" *ngIf="isLoading">
       <div class="lds-roller">
