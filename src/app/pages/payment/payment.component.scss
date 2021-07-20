@@ -1,0 +1,25 @@
+@import "/src/assets/scss/typography";
+@import "/src/assets/scss/button";
+
+.payment {
+  max-width: 80rem;
+  text-align: center;
+
+  &__img {
+    filter: var(--color-primary-filter);
+  }
+
+  &__heading {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__paragraph {
+    font-size: 1.6rem;
+    margin-bottom: 4rem;
+  }
+
+  .btn {
+    font-size: 1.6rem;
+  }
+}

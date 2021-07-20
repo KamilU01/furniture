@@ -16,6 +16,10 @@
   overflow-y: scroll;
   padding-bottom: 10rem;
 
+  @media only screen and (max-width: 600px) {
+    padding-bottom: 2rem;
+  }
+
   &__header {
     border-bottom: 1px solid var(--color-dark);
     display: flex;
@@ -25,6 +29,10 @@
 
     img {
       cursor: pointer;
+
+      @media only screen and (max-width: 600px) {
+        display: none;
+      }
     }
   }
 
@@ -39,7 +47,7 @@
   &__footer {
     border-top: 1px solid var(--color-dark);
     padding: 1.6rem 0 1.2rem 0;
-    margin-top: 64px;
+    margin-top: 6.4rem;
     width: 100%;
     display: flex;
     justify-content: space-between;

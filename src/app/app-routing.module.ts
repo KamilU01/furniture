@@ -71,6 +71,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/order-summary/order-summary.module").then(m => m.OrderSummaryModule)
     },
     {
+        path: 'payment',
+        loadChildren: () => import("./pages/payment/payment.module").then(m => m.PaymentModule)
+    },
+    {
         path: 'reset',
         loadChildren: () => import("./pages/reset/reset.module").then(m => m.ResetModule)
     },
