@@ -21,12 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-
-    p {
-      text-transform: uppercase;
-      font-size: 2rem;
-      font-weight: 400;
-    }
+    margin-bottom: 2rem;
 
     img {
       cursor: pointer;
@@ -39,5 +34,124 @@
     margin: 0 auto;
     margin-top: 1rem;
     font-size: 1.6rem;
+  }
+
+  &__footer {
+    border-top: 1px solid var(--color-dark);
+    padding: 1.6rem 0 1.2rem 0;
+    margin-top: 64px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    h4 {
+      color: var(--color-dark);
+      font-family: var(--font-secondary);
+    }
+
+    p {
+      color: #8B8B8B;
+    }
+
+    &__number {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      font-weight: 400;
+
+      img {
+        filter: var(--color-dark-filter);
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__summary__container {
+    max-width: 60rem;
+    margin-top: 2rem;
+  }
+
+  &__total-value {
+    text-align: end;
+
+    span {
+      font-weight: 700;
+    }
+  }
+
+  &__data {
+    margin-top: 2rem;
+  }
+
+  &__data__container {
+    margin-top: 2rem;
+    max-width: 70rem;
+  }
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  margin-bottom: 2rem;
+
+  &__name {
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      width: 7rem;
+    }
+  }
+
+  .name,
+  .quantity {
+    line-height: 1.1;
+  }
+
+  .name {
+    font-weight: 700;
+  }
+
+  &__price {
+    align-self: center;
+    font-weight: 700;
+    justify-self: flex-end;
+  }
+}
+
+.form {
+  display: grid;
+  row-gap: 1.6rem;
+
+  &__group {
+    &--regulamin {
+      margin-top: 1rem;
+
+      input {
+        margin-right: 0.8rem;
+      }
+
+      sup {
+        color: var(--color-secondary);
+      }
+
+      a {
+        color: var(--color-primary-darker);
+      }
+    }
+
+    &--btn {
+      justify-self: flex-end;
+    }
+  }
+
+  .error {
+    color: var(--color-danger);
   }
 }

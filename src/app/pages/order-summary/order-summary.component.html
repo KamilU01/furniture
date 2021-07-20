@@ -2,7 +2,96 @@
   <div class="checkout__content">
     <div class="checkout__header">
       <img routerLink="/" src="assets/images/logo.svg" alt="Logo Sklepu Meblowego Maxii Home">
-      <p class="checkout__paragraph">Składanie zamówienia</p>
+      <p class="checkout__paragraph heading heading--secondary">Składanie zamówienia</p>
+    </div>
+
+    <div class="checkout__summary">
+      <h2 class="heading heading--secondary">1. Podsumowanie zamówienia</h2>
+      <div class="checkout__summary__container">
+        <div class="item" *ngFor="let product of cart">
+          <div class="item__name" [routerLink]="['/product',product.product.id]">
+            <img [src]="product.product.photo ? url+'photos/'+product.product.photo : 'assets/images/logo.svg'"
+              [alt]="product.product.name">
+            <p><span class="name">{{product.product.name}}</span><br><span class="quantity">{{product.quantity}}
+                szt.</span>
+            </p>
+          </div>
+          <div class="item__price">{{product.value | number : '1.2-2'}} zł</div>
+        </div>
+
+        <div class="checkout__total-value"><span>ŁĄCZNIE:</span> {{totalValue | number : '1.2-2'}} zł</div>
+      </div>
+    </div>
+
+    <div class="checkout__data">
+      <h2 class="heading heading--secondary">2. Dane odbiorcy</h2>
+      <div class="checkout__data__container">
+        <form class="form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+          <div class="form__group form__group--email">
+            <input id="email" name="email" type="email" class="form__input" placeholder="Email*" ngModel required
+              #email="ngModel">
+            <label for="email" class="form__label">Email</label>
+          </div>
+
+          <div class="form__group form__group--town">
+            <input id="town" name="town" type="text" class="form__input" placeholder="Miasto*" ngModel required
+              #town="ngModel">
+            <label for="town" class="form__label">Miasto</label>
+          </div>
+
+          <div class="form__group form__group--street">
+            <input id="street" name="street" type="text" class="form__input" placeholder="Ulica i nr mieszkania*"
+              ngModel required #street="ngModel">
+            <label for="street" class="form__label">Ulica i nr mieszkania</label>
+          </div>
+
+          <div class="form__group form__group--postCode">
+            <input id="postCode" name="postCode" type="text" class="form__input" placeholder="Kod pocztowy*" ngModel
+              required #postCode="ngModel">
+            <label for="postCode" class="form__label">Kod pocztowy</label>
+          </div>
+
+          <div class="form__group u-margin-bottom-medium">
+            <div class="form__radio-group">
+              <input type="radio" class="form__radio-input" id="small" name="pickupInPerson" required value="0" checked
+                ngModel>
+              <label for="small" class="form__radio-label">
+                <span class="form__radio-button"></span>
+                Dostawa pod wskazany adres
+              </label>
+            </div>
+            <div class="form__radio-group">
+              <input type="radio" class="form__radio-input" id="large" name="pickupInPerson" required value="1" ngModel>
+              <label for="large" class="form__radio-label">
+                <span class="form__radio-button"></span>
+                Odbiór osobisty w placówce
+              </label>
+            </div>
+          </div>
+
+
+          <div class="form__group--regulamin">
+            <input type="checkbox" name="regulamin" id="regulamin" ngModel #regulamin="ngModel" required>Akceptuję <a
+              routerLink="/regulamin" target="_blank">regulamin</a> sklepu <sup>*</sup></div>
+
+          <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+          <div class="form__group form__group--btn">
+            <button type="submit" class="contact__btn btn btn--primary btn--animated">Złóż zamówienie</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="checkout__footer">
+      <div class="checkout__footer__contact">
+        <h4>Masz pytania?</h4>
+        <p>Skontaktuj się z nami</p>
+      </div>
+      <div class="checkout__footer__number">
+        <img src="assets/images/phone.svg" alt="Ikona telefonu">
+        <a href="tel:+48 885 855 755">tel.: 885 855 755</a>
+      </div>
     </div>
   </div>
 </div>

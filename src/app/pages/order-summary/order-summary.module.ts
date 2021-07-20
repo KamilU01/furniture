@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderSummaryComponent } from './order-summary.component';
 import { OrderSummaryRoutingModule } from './order-summary-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +12,8 @@ import { OrderSummaryRoutingModule } from './order-summary-routing.module';
   ],
   imports: [
     CommonModule,
-    OrderSummaryRoutingModule
+    OrderSummaryRoutingModule,
+    FormsModule
   ]
 })
 export class OrderSummaryModule { }

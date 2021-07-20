@@ -413,3 +413,17 @@ query
 export interface getSearchResult {
     findProducts: Array<Product>
 }
+
+export const CREATE__ORDER__MUTATION = gql`
+mutation CreateOrderMutation 
+(
+    $createOrderInput: CreateOrderInput!
+)
+{
+    createOrder(createOrderInput: $createOrderInput)
+}
+`;
+
+export interface CreateOrderResponse {
+    createOrder: string
+}
