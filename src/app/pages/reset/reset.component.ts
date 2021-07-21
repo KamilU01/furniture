@@ -36,5 +36,7 @@ export class ResetComponent implements OnInit {
       this.isError = true;
       this.isLoading = false;
     })
+
+    form.reset();
   }
 }

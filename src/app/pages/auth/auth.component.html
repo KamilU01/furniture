@@ -95,18 +95,3 @@
     </div>
   </div>
 </div>
-
-<div class="alert alert--error" *ngIf="isSuccess == false && isError == true"
-  (click)="isSuccess = false; isError = false;">
-  Nie udało się zalogować :( Prosimy o ponowienie próby za chwilę lub o kontakt.
-</div>
-
-<div class="alert alert--success" *ngIf="isRegisterSuccess == true && isRegisterError == false"
-  (click)="isRegisterSuccess = false; isRegisterSuccess = false;">
-  Konto zostało utworzone :) Prosimy o zalogowanie się.
-</div>
-
-<div class="alert alert--error" *ngIf="isRegisterSuccess == false && isRegisterError == true"
-  (click)="isRegisterSuccess = false; isRegisterSuccess = false;">
-  Nie udało się utworzyć konta :( Prosimy o ponowienie próby za chwilę lub o kontakt.
-</div>

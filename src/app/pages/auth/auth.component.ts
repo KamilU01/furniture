@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,13 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AuthComponent implements OnInit {
   isNotValid: boolean = false;
   isLoading: boolean = false;
-  isError: boolean = false;
-  isSuccess: boolean = false;
 
-  isRegisterSuccess: boolean = false;
-  isRegisterError: boolean = false;
-
-  constructor(private authService: AuthService, private router: Router) { }
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: true
+  };
+  constructor(private authService: AuthService, private router: Router, private alertService: AlertService) { }
 
   ngOnInit(): void {
   }
@@ -28,24 +28,17 @@ export class AuthComponent implements OnInit {
     }
 
     this.isLoading = true;
-    this.isError = false;
-    this.isSuccess = false;
-
-    this.isRegisterSuccess = true;
-    this.isRegisterError = false;
 
     const email = form.value.loginEmail;
     const password = form.value.loginPassword;
 
     this.authService.login(email, password).subscribe(res => {
-      this.isSuccess = true;
-      this.isError = false;
       this.isLoading = false;
       this.router.navigateByUrl('/');
+      this.alertService.success('Zostałeś zalogowany.', this.options)
     }, err => {
-      this.isSuccess = false;
-      this.isError = true;
       this.isLoading = false;
+      this.alertService.error('Nie udało się zalogować :( Prosimy o ponowienie próby za chwilę lub o kontakt.', this.options)
     })
   }
 
@@ -61,32 +54,17 @@ export class AuthComponent implements OnInit {
     }
 
     this.isLoading = true;
-    this.isError = false;
-    this.isSuccess = false;
-
-    this.isRegisterSuccess = false;
-    this.isRegisterError = false;
 
     const name = form.value.name;
     const email = form.value.email;
     const password = form.value.password;
 
     this.authService.register(name, email, password).subscribe(res => {
-      this.isSuccess = false;
-      this.isError = false;
-
-      this.isRegisterSuccess = true;
-      this.isRegisterError = false;
-
       this.isLoading = false;
+      this.alertService.success('Konto zostało utworzone :) Prosimy o zalogowanie się.', this.options)
     }, err => {
-      this.isSuccess = false;
-      this.isError = false;
-
-      this.isRegisterSuccess = false;
-      this.isRegisterError = true;
-
       this.isLoading = false;
+      this.alertService.error('Nie udało się utworzyć konta :( Prosimy o ponowienie próby za chwilę lub o kontakt.', this.options)
     })
   }
 }
