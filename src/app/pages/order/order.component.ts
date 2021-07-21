@@ -26,8 +26,8 @@ export class OrderComponent implements OnInit {
       this.subscription = this.shopService.getOrderById(params['id']).subscribe(res => {
         this.order = res.data.order;
         this.isLoading = false;
-      })
-    })
+      }, err => this.router.navigate(['/']))
+    }, err => this.router.navigate(['/']))
   }
 
 }
