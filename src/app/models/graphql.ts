@@ -240,7 +240,7 @@ export interface MutationProductResponse {
 
 export const GET_NEWEST_PRODUCTS_QUERY = gql`
 query {
-    products {
+    newestProducts {
     id, 
     name,
     price,
@@ -248,6 +248,10 @@ query {
     }
 }
 `;
+
+export interface getNewestProducts {
+    newestProducts: Array<Product>
+}
 
 export const GET_ROOMS_QUERY = gql`
 query {

@@ -17,7 +17,7 @@ export class NewestProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.shopService.getNewsetsProducts().subscribe(res => {
-      this.products = res.data.products;
+      this.products = res.data.newestProducts;
       this.isLoading = false;
     })
   }
