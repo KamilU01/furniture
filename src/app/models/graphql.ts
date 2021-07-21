@@ -463,7 +463,8 @@ query
     town,
     street,
     postCode,
-    email
+    email,
+    phone,
     orderProducts {
       id,
       totalPrice,
@@ -490,6 +491,7 @@ export interface Order {
     street: string,
     postCode: string,
     email: string,
+    phone: string,
     orderProducts: Array<{
         id: string,
         totalPrice: number,
