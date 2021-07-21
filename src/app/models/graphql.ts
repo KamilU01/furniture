@@ -31,21 +31,6 @@ export interface User {
     orders: Array<Order>
 }
 
-export interface Order {
-    id: string,
-    pickupInPerson: number,
-    orderStart: Date,
-    orderEnd: Date,
-    totalPrice: number,
-    orderProducts: Array<Product>,
-    status: number,
-    name: string,
-    town: string,
-    street: string,
-    postCode: string,
-    email: string
-}
-
 export const LOGIN_MUTATION = gql`
     mutation LoginMutation ($email: String!, $password: String!) {
         login(loginInput: {email: $email, password: $password}) {
@@ -493,24 +478,26 @@ query
 }
 `;
 
-export interface getOrderById {
-    order: {
+export interface Order {
+    id: string,
+    name: string,
+    pickupInPerson: number,
+    orderStart: Date,
+    orderEnd: Date,
+    totalPrice: number,
+    status: number,
+    town: string,
+    street: string,
+    postCode: string,
+    email: string,
+    orderProducts: Array<{
         id: string,
-        name: string,
-        pickupInPerson: number,
-        orderStart: Date,
-        orderEnd: Date,
         totalPrice: number,
-        status: string,
-        town: string,
-        street: string,
-        postCode: string,
-        email: string,
-        orderProducts: {
-            id: string,
-            totalPrice: number,
-            amount: number,
-            product: Product
-        }
-    }
+        amount: number,
+        product: Product
+    }>
+}
+
+export interface getOrderById {
+    order: Order
 }

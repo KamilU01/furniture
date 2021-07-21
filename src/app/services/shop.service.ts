@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { BehaviorSubject } from 'rxjs';
-import { CreateOrderResponse, CREATE__ORDER__MUTATION, getArrangmentProductsResponse, getArrangments, GetCategories, getCategoryProductsResponse, getFaqsQuery, getOrderById, getProductResponse, GetProducts, getRoomProductsResponse, GetRooms, getSearchResult, GET_ARRANGMENTS_QUERY, GET_ARRANGMENT_PRODUCTS_QUERY, GET_CATEGORIES_QUERY, GET_CATEGORY_PRODUCTS_QUERY, GET_FAQS_QUERY, GET_NEWEST_PRODUCTS_QUERY, GET_PRODUCT_QUERY, GET_ROOMS_QUERY, GET_ROOM_PRODUCTS_QUERY, GET_SEARCH_RESULT, ME_QUERY, Product } from '../models/graphql';
+import { CreateOrderResponse, CREATE__ORDER__MUTATION, getArrangmentProductsResponse, getArrangments, GetCategories, getCategoryProductsResponse, getFaqsQuery, getOrderById, getProductResponse, GetProducts, getRoomProductsResponse, GetRooms, getSearchResult, GET_ARRANGMENTS_QUERY, GET_ARRANGMENT_PRODUCTS_QUERY, GET_CATEGORIES_QUERY, GET_CATEGORY_PRODUCTS_QUERY, GET_FAQS_QUERY, GET_NEWEST_PRODUCTS_QUERY, GET_ORDER_BY_ID, GET_PRODUCT_QUERY, GET_ROOMS_QUERY, GET_ROOM_PRODUCTS_QUERY, GET_SEARCH_RESULT, ME_QUERY, Product } from '../models/graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -93,7 +93,7 @@ export class ShopService {
 
   getOrderById(id: string) {
     return this.apollo.query<getOrderById>({
-      query: GET_PRODUCT_QUERY,
+      query: GET_ORDER_BY_ID,
       variables: {
         id
       }

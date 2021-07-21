@@ -8,6 +8,8 @@
       <div class="cart__row__item">Akcja</div>
     </div>
 
+    <div class="cart__empty" *ngIf="cart.length == 0">Brak produktów w koszyku.</div>
+
     <div class="cart__row" *ngFor="let product of cart; let i = index">
       <div class="cart__row__item row--name">
         <div class="item__image">

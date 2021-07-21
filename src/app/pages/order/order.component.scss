@@ -1,1 +1,43 @@
 @import "/src/assets/scss/typography";
+
+.order {
+  font-size: 1.6rem;
+
+  &__data,
+  &__products {
+    margin-top: 2rem;
+  }
+
+  &__list {
+    list-style: none;
+    margin-bottom: 1rem;
+  }
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-top: 2rem;
+  max-width: 80rem;
+
+  &__img {
+    width: 7rem;
+  }
+
+  &__name {
+    display: flex;
+    gap: 2rem;
+
+    &__text {
+      align-self: flex-start;
+
+      h4 {
+        color: #999;
+      }
+    }
+  }
+
+  &__value {
+    font-weight: 700;
+  }
+}

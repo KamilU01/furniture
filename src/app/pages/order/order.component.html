@@ -1,3 +1,41 @@
 <div class="order container">
-  <div class="order__heading heading heading--primary">Zamówienie nr</div>
+  <div class="order__heading heading heading--primary">Zamówienie nr {{order.name}}</div>
+  <div class="order__content">
+    <div class="order__data">
+      <div class="order__heading heading heading--secondary">Dane odbiorcy:</div>
+      <ul class="order__list">
+        <li>Imię i nazwisko: <span class="f--700">{{ order.name }}</span></li>
+        <li>Email: <span class="f--700">{{ order.email }}</span></li>
+        <li>Miasto: <span class="f--700">{{ order.town }}</span></li>
+        <li>Ulica: <span class="f--700">{{ order.street }}</span></li>
+        <li>Kod pocztowy: <span class="f--700">{{ order.postCode }}</span></li>
+        <li>Status:
+          <span class="text--danger f--700" *ngIf="order.status == 1">Przyjęte</span>
+          <span class="text--warning f--700" *ngIf="order.status == 2">Zapłacone</span>
+          <span class="text--success f--700" *ngIf="order.status == 3">Dostarczone</span>
+        </li>
+        <li>Data złożenia: <span class="f--700">{{ order.orderStart }}</span></li>
+        <li>Data zakończenia: <span class="f--700">{{ order.orderEnd }}</span></li>
+        <li>Wartość: <span class="f--700">{{ order.totalPrice }} zł</span></li>
+      </ul>
+    </div>
+    <div class="order__products">
+      <div class="order__heading heading heading--secondary">Szczegóły zamówienia:</div>
+      <div class="products">
+        <div class="product" *ngFor="let product of order.orderProducts">
+          <div class="product__name">
+            <img class="product__img"
+              [src]="product.product.photo ? url+'photos/'+product.product.photo : 'assets/images/logo.svg'"
+              [alt]="product.product.name">
+            <div class="product__name__text">
+              <h3>{{ product.product.name }}</h3>
+              <h4>{{ product.amount }} szt.</h4>
+            </div>
+          </div>
+          <div class="product__value">{{ product.totalPrice }} zł
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

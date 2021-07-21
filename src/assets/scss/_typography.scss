@@ -39,3 +39,9 @@
     color: var(--color-danger);
   }
 }
+
+.f {
+  &--700 {
+    font-weight: 700;
+  }
+}
