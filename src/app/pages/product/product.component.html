@@ -6,7 +6,7 @@
     <div class="products__similar">
       <h3 class="products__similar__heading heading heading--tertiary">Podobne produkty</h3>
       <div class="products__similar__wrap">
-        <a [routerLink]="['/produkt', product.id]" *ngFor="let similarProduct of product.similarProducts"
+        <a [routerLink]="['/produkt', similarProduct.id]" *ngFor="let similarProduct of product.similarProducts"
           class="product__similar">
           <img [src]="similarProduct.photo ? url+'photos/'+similarProduct.photo : 'assets/images/logo.svg'"
             [alt]="similarProduct.name" class="product__similar__img">

@@ -458,3 +458,59 @@ mutation CreateOrderMutation
 export interface CreateOrderResponse {
     createOrder: string
 }
+
+
+export const GET_ORDER_BY_ID = gql`
+query 
+(
+  $id: String!
+)
+{
+    order(id: $id) {
+    id, 
+    name,
+    pickupInPerson,
+    orderStart,
+    orderEnd,
+    totalPrice,
+    status,
+    name,
+    town,
+    street,
+    postCode,
+    email
+    orderProducts {
+      id,
+      totalPrice,
+      amount,
+      product {
+        id,
+        name,
+        photo,
+      }
+    }
+    }
+}
+`;
+
+export interface getOrderById {
+    order: {
+        id: string,
+        name: string,
+        pickupInPerson: number,
+        orderStart: Date,
+        orderEnd: Date,
+        totalPrice: number,
+        status: string,
+        town: string,
+        street: string,
+        postCode: string,
+        email: string,
+        orderProducts: {
+            id: string,
+            totalPrice: number,
+            amount: number,
+            product: Product
+        }
+    }
+}

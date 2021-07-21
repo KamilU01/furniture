@@ -2,7 +2,7 @@
   <h2 class="history__heading heading heading--tertiary">Historia zamówień</h2>
   <h3 class="history__desc">Poniżej znajdują się wszystkie dokonane zamówienia.</h3>
   <div class="content">
-    <table class="history__table">
+    <table class="history__table" *ngIf="!isLoading">
       <tr>
         <th>Nr<br>zamówienia</th>
         <th>Data<br>rozpoczęcia</th>
@@ -19,8 +19,9 @@
         <td class="text--danger" *ngIf="order.status == 1">Przyjęte</td>
         <td class="text--warning" *ngIf="order.status == 2">Zapłącone</td>
         <td class="text--success" *ngIf="order.status == 3">Dostarczone</td>
-        <td><a [routerLink]="['/produkt', order.id]" class="btn btn--primary">Szczegóły</a></td>
+        <td><a [routerLink]="['/zamowienie', order.id]" class="btn btn--primary">Szczegóły</a></td>
       </tr>
+      <div *ngIf="user.orders.length == 0">Nie posiadasz żadnych zamówień</div>
     </table>
 
     <div class="loading" *ngIf="isLoading">
