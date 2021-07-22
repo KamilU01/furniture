@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +12,13 @@ export class ResetComponent implements OnInit {
   isLoading: boolean = false;
   isError: boolean = false;
   isSuccess: boolean = false;
-  constructor(private authService: AuthService) { }
+
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: true
+  };
+
+  constructor(private authService: AuthService, private alertService: AlertService) { }
 
   ngOnInit(): void {
   }
@@ -28,12 +35,11 @@ export class ResetComponent implements OnInit {
     const email = form.value.loginEmail;
 
     this.authService.resetPassword(email).subscribe(res => {
-      this.isSuccess = true;
-      this.isError = false;
+      this.alertService.success('Wiadomość została wysłana. Sprawdź swoją skrzynkę pocztową.', this.options)
       this.isLoading = false;
     }, err => {
-      this.isSuccess = false;
-      this.isError = true;
+      this.alertService.error('Przepraszamy, coś poszło nie tak. Prosimy spróbować ponownie.', this.options)
+
       this.isLoading = false;
     })
 
