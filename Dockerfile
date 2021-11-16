@@ -35,7 +35,10 @@ RUN npm run prod
 FROM nginx:1.19
 
 # Copy the build output to replace the default nginx contents.
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/local/app/dist/furniture /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
