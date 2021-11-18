@@ -282,6 +282,9 @@ query
     description,
     amount,
     photo,
+    height,
+    width,
+    depth,
     room {
         id,
         name,
@@ -506,4 +509,36 @@ export interface Order {
 
 export interface getOrderById {
     order: Order
+}
+
+export const GET_PROMOTIONS_QUERY = gql`
+query {
+    promotions {
+        id, 
+        name,
+        description,
+        photo,
+        products {
+            id,
+            photo,
+            name
+        },
+      position,
+      visibility
+    }
+  }
+`;
+
+export interface Promotion {
+    id?: string,
+    name: string,
+    description?: string,
+    photo?: string,
+    position?: number,
+    visibility?: boolean,
+    products: Array<Product>
+}
+
+export interface GetPromotions {
+    promotions: Array<Promotion>
 }

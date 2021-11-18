@@ -2,11 +2,11 @@
   <h2 class="faq__heading heading heading--secondary">Pytania i odpowiedzi</h2>
   <div class="content" *ngIf="!isLoading">
     <div class="question" *ngFor="let faq of faqs">
-      <div class="question__header" (click)="toggleClass($event,'active')">{{faq.question}} <img
-          src="assets/images/arrow.svg" alt="Rozwiń pytanie"></div>
-      <div class="question__content">
-        {{ faq.answer }}
+      <div class="question__header" (click)="toggleClass($event, 'active')">
+        {{ faq.question }}
+        <img src="assets/images/arrow.svg" alt="Rozwiń pytanie" />
       </div>
+      <div class="question__content" [innerHTML]="faq.answer"></div>
     </div>
   </div>
 
