@@ -9,6 +9,7 @@ import { CategoriesComponent } from './sections/categories/categories.component'
 import { LatestProductsComponent } from './sections/latest-products/latest-products.component';
 import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
 import { SafePipe } from 'src/app/services/pipes/safe.pipe';
+import { PromotionsComponent } from './sections/promotions/promotions.component';
 
 
 
@@ -20,7 +21,8 @@ import { SafePipe } from 'src/app/services/pipes/safe.pipe';
     NewestProductsComponent,
     CategoriesComponent,
     LatestProductsComponent,
-    SafePipe
+    SafePipe,
+    PromotionsComponent
   ],
   imports: [
     CommonModule,
