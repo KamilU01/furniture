@@ -518,11 +518,6 @@ query {
         name,
         description,
         photo,
-        products {
-            id,
-            photo,
-            name
-        },
       position,
       visibility
     }
@@ -541,4 +536,31 @@ export interface Promotion {
 
 export interface GetPromotions {
     promotions: Array<Promotion>
+}
+
+export const GET_PROMOTION_BY_ID = gql`
+query 
+(
+  $id: String!
+)
+{
+    promotion(id: $id) {
+        id, 
+        name,
+        description,
+        photo,
+        products {
+            id,
+            photo,
+            name
+        },
+      position,
+      visibility
+    }
+    }
+
+`;
+
+export interface getPromotionById {
+    promotion: Promotion
 }

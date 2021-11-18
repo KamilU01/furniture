@@ -34,8 +34,8 @@ export class PromotionsComponent implements OnInit {
   ngOnInit(): void {
     this.shopService.getPromotions().subscribe(
       (res) => {
-        this.promotions = res.data!.promotions.sort((a, b) => {
-          return a.position - b.position;
+        this.promotions = res.data!.promotions.filter(a => {return a.visibility == true}).sort((a, b) => {
+          return b.position - a.position;
         });
         this.currentIndex = 0;
         this.isLoading = false;

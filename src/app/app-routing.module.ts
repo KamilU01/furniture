@@ -67,6 +67,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/arrangments/arrangments.module").then(m => m.ArrangmentsModule)
     },
     {
+        path: 'promocja',
+        loadChildren: () => import("./pages/promotion/promotion.module").then(m => m.PromotionModule)
+    },
+    {
         path: 'szukaj',
         loadChildren: () => import("./pages/search/search.module").then(m => m.SearchModule)
     },
