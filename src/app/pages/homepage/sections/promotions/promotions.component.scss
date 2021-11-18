@@ -1,0 +1,47 @@
+@import "/src/assets/scss/typography";
+
+.promotion__image {
+  border-radius: 1.8rem;
+  width: 100%;
+  max-height: 35rem;
+  cursor: pointer;
+}
+
+.promotions {
+    &__list {
+        display: flex;
+        justify-content: center;
+        gap: 5.2vw;
+    }
+
+    &__item {
+        font-size: 1.8rem;
+        font-family: var(--font-secondary);
+        color: var(--color-dark);
+        font-weight: 400;
+        cursor: pointer;
+        padding: 1.4rem .4rem;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: var(--color-secondary);
+            transition: all .2s;
+            top: -5px;
+            transform-origin: center;
+        }
+
+        &.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--color-secondary);
+        }
+    }
+}

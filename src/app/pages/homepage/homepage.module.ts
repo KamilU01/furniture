@@ -10,7 +10,7 @@ import { LatestProductsComponent } from './sections/latest-products/latest-produ
 import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
 import { SafePipe } from 'src/app/services/pipes/safe.pipe';
 import { PromotionsComponent } from './sections/promotions/promotions.component';
-
+import { SwiperModule } from "swiper/angular";
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { PromotionsComponent } from './sections/promotions/promotions.component'
   imports: [
     CommonModule,
     HomepageRoutingModule,
-    ProductCardModule
+    ProductCardModule,
+    SwiperModule
   ]
 })
 export class HomepageModule { }

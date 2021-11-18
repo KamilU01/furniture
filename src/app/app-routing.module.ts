@@ -35,6 +35,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/contact/contact.module").then(m => m.ContactModule)
     },
     {
+        path: 'promocja',
+        loadChildren: () => import("./pages/contact/contact.module").then(m => m.ContactModule)
+    },
+    {
         path: 'zapisane-produkty',
         loadChildren: () => import("./pages/favourites/favourites.module").then(m => m.FavouritesModule)
     },

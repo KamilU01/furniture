@@ -530,12 +530,12 @@ query {
 `;
 
 export interface Promotion {
-    id?: string,
+    id: string,
     name: string,
-    description?: string,
-    photo?: string,
-    position?: number,
-    visibility?: boolean,
+    description: string,
+    photo: string,
+    position: number,
+    visibility: boolean,
     products: Array<Product>
 }
 
