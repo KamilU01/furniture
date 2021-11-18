@@ -22,7 +22,7 @@ export class PromotionsComponent implements OnInit {
   config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 60,
-    loop: true
+    loop: true,
   };
 
   onSlideChange(e: any) {
@@ -47,12 +47,14 @@ export class PromotionsComponent implements OnInit {
   }
 
   slideTo(index: number) {
-    this.swiperRef!.swiperRef.slideTo(index+1, 0);
+    this.swiperRef!.swiperRef.slideTo(index + 1, 0);
   }
 
   refreshPromotionList(index: number) {
-    this.promotionsList?.nativeElement.children[this.currentIndex].classList.remove("active");
-    this.promotionsList?.nativeElement.children[index].classList.add("active");
+    this.promotionsList?.nativeElement.children[
+      this.currentIndex
+    ].classList.remove('active');
+    this.promotionsList?.nativeElement.children[index].classList.add('active');
 
     this.currentIndex = index;
   }

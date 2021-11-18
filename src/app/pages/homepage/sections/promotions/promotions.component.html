@@ -25,6 +25,7 @@
   <div class="promotions__list" #promotionsList>
     <div
       class="promotions__item"
+      [ngClass]="{'active': i == 0}"
       *ngFor="let promotion of promotions; let i = index"
       (click)="slideTo(i)"
     >
