@@ -1,1 +1,34 @@
-<p>promotion works!</p>
+<div class="promotion container" *ngIf="!isLoading">
+    <div class="promotion__header">
+      <div class="promotion__content">
+        <h1 class="promotion__heading heading heading--primary">{{promotion.name}}</h1>
+        <p class="promotion__desc" [innerHtml]="promotion.description"></p>
+      </div>
+      <div class="promotion__img">
+        <img [src]="promotion.photo ? url+'photos/'+promotion.photo : 'assets/images/logo.svg'" [alt]="promotion.name">
+      </div>
+    </div>
+    <div class="products-wrap__heading heading heading--secondary">Produkty</div>
+    <div class="products-wrap">
+      <app-product-card *ngFor="let product of promotion.products" [product]="product"></app-product-card>
+    </div>
+    <div class="promotion__empty" *ngIf="promotion.products.length == 0">
+      <p>
+        Przepraszamy, nie ma żadnych produktów w tej kolekcji.
+      </p>
+    </div>
+  </div>
+  
+  <div class="loading" *ngIf="isLoading">
+    <div class="lds-roller lds-roller--dark">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  

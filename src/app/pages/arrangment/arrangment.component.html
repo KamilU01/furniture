@@ -12,7 +12,7 @@
   <div class="products-wrap">
     <app-product-card *ngFor="let product of arrangment.products" [product]="product"></app-product-card>
   </div>
-  <div class="category__empty" *ngIf="arrangment.products.length == 0">
+  <div class="arrangment__empty" *ngIf="arrangment.products.length == 0">
     <p>
       Przepraszamy, nie ma żadnych produktów w tej kolekcji.
     </p>

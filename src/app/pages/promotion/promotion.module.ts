@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PromotionComponent } from './promotion.component';
 import { PromotionRoutingModule } from './promotion-routing.module';
+import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
 
 
 
@@ -11,7 +12,8 @@ import { PromotionRoutingModule } from './promotion-routing.module';
   ],
   imports: [
     CommonModule,
-    PromotionRoutingModule
+    PromotionRoutingModule,
+    ProductCardModule
   ]
 })
 export class PromotionModule { }

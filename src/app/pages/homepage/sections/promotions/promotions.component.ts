@@ -39,6 +39,7 @@ export class PromotionsComponent implements OnInit {
         });
         this.currentIndex = 0;
         this.isLoading = false;
+        console.log(this.promotions)
       },
       (err) => {
         console.log(err);

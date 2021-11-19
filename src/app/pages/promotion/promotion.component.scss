@@ -1,0 +1,42 @@
+@import "/src/assets/scss/typography";
+
+.promotion {
+  &__header {
+    display: flex;
+    max-width: 130rem;
+    margin: 0 auto;
+    gap: 1.6rem;
+    flex-direction: column;
+
+    @media only screen and (max-width: 900px) {
+      flex-direction: column;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 2rem;
+  }
+
+  &__empty {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &__img img {
+    width: 100%;
+  }
+}
+
+.promotion__desc {
+  font-size: 1.6rem;
+}
+
+.products-wrap {
+  margin-top: 4rem;
+}
+
+.products-wrap__heading {
+  text-align: center;
+  margin-top: 6rem;
+}
