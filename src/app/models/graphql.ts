@@ -437,6 +437,26 @@ export interface getSearchResult {
     findProducts: Array<Product>
 }
 
+export const GET_FILTER_RESULTS = gql`
+query 
+(
+  $findProductsInput: FindProductsInput!
+)
+{
+    findProductsWithQuery(findProductsInput: $findProductsInput) {
+      id
+      name,
+    price,
+    description,
+    amount,
+    photo,
+    }
+}`;
+
+export interface getFilterResult {
+    findProductsWithQuery: Array<Product>
+}
+
 export const CREATE__ORDER__MUTATION = gql`
 mutation CreateOrderMutation 
 (

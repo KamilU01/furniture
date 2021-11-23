@@ -16,7 +16,6 @@ export class SearchComponent implements OnInit {
   categories!: Array<Category>;
   rooms!: Array<Room>;
   selectedCategory!: string;
-  dropdownActive: boolean = false;
   selectedColors: Array<Color> = [];
 
   constructor(private router: Router, private shopService: ShopService) {}
@@ -27,7 +26,7 @@ export class SearchComponent implements OnInit {
     });
 
     this.shopService.getAllRooms().subscribe((res) => {
-      this.categories = res.data.rooms;
+      this.rooms = res.data.rooms;
     });
   }
 
@@ -57,20 +56,6 @@ export class SearchComponent implements OnInit {
     const colors = this.selectedColors.map((color) => {
       return color.colorCode;
     });
-
-    const query = {
-      categoryId,
-      roomId,
-      heightFrom,
-      heightTo,
-      widthFrom,
-      widthTo,
-      depthFrom,
-      depthTo,
-      colors
-    };
-
-    console.log(query);
 
     this.router.navigate(['/filtruj', {categoryId, roomId, heightFrom, heightTo, widthFrom, widthTo, depthFrom, depthTo, colors}])
   }

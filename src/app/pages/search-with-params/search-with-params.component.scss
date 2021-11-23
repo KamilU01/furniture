@@ -1,0 +1,120 @@
+@import "/src/assets/scss/typography";
+@import "/src/assets/scss/loading-spinner";
+@import "/src/assets/scss/form";
+@import "/src/assets/scss/button";
+
+.loading {
+  text-align: center;
+}
+
+.search {
+  &__heading {
+    text-align: center;
+  }
+
+  &__empty {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &__content {
+      display: flex;
+      gap: 5vw;
+      margin-top: 4rem;
+
+      @media only screen and (max-width: 900px) {
+        flex-direction: column;
+      }
+  }
+
+  &__form {
+      border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    min-width: 30rem;
+    max-width: 50rem;
+
+    @media only screen and (max-width: 900px) {
+      width: 100%;
+      max-width: none;
+    }
+
+    .form {
+      &__select {
+        width: 100%;
+      }
+      &__dimensions {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    .form__group--btn {
+      text-align: end;
+    }
+  }
+
+  &__products {
+      display: grid;
+      width: 100%;
+  }
+}
+
+.form__select {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: #f2f2f2;
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 100%;
+  display: block;
+  transition: all 0.3s;
+  cursor: pointer;
+  &::-webkit-input-placeholder {
+    color: var(--color-dark);
+  }
+
+  &:focus:invalid {
+    border-bottom: 3px solid var(--color-secondary);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(var(--color-dark), 0.1);
+    border-bottom: 3px solid var(--color-primary);
+  }
+
+  option {
+    font-style: 1.6rem;
+  }
+}
+
+.colors {
+  &__wrapper {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  &__header {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &.selected {
+    border: 3px solid var(--color-primary-darker);
+  }
+}

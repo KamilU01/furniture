@@ -1,4 +1,5 @@
 @import "/src/assets/scss/typography";
+@import "/src/assets/scss/loading-spinner";
 
 .search__heading {
   text-align: center;
@@ -12,4 +13,8 @@
 
 .products-wrap {
   margin-top: 4rem;
+}
+
+.loading {
+  text-align: center;
 }

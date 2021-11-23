@@ -1,1 +1,158 @@
-<p>search-with-params works!</p>
+<div class="search container" *ngIf="!isLoading">
+  <h1 class="search__heading heading heading--primary">Wyniki filtrowania</h1>
+  <div class="search__content">
+    <div class="search__filter">
+      <form
+        class="search__form form"
+        #formSearch="ngForm"
+        (ngSubmit)="onSearch(formSearch)"
+      >
+        <h2 class="heading heading--secondary">Filtruj</h2>
+        <select name="category" id="category" [(ngModel)]="selectedCategory" class="form__select">
+          <option value="" disabled>Wszystkie kategorie</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+
+        <select name="room" id="room" [(ngModel)]="selectedRoom" class="form__select">
+          <option value="" disabled>Wszystkie pomieszczenia</option>
+          <option [selected]="room.id == query.roomId" *ngFor="let room of rooms" [value]="room.id">
+            {{ room.name }}
+          </option>
+        </select>
+
+        <div class="form__dimensions">
+          <div class="form__group">
+            <input
+              id="heightFrom"
+              name="heightFrom"
+              type="number"
+              min="0"
+              class="form__input"
+              placeholder="Wysokość od"
+              [(ngModel)]="query.heightFrom"
+              #heightFrom="ngModel"
+            />
+            <label for="heightFrom" class="form__label">Wysokość od</label>
+          </div>
+
+          <div class="form__group">
+            <input
+              id="heightTo"
+              name="heightTo"
+              type="number"
+              min="0"
+              class="form__input"
+              placeholder="Wysokość do"
+              [(ngModel)]="query.heightTo"
+              #heightTo="ngModel"
+            />
+            <label for="heightTo" class="form__label">Wysokość do</label>
+          </div>
+
+          <div class="form__group">
+            <input
+              id="widthFrom"
+              name="widthFrom"
+              type="number"
+              min="0"
+              class="form__input"
+              placeholder="Szerokość od"
+              [(ngModel)]="query.widthFrom"
+              #widthFrom="ngModel"
+            />
+            <label for="widthFrom" class="form__label">Szerokość od</label>
+          </div>
+
+          <div class="form__group">
+            <input
+              id="widthTo"
+              name="widthTo"
+              type="number"
+              min="0"
+              class="form__input"
+              placeholder="Szerokość do"
+              [(ngModel)]="query.widthTo"
+              #widthTo="ngModel"
+            />
+            <label for="widthTo" class="form__label">Szerokość od</label>
+          </div>
+
+          <div class="form__group">
+            <input
+              id="depthFrom"
+              name="depthFrom"
+              type="number"
+              min="0"
+              class="form__input"
+              placeholder="Głębokość od"
+              [(ngModel)]="query.depthFrom"
+              #depthFrom="ngModel"
+            />
+            <label for="depthFrom" class="form__label">Głębokość od</label>
+          </div>
+
+          <div class="form__group">
+            <input
+              id="depthTo"
+              name="depthTo"
+              type="number"
+              min="0"
+              class="form__input"
+              placeholder="Głębokość do"
+              ngModel
+              [(ngModel)]="query.depthTo"
+              #depthTo="ngModel"
+            />
+            <label for="depthTo" class="form__label">Głębokość do</label>
+          </div>
+        </div>
+
+        <div class="form__group colors">
+          <div class="colors__header">Wybierz kolor:</div>
+          <div class="colors__wrapper">
+            <div
+              *ngFor="let color of colors"
+              class="color"
+              [ngClass]="{ selected: selectedColors.includes(color) }"
+              (click)="selectColor(color)"
+              [style.background-color]="color.colorCode"
+            ></div>
+          </div>
+        </div>
+
+        <div class="form__group form__group--btn">
+          <button
+            type="submit"
+            class="contact__btn btn btn--primary btn--animated"
+          >
+            Filtruj
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="search__products products-wrap">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product"
+      ></app-product-card>
+      <div class="search__empty" *ngIf="products.length == 0">
+        <p>Przepraszamy, nie znaleźliśmy żadnych produktów.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller lds-roller--dark">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
