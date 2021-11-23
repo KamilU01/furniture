@@ -224,6 +224,9 @@ export interface Product {
     amount: number,
     photo: string,
     room: Room | null,
+    width: number,
+    height: number,
+    depth: number,
     category: Category | null,
     similarProducts: Array<Product>
 }

@@ -24,6 +24,17 @@
     </div>
     <h2 class="product__heading heading heading--primary">{{product.name}}</h2>
     <p class="product__desc" [innerHtml]="product.description"></p>
+    <div class="product__dimensions">
+      <div class="product__dimension">
+        <strong>Wysokość [cm]: </strong> {{product.height}}
+      </div>
+      <div class="product__dimension">
+        <strong>Szerokość [cm]: </strong> {{product.width}}
+      </div>
+      <div class="product__dimension">
+        <strong>Głębokość [cm]: </strong> {{product.depth}}
+      </div>
+    </div>
     <div class="product__price">{{ product.price }} zł</div>
     <a class="btn btn--secondary" (click)="addToCart(product)">Dodaj do koszyka</a>
     <div class="product__amount">Dostępność: <span>{{ amountText }}</span></div>

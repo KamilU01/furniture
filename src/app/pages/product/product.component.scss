@@ -107,6 +107,13 @@
       font-weight: 700;
     }
   }
+
+  &__dimensions {
+    margin-bottom: 2.4rem;
+    font-size: 1.6rem;
+    display: flex;
+    gap: 3vw;
+  }
 }
 
 .products__similar {
