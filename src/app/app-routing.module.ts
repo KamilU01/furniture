@@ -75,6 +75,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/search/search.module").then(m => m.SearchModule)
     },
     {
+        path: 'filtruj',
+        loadChildren: () => import("./pages/search-with-params/search-with-params.module").then(m => m.SearchWithParamsModule)
+    },
+    {
         path: 'podsumowanie-zamowienia',
         loadChildren: () => import("./pages/order-summary/order-summary.module").then(m => m.OrderSummaryModule)
     },

@@ -1,0 +1,167 @@
+<div class="search">
+  <div class="search__header">
+    <div class="search__header__heading">
+      Znajdź swój kolejny <strong>mebel</strong>
+    </div>
+    <div class="search__header__paragraph">
+      Wykorzystaj szczegółowy formularz, aby znaleźć dokładnie to, czego szukasz
+      albo wpisz frazę poniżej i pozwól nam zająć się resztą.
+    </div>
+    <form
+      class="search__header__form form"
+      #formSimpleSearch="ngForm"
+      (ngSubmit)="onSimpleSearch(formSimpleSearch)"
+    >
+      <div class="form__group">
+        <input
+          id="phrase"
+          name="phrase"
+          type="text"
+          class="form__input"
+          placeholder="Wyszukaj produkty"
+          ngModel
+          #phrase="ngModel"
+        />
+        <label for="phrase" class="form__label">Wyszukaj produkty</label>
+      </div>
+
+      <div class="form__group form__group--btn">
+        <button
+          type="submit"
+          class="contact__btn btn btn--primary btn--animated"
+        >
+          Wyszukaj
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="search__form">
+    <form
+      class="search__form form"
+      #formSearch="ngForm"
+      (ngSubmit)="onSearch(formSearch)"
+    >
+      <select name="category" id="category" ngModel class="form__select">
+        <option value="" disabled>Wszystkie kategorie</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+
+      <select name="room" id="room" ngModel class="form__select">
+        <option value="" disabled>Wszystkie pomieszczenia</option>
+        <option *ngFor="let room of rooms" [value]="room.id">
+          {{ room.name }}
+        </option>
+      </select>
+
+      <div class="form__dimensions">
+        <div class="form__group">
+          <input
+            id="heightFrom"
+            name="heightFrom"
+            type="number"
+            min="0"
+            class="form__input"
+            placeholder="Wysokość od"
+            ngModel
+            #heightFrom="ngModel"
+          />
+          <label for="heightFrom" class="form__label">Wysokość od</label>
+        </div>
+
+        <div class="form__group">
+          <input
+            id="heightTo"
+            name="heightTo"
+            type="number"
+            min="0"
+            class="form__input"
+            placeholder="Wysokość do"
+            ngModel
+            #heightTo="ngModel"
+          />
+          <label for="heightTo" class="form__label">Wysokość do</label>
+        </div>
+
+        <div class="form__group">
+          <input
+            id="widthFrom"
+            name="widthFrom"
+            type="number"
+            min="0"
+            class="form__input"
+            placeholder="Szerokość od"
+            ngModel
+            #widthFrom="ngModel"
+          />
+          <label for="widthFrom" class="form__label">Szerokość od</label>
+        </div>
+
+        <div class="form__group">
+          <input
+            id="widthTo"
+            name="widthTo"
+            type="number"
+            min="0"
+            class="form__input"
+            placeholder="Szerokość do"
+            ngModel
+            #widthTo="ngModel"
+          />
+          <label for="widthTo" class="form__label">Szerokość od</label>
+        </div>
+
+        <div class="form__group">
+          <input
+            id="depthFrom"
+            name="depthFrom"
+            type="number"
+            min="0"
+            class="form__input"
+            placeholder="Głębokość od"
+            ngModel
+            #depthFrom="ngModel"
+          />
+          <label for="depthFrom" class="form__label">Głębokość od</label>
+        </div>
+
+        <div class="form__group">
+          <input
+            id="depthTo"
+            name="depthTo"
+            type="number"
+            min="0"
+            class="form__input"
+            placeholder="Głębokość do"
+            ngModel
+            #depthTo="ngModel"
+          />
+          <label for="depthTo" class="form__label">Głębokość do</label>
+        </div>
+      </div>
+
+      <div class="form__group colors">
+        <div class="colors__header">Wybierz kolor:</div>
+        <div class="colors__wrapper">
+          <div
+            *ngFor="let color of colors"
+            class="color"
+            [ngClass]="{ selected: selectedColors.includes(color) }"
+            (click)="selectColor(color)"
+            [style.background-color]="color.colorCode"
+          ></div>
+        </div>
+      </div>
+
+      <div class="form__group form__group--btn">
+        <button
+          type="submit"
+          class="contact__btn btn btn--primary btn--animated"
+        >
+          Wyszukaj
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

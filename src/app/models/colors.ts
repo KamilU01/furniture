@@ -20,12 +20,12 @@ export const colors: Array<Color> = [
     colorCode: '#E3170A',
   },
   {
-    name: 'Blush',
-    colorCode: '#EA638C',
+    name: 'White',
+    colorCode: '#FAF3ED',
   },
   {
-    name: 'White',
-    colorCode: '#FFFFFF',
+    name: 'Blush',
+    colorCode: '#EA638C',
   },
 ];
 

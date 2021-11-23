@@ -11,6 +11,8 @@ import { ProductCardModule } from 'src/app/shared/product-card/product-card.modu
 import { SafePipe } from 'src/app/services/pipes/safe.pipe';
 import { PromotionsComponent } from './sections/promotions/promotions.component';
 import { SwiperModule } from "swiper/angular";
+import { SearchComponent } from './sections/search/search.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,13 +24,15 @@ import { SwiperModule } from "swiper/angular";
     CategoriesComponent,
     LatestProductsComponent,
     SafePipe,
-    PromotionsComponent
+    PromotionsComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
     HomepageRoutingModule,
     ProductCardModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule
   ]
 })
 export class HomepageModule { }

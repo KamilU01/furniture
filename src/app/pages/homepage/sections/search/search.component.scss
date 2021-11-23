@@ -1,0 +1,131 @@
+@import "/src/assets/scss/typography";
+@import "/src/assets/scss/button";
+@import "/src/assets/scss/form";
+
+.search {
+  padding: 8rem 5.2vw;
+  max-width: 150rem;
+  margin: 0 auto;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 6rem;
+  }
+
+  &__header {
+    max-width: 40rem;
+    @media only screen and (max-width: 900px) {
+        width: 100%;
+        max-width: none;
+    }
+
+    &__heading {
+      font-size: 3.6rem;
+      line-height: 1.1;
+      font-family: var(--font-secondary);
+    }
+    &__paragraph {
+      font-size: 1.8rem;
+      line-height: 1.6;
+      margin-top: 2.4rem;
+    }
+    &__form {
+      margin-top: 3rem;
+
+      .form__group--btn {
+        margin-top: 0.8rem;
+
+        @media only screen and (max-width: 900px) {
+            text-align: end;
+        }
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    width: 39vw;
+    max-width: 70rem;
+    @media only screen and (max-width: 900px) {
+        width: 100%;
+        max-width: none;
+    }
+    .form {
+      &__select {
+        width: 100%;
+      }
+      &__dimensions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    .form__group--btn {
+      text-align: end;
+    }
+  }
+}
+
+.form__select {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: #f2f2f2;
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 100%;
+  display: block;
+  transition: all 0.3s;
+  cursor: pointer;
+  &::-webkit-input-placeholder {
+    color: var(--color-dark);
+  }
+
+  &:focus:invalid {
+    border-bottom: 3px solid var(--color-secondary);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(var(--color-dark), 0.1);
+    border-bottom: 3px solid var(--color-primary);
+  }
+
+  option {
+    font-style: 1.6rem;
+  }
+}
+
+.colors {
+  &__wrapper {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  &__header {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &.selected {
+    border: 3px solid var(--color-primary-darker);
+  }
+}
