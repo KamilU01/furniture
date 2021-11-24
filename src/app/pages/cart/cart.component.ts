@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
   cart!: Array<cartItem>;
@@ -21,19 +21,23 @@ export class CartComponent implements OnInit {
 
   isCheckout: boolean = false;
 
-  constructor(private cartService: CartService, private router: Router, private authService: AuthService) { }
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.cartService.cartList.subscribe(res => {
+    this.cartService.cartList.subscribe((res) => {
       this.cart = res;
       this.isLoading = false;
-    })
+    });
 
-    this.cartService.totalValue.subscribe(res => {
+    this.cartService.totalValue.subscribe((res) => {
       this.totalValue = res;
-    })
+    });
 
-    this.authService.isLogged.subscribe(res => this.isLoggedIn = res)
+    this.authService.isLogged.subscribe((res) => (this.isLoggedIn = res));
   }
 
   quantityChange() {
@@ -45,7 +49,7 @@ export class CartComponent implements OnInit {
   }
 
   onChangeQuantity(product: cartItem) {
-    if (product.quantity < 0) product.quantity = 1
+    if (product.quantity <= 0) product.quantity = 1;
     this.cartService.reloadCart(this.cart);
   }
 
@@ -53,7 +57,14 @@ export class CartComponent implements OnInit {
     if (!this.isLoggedIn) {
       this.isCheckout = true;
     } else {
-      this.router.navigate(["/podsumowanie-zamowienia"]);
+      this.router.navigate(['/podsumowanie-zamowienia']);
     }
+  }
+
+  isStillPromo(dateToCheck: Date) {
+    let currDate: Date = new Date();
+    let promoDate: Date = new Date(dateToCheck);
+
+    return currDate <= promoDate;
   }
 }

@@ -101,4 +101,11 @@ export class OrderSummaryComponent implements OnInit {
 
     })
   }
+
+  isStillPromo(dateToCheck: Date) {
+    let currDate: Date = new Date();
+    let promoDate: Date = new Date(dateToCheck);
+
+    return currDate <= promoDate;
+  }
 }

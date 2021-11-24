@@ -103,4 +103,39 @@
       height: 3.5rem;
     }
   }
+
+  &__promo {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-end;
+    &__price {
+      color: var(--color-warning-2);
+      font-weight: 400;
+      font-size: 2rem;
+      font-family: var(--font-primary);
+      line-height: 1.2;
+      cursor: pointer;
+    }
+
+    &__old-price {
+      color: var(--color-grey-dark-2);
+      font-weight: 400;
+      font-size: 1.4rem;
+      font-family: var(--font-primary);
+      line-height: 1.2;
+      cursor: pointer;
+      text-decoration: line-through;
+    }
+  }
+
+  &__promo-discount {
+    font-size: 1.2rem;
+    color: var(--color-light);
+    background-color: var(--color-warning-2);
+    border-radius: 20px;
+    justify-self: flex-start;
+    padding: .2rem .8rem;
+    margin: .5rem 0;
+    font-weight: 700;
+  }
 }

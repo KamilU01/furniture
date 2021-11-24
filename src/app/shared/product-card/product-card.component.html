@@ -9,8 +9,13 @@
     <img [routerLink]="['/produkt', product.id]"
       [src]="product.photo ? url+'photos/'+product.photo : 'assets/images/logo.svg'" [alt]="product.name">
   </div>
+  <div class="product__promo-discount" *ngIf="isPromo">-{{ promoPercentage }}%</div>
   <a [routerLink]="['/produkt', product.id]" class="product__name">{{ product.name }}</a>
-  <div [routerLink]="['/produkt', product.id]" class="product__price">{{ product.price }} zł</div>
+  <div [routerLink]="['/produkt', product.id]" class="product__price" *ngIf="!isPromo">{{ product.price }} zł</div>
+  <div [routerLink]="['/produkt', product.id]" class="product__promo" *ngIf="isPromo">
+    <div class="product__promo__price">{{ product.promoPrice }} zł</div>
+    <div class="product__promo__old-price">{{ product.price }} zł</div>
+  </div>
   <div class="product__cart">
     <img (click)="addToCart(product)" src="assets/images/cart.svg" alt="Dodaj do koszyka">
   </div>

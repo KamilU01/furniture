@@ -12,7 +12,28 @@
             [alt]="similarProduct.name" class="product__similar__img">
           <div class="product__similar__content">
             <div class="product__similar__name">{{ similarProduct.name }}</div>
-            <div class="product__similar__price">{{similarProduct.price}} zł</div>
+            <div class="product__similar__price">
+              <div
+              *ngIf="
+                isStillPromo(similarProduct.promoEndDate);
+                then discount;
+                else normalPrice
+              "
+            ></div>
+            <ng-template #normalPrice>
+              <span class="f-700"
+                >{{ $any(similarProduct.price) }} zł</span
+              >
+            </ng-template>
+            <ng-template #discount>
+              <span class="new-price"
+                >{{ $any(similarProduct.promoPrice) }} zł</span
+              >
+              <span class="old-price"
+                >{{ $any(similarProduct.price) }} zł</span
+              >
+            </ng-template>
+            </div>
           </div>
         </a>
       </div>
@@ -35,7 +56,14 @@
         <strong>Głębokość [cm]: </strong> {{product.depth}}
       </div>
     </div>
-    <div class="product__price">{{ product.price }} zł</div>
+    <div class="product__promo" *ngIf="isPromo">
+      <div class="product__promo__percentage">-{{ promoPercentage }}%</div>
+      <div class="product__promo__prices">
+        <div class="product__promo__new-price">{{ product.promoPrice }} zł</div>
+        <div class="product__promo__old-price">{{ product.price }} zł</div>
+      </div>
+    </div>
+    <div class="product__price" *ngIf="!isPromo">{{ product.price }} zł</div>
     <a class="btn btn--secondary" (click)="addToCart(product)">Dodaj do koszyka</a>
     <div class="product__amount">Dostępność: <span>{{ amountText }}</span></div>
   </div>

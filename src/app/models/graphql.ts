@@ -227,6 +227,8 @@ export interface Product {
     width: number,
     height: number,
     depth: number,
+    promoPrice: number,
+    promoEndDate: Date,
     category: Category | null,
     similarProducts: Array<Product>
 }
@@ -248,6 +250,8 @@ query {
     name,
     price,
     photo,
+    promoPrice,
+    promoEndDate
     }
 }
 `;
@@ -269,7 +273,8 @@ query {
 export interface cartItem {
     product: Product,
     quantity: number,
-    value?: number
+    value?: number,
+    promoValue?: number
 }
 
 export const GET_PRODUCT_QUERY = gql`
@@ -288,6 +293,8 @@ query
     height,
     width,
     depth,
+    promoPrice,
+    promoEndDate,
     room {
         id,
         name,
@@ -300,7 +307,9 @@ query
         id,
         name,
         price,
-        photo
+        photo,
+        promoPrice,
+        promoEndDate
     }
     }
 }
@@ -326,6 +335,8 @@ query
     description,
     amount,
     photo,
+    promoPrice,
+    promoEndDate,
     }
     }
 }
@@ -356,6 +367,8 @@ query
     description,
     amount,
     photo,
+    promoPrice,
+    promoEndDate,
     }
     }
 }
@@ -398,6 +411,8 @@ query
     description,
     amount,
     photo,
+    promoPrice,
+    promoEndDate,
     }
     }
 }
@@ -432,6 +447,8 @@ query
     description,
     amount,
     photo,
+    promoPrice,
+    promoEndDate,
     }
 }
 `;
@@ -453,6 +470,8 @@ query
     description,
     amount,
     photo,
+    promoPrice,
+    promoEndDate,
     }
 }`;
 
@@ -575,7 +594,9 @@ query
         products {
             id,
             photo,
-            name
+            name,
+            promoPrice,
+            promoEndDate,
         },
       position,
       visibility

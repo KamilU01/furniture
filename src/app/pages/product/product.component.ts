@@ -29,6 +29,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     keepAfterRouteChange: false
   };
 
+  isPromo!: boolean;
+
+  promoPercentage!: string;
+
   constructor(private router: Router, protected alertService: AlertService, private cartService: CartService, private route: ActivatedRoute, private shopService: ShopService) { }
 
   ngOnInit(): void {
@@ -37,9 +41,18 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.product = res.data.product;
         this.shopService.addToLastViewedProducts(this.product);
 
+        console.log(this.product)
+
         if (this.product.amount < 5) this.amountText = "na wyczerpaniu";
         if (this.product.amount >= 5) this.amountText = "dostępny";
         this.isLoading = false;
+        if (this.product.promoEndDate) {
+          let currDate: Date = new Date();
+          let promoDate: Date = new Date(this.product.promoEndDate);
+          this.isPromo = currDate <= promoDate;
+    
+          this.promoPercentage =  (((this.product.price - this.product.promoPrice) * 100) / this.product.price).toFixed(0);
+        }
       }, err => this.router.navigate(['/']))
     }, err => this.router.navigate(['/']))
   }
@@ -57,5 +70,12 @@ export class ProductComponent implements OnInit, OnDestroy {
   addToFavourites(product: Product) {
     this.alertService.success('Produkt został zapisany!', this.options)
     this.shopService.addToFavourites(product);
+  }
+
+  isStillPromo(dateToCheck: Date) {
+    let currDate: Date = new Date();
+    let promoDate: Date = new Date(dateToCheck);
+
+    return currDate <= promoDate;
   }
 }

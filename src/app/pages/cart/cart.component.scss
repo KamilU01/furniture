@@ -128,3 +128,14 @@
     text-decoration: underline;
   }
 }
+
+.old-price {
+  color: var(--color-grey-dark-2);
+  font-size: 1.2rem;
+  text-decoration: line-through;
+}
+
+.old-price, .new-price {
+  display: block;
+  line-height: 1;
+}

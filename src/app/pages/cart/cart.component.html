@@ -25,7 +25,15 @@
           [(ngModel)]="product.quantity">
       </div>
       <div class="cart__row__item row--price">
-        <span class="f-700">{{ $any(product.value)| number : '1.2-2'}} zł</span>
+        <!-- <span class="f-700" *ngIf="isStillPromo(product.product.promoEndDate); else discount;">{{ $any(product.value)| number : '1.2-2'}} zł</span> -->
+        <div *ngIf="isStillPromo(product.product.promoEndDate); then discount; else normalPrice;"></div>
+        <ng-template #normalPrice>
+          <span class="f-700">{{ $any(product.value)| number : '1.2-2'}} zł</span>
+        </ng-template>
+        <ng-template #discount>
+          <span class="old-price">{{ $any(product.value)| number : '1.2-2'}} zł</span>
+          <span class="new-price">{{ $any(product.promoValue)| number : '1.2-2'}} zł</span>
+        </ng-template>
       </div>
       <div class="cart__row__item row--action">
         <a (click)="removeFromCart(i)">
