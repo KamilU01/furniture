@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Output,
+  ViewChild,
+  EventEmitter,
+} from '@angular/core';
 import { Promotion } from 'src/app/models/graphql';
 import { ShopService } from 'src/app/services/shop.service';
 import { environment } from 'src/environments/environment';
@@ -13,6 +20,7 @@ import { SwiperComponent } from 'swiper/angular';
 export class PromotionsComponent implements OnInit {
   @ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
   @ViewChild('promotionsList', { static: false }) promotionsList?: ElementRef;
+  @Output() isPromotions = new EventEmitter<boolean>();
   promotions!: Array<Promotion>;
   isLoading: boolean = true;
   url = environment.apiUrl;
@@ -34,9 +42,16 @@ export class PromotionsComponent implements OnInit {
   ngOnInit(): void {
     this.shopService.getPromotions().subscribe(
       (res) => {
-        this.promotions = res.data!.promotions.filter(a => {return a.visibility == true}).sort((a, b) => {
-          return b.position - a.position;
-        });
+        if (res.data?.promotions && res.data?.promotions.length > 0) this.isPromotions.emit(true);
+        else this.isPromotions.emit(false);
+
+        this.promotions = res
+          .data!.promotions.filter((a) => {
+            return a.visibility == true;
+          })
+          .sort((a, b) => {
+            return b.position - a.position;
+          });
         this.currentIndex = 0;
         this.isLoading = false;
       },
