@@ -17,7 +17,7 @@
         <td>{{ order.orderEnd | date: 'dd/MM/yyyy, H:mm'}}</td>
         <td>{{ order.totalPrice }} zł</td>
         <td class="text--danger" *ngIf="order.status == 1">Przyjęte</td>
-        <td class="text--warning" *ngIf="order.status == 2">Zapłącone</td>
+        <td class="text--warning" *ngIf="order.status == 2">Zapłacone</td>
         <td class="text--success" *ngIf="order.status == 3">Dostarczone</td>
         <td><a [routerLink]="['/zamowienie', order.id]" class="btn btn--primary">Szczegóły</a></td>
       </tr>
