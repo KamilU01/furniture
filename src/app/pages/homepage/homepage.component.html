@@ -1,10 +1,10 @@
-<section class="section container" *ngIf="isPromotionsAvailable">
+<section class="section container section--promotions" *ngIf="isPromotionsAvailable">
   <div class="section__content">
     <app-promotions (isPromotions)="isPromotions($event)"></app-promotions>
   </div>
 </section>
 
-<section class="section container">
+<section class="section container section--search">
   <div class="section__content">
     <app-search></app-search>
   </div>

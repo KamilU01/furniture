@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    const phrase = form.value.phrase;
+    const phrase = form.value.searchPhrase;
 
     this.router.navigate(['/szukaj', phrase]);
   }
