@@ -47,7 +47,7 @@ export class SearchWithParamsComponent implements OnInit {
     if (params.widthTo) this.query['widthTo'] = +params.widthTo;
     if (params.depthFrom) this.query['depthFrom'] = +params.depthFrom;
     if (params.depthTo) this.query['depthTo'] = +params.depthTo;
-    this.query['colors'] = params.colors.split(/[,]+/);
+    if (params.color) this.query['colors'] = params.colors.split(/[,]+/);
 
     let colorsArray = params.colors.split(/[,]+/);
 
