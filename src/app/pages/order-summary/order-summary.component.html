@@ -82,6 +82,20 @@
 
           <div class="form__group form__group--email">
             <input
+              id="userName"
+              name="userName"
+              type="text"
+              class="form__input"
+              placeholder="Imię i nazwisko*"
+              ngModel
+              required
+              #userName="ngModel"
+            />
+            <label for="userName" class="form__label">Imię i nazwisko</label>
+          </div>
+
+          <div class="form__group form__group--email">
+            <input
               id="phone"
               name="phone"
               type="tel"

@@ -78,6 +78,7 @@ export class OrderSummaryComponent implements OnInit {
 
     let createOrderInput = {
       town: form.value.town,
+      userName: form.value.userName,
       street: form.value.street,
       postCode: form.value.postCode,
       email: form.value.email,
