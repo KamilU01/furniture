@@ -18,6 +18,7 @@
         <li>Data złożenia: <span class="f--700">{{ order.orderStart }}</span></li>
         <li>Data zakończenia: <span class="f--700">{{ order.orderEnd }}</span></li>
         <li>Wartość: <span class="f--700">{{ order.totalPrice }} zł</span></li>
+        <li><a (click)="invoiceDownload()">Pobierz fakturę</a></li>
       </ul>
     </div>
     <div class="order__products">

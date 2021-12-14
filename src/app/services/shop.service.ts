@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import {
   CreateOrderResponse,
   CREATE__ORDER__MUTATION,
@@ -36,6 +38,7 @@ import {
   ME_QUERY,
   Product,
 } from '../models/graphql';
+import FileSaver, { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root',
@@ -48,7 +51,9 @@ export class ShopService {
     Array<Product>
   >([]);
 
-  constructor(private apollo: Apollo) {}
+  url: string = environment.apiUrl;
+
+  constructor(private apollo: Apollo, private http: HttpClient) {}
 
   getAllFaqs() {
     return this.apollo.query<getFaqsQuery>({
@@ -239,5 +244,13 @@ export class ShopService {
         id,
       },
     });
+  }
+
+  invoiceDownload(orderId: any) {
+    return this.http.get(this.url + "invoice/" + orderId, { responseType: 'blob' });
+  }
+
+  saveToFileSystem(data: any, typ: string) {
+    FileSaver.saveAs(data, typ, { autoBom: true });
   }
 }

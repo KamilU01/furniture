@@ -30,4 +30,9 @@ export class OrderComponent implements OnInit {
     }, err => this.router.navigate(['/']))
   }
 
+  invoiceDownload() {
+    this.shopService.invoiceDownload(this.order.id).subscribe(res => {
+      this.shopService.saveToFileSystem(res, this.order.name + ".pdf")
+    })
+  }
 }
