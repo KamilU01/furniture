@@ -8,11 +8,11 @@ import { NewestProductsComponent } from './sections/newest-products/newest-produ
 import { CategoriesComponent } from './sections/categories/categories.component';
 import { LatestProductsComponent } from './sections/latest-products/latest-products.component';
 import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
-import { SafePipe } from 'src/app/services/pipes/safe.pipe';
 import { PromotionsComponent } from './sections/promotions/promotions.component';
 import { SwiperModule } from "swiper/angular";
 import { SearchComponent } from './sections/search/search.component';
 import { FormsModule } from '@angular/forms';
+import { PipesModule } from 'src/app/services/pipes/pipes.module';
 
 
 @NgModule({
@@ -23,7 +23,6 @@ import { FormsModule } from '@angular/forms';
     NewestProductsComponent,
     CategoriesComponent,
     LatestProductsComponent,
-    SafePipe,
     PromotionsComponent,
     SearchComponent,
   ],
@@ -32,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     HomepageRoutingModule,
     ProductCardModule,
     SwiperModule,
-    FormsModule
+    FormsModule,
+    PipesModule
   ]
 })
 export class HomepageModule { }

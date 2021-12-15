@@ -132,7 +132,8 @@ export const GET_CATEGORIES_QUERY = gql`
 query {
     categories {
     id, 
-    name
+    name,
+    icon
     }
 }
 `;
@@ -140,11 +141,31 @@ query {
 export interface Category {
     id?: string,
     name: string,
+    icon?: string,
     products: Array<Product>
 }
 
 export interface GetCategories {
     categories: Array<Category>
+}
+
+export const GET_GROUPS_QUERY = gql`
+query {
+    groups {
+    id, 
+    name,
+    }
+}
+`;
+
+export interface Group {
+    id?: string,
+    name: string,
+    categories: Array<Category>
+}
+
+export interface getGroups {
+    groups: Array<Group>
 }
 
 export const CREATE_PASSWORD_RESET_MUTATION = gql`
@@ -328,6 +349,7 @@ query
     category(id: $id) {
     id, 
     name,
+    icon,
     products {
       id
       name,
@@ -342,11 +364,47 @@ query
 }
 `;
 
+export const GET_GROUPS_PRODUCTS_QUERY = gql`
+query 
+(
+  $id: String!
+)
+{
+    group(id: $id) {
+    id, 
+    name,
+    categories {
+      id,
+      name,
+      icon,
+      products {
+        id
+        name,
+      price,
+      description,
+      amount,
+      photo,
+      promoPrice,
+      promoEndDate,
+      }
+    }
+    }
+}
+`;
+
 export interface getCategoryProductsResponse {
     category: {
         id: string,
         name: string,
         products: Array<Product>
+    }
+}
+
+export interface getGroupProductsResponse {
+    group: {
+        id: string,
+        name: string,
+        categories: Array<Category>
     }
 }
 

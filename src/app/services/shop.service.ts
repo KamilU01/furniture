@@ -12,6 +12,8 @@ import {
   getCategoryProductsResponse,
   getFaqsQuery,
   getFilterResult,
+  getGroupProductsResponse,
+  getGroups,
   getNewestProducts,
   getOrderById,
   getProductResponse,
@@ -27,6 +29,8 @@ import {
   GET_CATEGORY_PRODUCTS_QUERY,
   GET_FAQS_QUERY,
   GET_FILTER_RESULTS,
+  GET_GROUPS_PRODUCTS_QUERY,
+  GET_GROUPS_QUERY,
   GET_NEWEST_PRODUCTS_QUERY,
   GET_ORDER_BY_ID,
   GET_PRODUCT_QUERY,
@@ -67,9 +71,24 @@ export class ShopService {
     });
   }
 
+  getAllGroups() {
+    return this.apollo.query<getGroups>({
+      query: GET_GROUPS_QUERY
+    })
+  }
+
   getCategoryProducts(id: string) {
     return this.apollo.query<getCategoryProductsResponse>({
       query: GET_CATEGORY_PRODUCTS_QUERY,
+      variables: {
+        id,
+      },
+    });
+  }
+
+  getGroupsProducts(id: string) {
+    return this.apollo.query<getGroupProductsResponse>({
+      query: GET_GROUPS_PRODUCTS_QUERY,
       variables: {
         id,
       },

@@ -6,15 +6,15 @@
       </div>
 
       <div class="control__popout">
-        <a>kategorie <img class="arrow" src="assets/images/arrow.svg" alt=">"></a>
+        <a>meble<img class="arrow" src="assets/images/arrow.svg" alt=">"></a>
         <div class="control__popout__pad"></div>
         <div class="control__popout__window">
           <div class="window__content">
             <div class="categories">
               <div class="categories__header">Kategorie</div>
               <div class="categories__content">
-                <a [routerLink]="['/kategoria', category.id]" class="categories__item"
-                  *ngFor="let category of categories">{{ category.name }}</a>
+                <a [routerLink]="['/grupa', group.id]" class="categories__item"
+                  *ngFor="let group of groups">{{ group.name }}</a>
               </div>
             </div>
 
@@ -71,11 +71,11 @@
 
   <div class="sidebar__menu">
     <div class="sidebar__menu__item">
-      <span (click)="isDropdownActive = !isDropdownActive"><img alt="kategorie" src="assets/images/categories.svg">kategorie <img
+      <span (click)="isDropdownActive = !isDropdownActive"><img alt="meble" src="assets/images/categories.svg">meble <img
           class="arrow" alt=">" src="assets/images/arrow-light.svg"></span>
       <ul *ngIf="isDropdownActive">
-        <li *ngFor="let category of categories"><a [routerLink]="['/kategoria', category.id]"
-            class="category__item">{{ category.name }}</a></li>
+        <li *ngFor="let group of groups"><a [routerLink]="['/grupa', group.id]"
+            class="category__item">{{ group.name }}</a></li>
       </ul>
     </div>
     <div class="sidebar__menu__item">

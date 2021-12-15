@@ -1,0 +1,32 @@
+<div class="group container" *ngIf="!isLoading">
+    <h1 class="group__heading heading heading--primary">{{group.name}}</h1>
+    <div class="group__categories">
+      <div class="group__category" *ngFor="let category of group.categories">
+        <div *ngIf="category.icon" class="group__category__icon" [innerHtml]="category.icon | safe:'html'">
+        </div>
+        <a class="group__category__link" [routerLink]="['/kategoria', category.id]">{{category.name}}</a>
+      </div>
+    </div>
+    <div class="products-wrap">
+      <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+    </div>
+    <div class="group__empty" *ngIf="products.length == 0">
+      <p>
+        Przepraszamy, nie ma tutaj żadnych produktów.
+      </p>
+    </div>
+  </div>
+  
+  <div class="loading" *ngIf="isLoading">
+    <div class="lds-roller lds-roller--dark">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  

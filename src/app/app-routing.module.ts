@@ -59,6 +59,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/category/category.module").then(m => m.CategoryModule)
     },
     {
+        path: 'grupa',
+        loadChildren: () => import("./pages/group/group.module").then(m => m.GroupModule)
+    },
+    {
         path: 'aranzacja',
         loadChildren: () => import("./pages/arrangment/arrangment.module").then(m => m.ArrangmentModule)
     },

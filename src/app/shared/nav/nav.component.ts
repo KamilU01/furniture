@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/models/graphql';
+import { Group } from 'src/app/models/graphql';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -14,7 +14,7 @@ import { ShopService } from 'src/app/services/shop.service';
 })
 export class NavComponent implements OnInit {
   isSidebarVisible: boolean = false;
-  categories!: Array<Category>
+  groups!: Array<Group>
   cartItems!: number;
   isDropdownActive: boolean = false;
   isLoggedIn!: boolean;
@@ -25,8 +25,8 @@ export class NavComponent implements OnInit {
   constructor(private shopService: ShopService, private alertService: AlertService, private cartService: CartService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.shopService.getAllCategories().subscribe(res => {
-      this.categories = res.data.categories;
+    this.shopService.getAllGroups().subscribe(res => {
+      this.groups = res.data.groups;
     })
 
     this.cartService.cartList.subscribe(res => {
