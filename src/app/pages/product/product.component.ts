@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { Location } from '@angular/common';
 import { ShopService } from 'src/app/services/shop.service';
-import { Product } from 'src/app/models/graphql';
+import { Product, productVersion } from 'src/app/models/graphql';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AlertService } from 'src/app/services/alert/alert.service';
@@ -11,7 +11,7 @@ import { AlertService } from 'src/app/services/alert/alert.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
@@ -26,35 +26,59 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   options = {
     autoClose: true,
-    keepAfterRouteChange: false
+    keepAfterRouteChange: false,
   };
 
   isPromo!: boolean;
 
   promoPercentage!: string;
 
-  constructor(private router: Router, protected alertService: AlertService, private cartService: CartService, private route: ActivatedRoute, private shopService: ShopService) { }
+  colorsProductVersions!: Product[];
+  dimensionsProductVersions!: Product[];
+
+  currPhoto!: string;
+
+  constructor(
+    private router: Router,
+    protected alertService: AlertService,
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private shopService: ShopService
+  ) {}
 
   ngOnInit(): void {
-    this.urlSubscription = this.route.params.subscribe(params => {
-      this.subscription = this.shopService.findProductById(params['id']).subscribe(res => {
-        this.product = res.data.product;
-        this.shopService.addToLastViewedProducts(this.product);
+    this.urlSubscription = this.route.params.subscribe(
+      (params) => {
+        this.subscription = this.shopService
+          .findProductById(params['id'])
+          .subscribe(
+            (res) => {
+              this.product = res.data.product;
+              this.currPhoto = this.product.photo;
+              this.shopService.addToLastViewedProducts(this.product);
 
-        console.log(this.product)
+              if (this.product.productVersions)
+                this.sortProductVersions(this.product.productVersions);
 
-        if (this.product.amount < 5) this.amountText = "na wyczerpaniu";
-        if (this.product.amount >= 5) this.amountText = "dostępny";
-        this.isLoading = false;
-        if (this.product.promoEndDate) {
-          let currDate: Date = new Date();
-          let promoDate: Date = new Date(this.product.promoEndDate);
-          this.isPromo = currDate <= promoDate;
-    
-          this.promoPercentage =  (((this.product.price - this.product.promoPrice) * 100) / this.product.price).toFixed(0);
-        }
-      }, err => this.router.navigate(['/']))
-    }, err => this.router.navigate(['/']))
+              if (this.product.amount < 5) this.amountText = 'na wyczerpaniu';
+              if (this.product.amount >= 5) this.amountText = 'dostępny';
+              this.isLoading = false;
+              if (this.product.promoEndDate) {
+                let currDate: Date = new Date();
+                let promoDate: Date = new Date(this.product.promoEndDate);
+                this.isPromo = currDate <= promoDate;
+
+                this.promoPercentage = (
+                  ((this.product.price - this.product.promoPrice) * 100) /
+                  this.product.price
+                ).toFixed(0);
+              }
+            },
+            (err) => this.router.navigate(['/'])
+          );
+      },
+      (err) => this.router.navigate(['/'])
+    );
   }
 
   ngOnDestroy(): void {
@@ -64,11 +88,14 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   addToCart(product: Product) {
     this.cartService.addToCart({ product: product, quantity: 1 });
-    this.alertService.success('Produkt został dodany do koszyka!', this.options)
+    this.alertService.success(
+      'Produkt został dodany do koszyka!',
+      this.options
+    );
   }
 
   addToFavourites(product: Product) {
-    this.alertService.success('Produkt został zapisany!', this.options)
+    this.alertService.success('Produkt został zapisany!', this.options);
     this.shopService.addToFavourites(product);
   }
 
@@ -77,5 +104,26 @@ export class ProductComponent implements OnInit, OnDestroy {
     let promoDate: Date = new Date(dateToCheck);
 
     return currDate <= promoDate;
+  }
+
+  sortProductVersions(productVersions: productVersion[]) {
+    productVersions.forEach(productVersion => {
+      switch (productVersion.versionType) {
+        case 1:
+          this.dimensionsProductVersions = productVersion.products;
+          break;
+        case 2:
+          this.colorsProductVersions = productVersion.products;
+          break;
+      }
+    })
+  }
+
+  changeCurrPhoto(photo: string, mouseEnter: boolean) {
+    if(mouseEnter) {
+      this.currPhoto = photo;
+    } else {
+      this.currPhoto = this.product.photo;
+    }
   }
 }

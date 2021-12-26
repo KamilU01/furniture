@@ -248,10 +248,18 @@ export interface Product {
     width: number,
     height: number,
     depth: number,
+    colorCode: string,
     promoPrice: number,
     promoEndDate: Date,
     category: Category | null,
-    similarProducts: Array<Product>
+    similarProducts: Array<Product>,
+    productVersions: productVersion[]
+}
+
+export interface productVersion {
+    id?: string,
+    versionType?: number,
+    products: Product[]
 }
 
 export interface GetProducts {
@@ -323,6 +331,19 @@ query
     category {
         id,
         name
+    },
+    productVersions {
+        id,
+        versionType,
+        products {
+            id,
+            name,
+            photo,
+            width,
+            height,
+            depth,
+            colorCode
+        }
     },
     similarProducts {
         id,
