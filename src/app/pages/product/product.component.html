@@ -123,8 +123,8 @@
     <div class="product__promo" *ngIf="isPromo">
       <div class="product__promo__percentage">-{{ promoPercentage }}%</div>
       <div class="product__promo__prices">
-        <div class="product__promo__new-price">{{ product.promoPrice }} zł</div>
-        <div class="product__promo__old-price">{{ product.price }} zł</div>
+        <div class="product__promo__new-price">{{ product.promoPrice | number : '1.2-2'}} zł</div>
+        <div class="product__promo__old-price">{{ product.price | number : '1.2-2'}} zł</div>
       </div>
     </div>
     <div class="product__price" *ngIf="!isPromo">{{ product.price }} zł</div>
