@@ -1,0 +1,66 @@
+<div class="pagination container">
+  <div class="pagination__header heading heading--primary">
+    {{ pageName
+    }}<span class="pagination__header__amount"> ({{ totalItems }})</span>
+  </div>
+  <div class="pagination__sorting" *ngIf="products.length !== 0">
+    <div class="pagination__sorting__wrapper">
+      <div class="pagination__price-range">
+        <div class="pagination__price-range__wrapper">
+          <ngx-slider
+            [(value)]="priceMin"
+            [(highValue)]="priceMax"
+            [options]="options"
+          ></ngx-slider>
+        </div>
+        <div class="pagination__price-range__inputs">
+          <span class="pagination__price-range__inputs__title"
+            >Cena (zł):
+          </span>
+          <div class="form__group">
+            <input
+              id="priceMin"
+              name="priceMin"
+              type="number"
+              min="0"
+              class="form__input"
+              [(ngModel)]="priceMin"
+            />
+          </div>
+          <div class="pagination__price-range__inputs__seperator">-</div>
+          <div class="form__group">
+            <input
+              id="priceMax"
+              name="priceMax"
+              type="number"
+              min="0"
+              class="form__input"
+              [(ngModel)]="priceMax"
+            />
+          </div>
+        </div>
+      </div>
+      <select
+        name="sortDirection"
+        id="sortDirection"
+        class="pagination__sorting form__select"
+        [(ngModel)]="sortDirection"
+      >
+        <option value="0">Sortowanie domyślne</option>
+        <option value="1">Cena - od najniższej</option>
+        <option value="2">Cena - od najwyższej</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="pagination__products">
+    <div class="products-wrap products">
+        <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+      </div>
+      <div class="products__empty" *ngIf="products.length == 0">
+        <p>
+          Przepraszamy, nie ma tutaj jeszcze żadnych produktów.
+        </p>
+      </div>
+  </div>
+</div>

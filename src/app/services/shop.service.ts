@@ -104,6 +104,7 @@ export class ShopService {
   getAllRooms() {
     return this.apollo.query<GetRooms>({
       query: GET_ROOMS_QUERY,
+      fetchPolicy: 'cache-first'
     });
   }
 
@@ -114,6 +115,10 @@ export class ShopService {
         id,
       },
     });
+  }
+
+  getRoomProductsPaginated(id: string, options: any = {}) {
+    return this.http.get(`${this.url}rooms/${id}`, {params: options});
   }
 
   getArrangments() {

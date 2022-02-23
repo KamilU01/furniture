@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RoomComponent } from './room.component';
 import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
 import { RoomRoutingModule } from './room-routing.module';
+import { PaginationModule } from 'src/app/shared/pagination/pagination.module';
 
 
 
@@ -14,6 +15,7 @@ import { RoomRoutingModule } from './room-routing.module';
     CommonModule,
     ProductCardModule,
     RoomRoutingModule,
+    PaginationModule
   ]
 })
 export class RoomModule { }

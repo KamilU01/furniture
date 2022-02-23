@@ -1,5 +1,4 @@
 .form {
-
   &__input {
     font-size: 1.5rem;
     font-family: inherit;
@@ -11,7 +10,7 @@
     border-bottom: 3px solid transparent;
     width: 100%;
     display: block;
-    transition: all .3s;
+    transition: all 0.3s;
 
     &::-webkit-input-placeholder {
       color: var(--color-grey-dark-2);
@@ -23,7 +22,7 @@
 
     &:focus {
       outline: none;
-      box-shadow: 0 1rem 2rem rgba(var(--color-dark), .1);
+      box-shadow: 0 1rem 2rem rgba(var(--color-dark), 0.1);
       border-bottom: 3px solid var(--color-primary);
     }
   }
@@ -32,12 +31,12 @@
     font-size: 1.2rem;
     font-weight: 700;
     margin-left: 2rem;
-    margin-top: .7rem;
+    margin-top: 0.7rem;
     display: block;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 
-  &__input:placeholder-shown+&__label {
+  &__input:placeholder-shown + &__label {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
@@ -67,7 +66,7 @@
     display: inline-block;
     position: absolute;
     left: 0;
-    top: -.4rem;
+    top: -0.4rem;
 
     &::after {
       content: "";
@@ -81,11 +80,43 @@
       transform: translate(-50%, -50%);
       background-color: var(--color-primary);
       opacity: 0;
-      transition: opacity .2s;
+      transition: opacity 0.2s;
     }
   }
 
-  &__radio-input:checked+&__radio-label &__radio-button::after {
+  &__radio-input:checked + &__radio-label &__radio-button::after {
     opacity: 1;
+  }
+
+  &__select {
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: #f2f2f2;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 100%;
+    display: block;
+    transition: all 0.3s;
+    cursor: pointer;
+    &::-webkit-input-placeholder {
+      color: var(--color-dark);
+    }
+
+    &:focus:invalid {
+      border-bottom: 3px solid var(--color-secondary);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba(var(--color-dark), 0.1);
+      border-bottom: 3px solid var(--color-primary);
+    }
+
+    option {
+      font-style: 1.6rem;
+    }
   }
 }
