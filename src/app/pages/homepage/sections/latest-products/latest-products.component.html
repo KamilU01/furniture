@@ -2,6 +2,8 @@
   <app-product-card [product]="product" *ngFor="let product of latestProducts"></app-product-card>
 </div>
 
+<p class="empty-list" *ngIf="!latestProducts.length">Jeszcze nie sprawdziłeś żadnego naszego produktu :(</p>
+
 <div class="loading" *ngIf="isLoading">
   <div class="lds-roller lds-roller--dark">
     <div></div>
