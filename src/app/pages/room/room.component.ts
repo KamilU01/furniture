@@ -19,13 +19,16 @@ export class RoomComponent implements OnInit {
   priceMax!: number;
 
   isLoading: boolean = true;
+  productsLoading: boolean = true;
 
   itemsPerPage: number = 50;
   options: any = {
     limit: this.itemsPerPage,
+    sortField: 'price'
   };
 
   room!: any;
+  roomId!: string;
 
   constructor(
     private shopService: ShopService,
@@ -39,24 +42,31 @@ export class RoomComponent implements OnInit {
         this.shopService.getAllRooms().subscribe((res) => {
           this.room = res.data.rooms.find((room) => room.id === params['id']);
         });
-        this.shopService
-          .getRoomProductsPaginated(params['id'], this.options)
-          .subscribe(
-            (res: any) => {
-              this.totalItems = res.meta.totalItems;
-              this.priceMin = res.meta.priceMin;
-              this.priceMax = res.meta.priceMax;
-              this.products = res.items;
-              this.isLoading = false;
-            },
-            (err) => this.router.navigate(['/'])
-          );
+        this.roomId = params['id'];
+        this.search(this.options);
       },
       (err) => this.router.navigate(['/'])
     );
   }
 
   search(options: any) {
+    options['limit'] = this.itemsPerPage;
+    options['sortField'] = 'price';
 
+    this.productsLoading = true;
+    
+    this.shopService
+    .getRoomProductsPaginated(this.roomId, options)
+    .subscribe(
+      (res: any) => {
+        this.totalItems = res.meta.totalItems;
+        this.priceMin = res.meta.priceMin;
+        this.priceMax = res.meta.priceMax;
+        this.products = res.items;
+        this.productsLoading = false;
+        this.isLoading = false;
+      },
+      (err) => this.router.navigate(['/'])
+    );
   }
 }

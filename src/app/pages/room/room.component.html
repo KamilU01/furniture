@@ -1,23 +1,15 @@
 <div class="room container" *ngIf="!isLoading">
   <app-pagination
     [pageName]="room.name"
+    [type]="'rooms'"
+    [options]="options"
     [products]="products"
     [totalItems]="totalItems"
     [priceMin]="priceMin"
     [priceMax]="priceMax"
+    (newOptions)="search($event)"
+    [productsLoading]="productsLoading"
   ></app-pagination>
-
-  <!--   <h1 class="room__heading heading heading--primary">
-    {{room.name}}
-  </h1>
-  <div class="products-wrap">
-    <app-product-card *ngFor="let product of room.products" [product]="product"></app-product-card>
-  </div>
-  <div class="room__empty" *ngIf="room.products.length == 0">
-    <p>
-      Przepraszamy, nie ma żadnych produktów przypisanych do tego pomieszczenia.
-    </p>
-  </div> -->
 </div>
 
 <div class="loading" *ngIf="isLoading">

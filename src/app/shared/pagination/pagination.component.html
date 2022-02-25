@@ -10,7 +10,8 @@
           <ngx-slider
             [(value)]="priceMin"
             [(highValue)]="priceMax"
-            [options]="options"
+            [options]="sliderOptions"
+            (userChangeEnd)="search()"
           ></ngx-slider>
         </div>
         <div class="pagination__price-range__inputs">
@@ -24,6 +25,7 @@
               type="number"
               min="0"
               class="form__input"
+              (change)="search()"
               [(ngModel)]="priceMin"
             />
           </div>
@@ -35,6 +37,7 @@
               type="number"
               min="0"
               class="form__input"
+              (change)="search()"
               [(ngModel)]="priceMax"
             />
           </div>
@@ -44,6 +47,7 @@
         name="sortDirection"
         id="sortDirection"
         class="pagination__sorting form__select"
+        (change)="search()"
         [(ngModel)]="sortDirection"
       >
         <option value="0">Sortowanie domyślne</option>
@@ -53,14 +57,41 @@
     </div>
   </div>
 
-  <div class="pagination__products">
-    <div class="products-wrap products">
-        <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+  <div class="pagination__wrapper">
+    <div class="pagination__filters">
+      <div class="pagination__filter">
+        <h3 class="pagination__filter__name">Kategoria</h3>
+        <div class="pagination__filter__items">
+          <div class="pagination__filter__item" *ngFor="let item of groups">
+            <input class="form__checkbox" [id]="item.name" type="checkbox" [(ngModel)]="item.isChecked">
+            <label [for]="item.name">{{item.name}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagination__products">
+      <div class="products-wrap products">
+        <app-product-card
+          *ngFor="let product of products"
+          [product]="product"
+        ></app-product-card>
       </div>
       <div class="products__empty" *ngIf="products.length == 0">
-        <p>
-          Przepraszamy, nie ma tutaj jeszcze żadnych produktów.
-        </p>
+        <p>Przepraszamy, nie ma tutaj jeszcze żadnych produktów.</p>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="productsLoading">
+  <div class="lds-roller lds-roller--dark">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
 </div>

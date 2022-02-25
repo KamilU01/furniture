@@ -1,6 +1,7 @@
 @import "/src/assets/scss/typography";
 @import "/src/assets/scss/button";
 @import "/src/assets/scss/form";
+@import "/src/assets/scss/loading-spinner";
 
 .pagination {
   &__header__amount {
@@ -84,5 +85,26 @@
       font-size: 2rem;
       font-weight: 400;
     }
+  }
+}
+
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100000;
+  background-color: rgba(217, 194, 173, 10%);
+
+  .lds-roller {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);    
+  }
+
+  .lds-roller--dark div:after {
+    background: var(--color-primary-darker) !important;
   }
 }
