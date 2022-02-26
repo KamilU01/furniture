@@ -96,6 +96,24 @@ a:visited {
   }
 }
 
+.products-wrap--paginated {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.6vw;
+
+  @media only screen and (max-width: 1500px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media only screen and (max-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media only screen and (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   color: var(--color-secondary) !important;
@@ -134,4 +152,28 @@ a:visited {
 
 .ngx-slider .ngx-slider-bubble {
   font-size: 1.6rem !important;
+}
+
+.colors {
+  &__wrapper {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  &__header {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &.selected {
+    border: 3px solid var(--color-primary-darker);
+  }
 }

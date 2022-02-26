@@ -1,12 +1,13 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Options } from "@angular-slider/ngx-slider";
+import { Options } from '@angular-slider/ngx-slider';
 import { Category, Product, Room } from 'src/app/models/graphql';
 import { ShopService } from 'src/app/services/shop.service';
+import { Color, colors } from 'src/app/models/colors';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
   @Input() pageName!: string;
@@ -14,10 +15,24 @@ export class PaginationComponent implements OnInit {
   @Input() totalItems!: number;
   @Input() options: any = {};
   @Input() products: Product[] = [];
-  @Input() priceMin!: number;
   @Input() priceMax!: number;
+  @Input() widthMin!: number;
+  @Input() widthMax!: number;
+  @Input() heightMin!: number;
+  @Input() heightMax!: number;
+  @Input() depthMin!: number;
+  @Input() depthMax!: number;
   @Input() productsLoading!: boolean;
   @Output() newOptions = new EventEmitter<Object>();
+  priceMin: number = 0;
+  widthMinModel!: number;
+  widthMaxModel!: number;
+  heightMinModel!: number;
+  heightMaxModel!: number;
+  depthMinModel!: number;
+  depthMaxModel!: number;
+
+  colors: Array<Color> = colors;
 
   sortDirection: number = 0;
 
@@ -27,44 +42,87 @@ export class PaginationComponent implements OnInit {
   };
 
   groups: any[] = [];
-  rooms!: Room[];
+  rooms: any[] = [];
+  selectedColors: Array<Color> = [];
 
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
-    this.shopService.getAllGroups().subscribe((res) => {
-      res.data.groups.forEach(group => {
-        let object = {
-          name: group.name,
-          id: group.id,
-          isChecked: false
-        };
-
-        this.groups.push(object);
-      });
-
-      console.log(this.groups)
-    });
-
-    if(this.type !== 'rooms') {
-      this.shopService.getAllRooms().subscribe((res) => {
-        this.rooms = res.data.rooms;
+    if (this.type !== 'groups') {
+      this.shopService.getAllGroups().subscribe((res) => {
+        res.data.groups.forEach((group) => {
+          let object = {
+            name: group.name,
+            id: group.id,
+            isChecked: false,
+          };
+          this.groups.push(object);
+        });
       });
     }
 
-    this.sliderOptions.floor = this.priceMin;
+    if (this.type !== 'rooms') {
+      this.shopService.getAllRooms().subscribe((res) => {
+        res.data.rooms.forEach((room) => {
+          let object = {
+            name: room.name,
+            id: room.id,
+            isChecked: false,
+          };
+          this.rooms.push(object);
+        });
+      });
+    }
+
     this.sliderOptions.ceil = this.priceMax;
   }
 
   search() {
     let options: any = {};
-    
-    if(this.priceMin) options['priceMin'] = this.priceMin;
-    if(this.priceMax) options['priceMax'] = this.priceMax;
-    if(this.sortDirection == 0) options['sortDirection'] = 0;
-    if(this.sortDirection == 1) options['sortDirection'] = 'ASC';
-    if(this.sortDirection == 2) options['sortDirection'] = 'DESC';
+    console.log(this.selectedColors)
+    if (this.priceMin) options['priceMin'] = this.priceMin;
+    if (this.priceMax) options['priceMax'] = this.priceMax;
+    if (this.sortDirection == 0) options['sortDirection'] = 0;
+    if (this.sortDirection == 1) options['sortDirection'] = 'ASC';
+    if (this.sortDirection == 2) options['sortDirection'] = 'DESC';
+    if (this.selectedColors.length)
+      options['selectedColors'] = JSON.stringify(this.selectedColors);
+    if (this.widthMinModel) options['widthMin'] = this.widthMinModel;
+    if (this.widthMaxModel) options['widthMax'] = this.widthMaxModel;
+    if (this.depthMinModel) options['depthMin'] = this.depthMinModel;
+    if (this.depthMaxModel) options['depthMax'] = this.depthMaxModel;
+    if (this.heightMinModel) options['heightMin'] = this.heightMinModel;
+    if (this.heightMaxModel) options['heightMax'] = this.heightMaxModel;
+
+    if (this.type !== 'rooms') {
+      let selectedRooms: string[] = [];
+      this.rooms
+        .filter((room) => room.isChecked == true)
+        .map((room) => selectedRooms.push(room.id));
+
+      if (selectedRooms.length) options['selectedRooms'] = JSON.stringify(selectedRooms);
+    }
+
+    if (this.type !== 'groups') {
+      let selectedGroups: string[] = [];
+      this.groups
+        .filter((group) => group.isChecked == true)
+        .map((group) => selectedGroups.push(group.id));
+
+      if (selectedGroups.length) options['selectedGroups'] = JSON.stringify(selectedGroups);
+    }
 
     this.newOptions.emit(options);
+  }
+
+  selectColor(color: Color) {
+    if (this.selectedColors.includes(color)) {
+      let index = this.selectedColors.indexOf(color);
+      this.selectedColors.splice(index, 1);
+    } else {
+      this.selectedColors.push(color);
+    }
+
+    this.search();
   }
 }

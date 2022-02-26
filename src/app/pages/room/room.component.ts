@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Product, Room } from 'src/app/models/graphql';
+import { Product } from 'src/app/models/graphql';
 import { ShopService } from 'src/app/services/shop.service';
 import { environment } from 'src/environments/environment';
 
@@ -17,11 +16,17 @@ export class RoomComponent implements OnInit {
   totalItems!: number;
   priceMin!: number;
   priceMax!: number;
+  widthMin!: number;
+  widthMax!: number;
+  heightMin!: number;
+  heightMax!: number;
+  depthMin!: number;
+  depthMax!: number;
 
   isLoading: boolean = true;
   productsLoading: boolean = true;
 
-  itemsPerPage: number = 50;
+  itemsPerPage: number = 25;
   options: any = {
     limit: this.itemsPerPage,
     sortField: 'price'
@@ -54,7 +59,7 @@ export class RoomComponent implements OnInit {
     options['sortField'] = 'price';
 
     this.productsLoading = true;
-    
+    console.log(options)
     this.shopService
     .getRoomProductsPaginated(this.roomId, options)
     .subscribe(
@@ -62,6 +67,12 @@ export class RoomComponent implements OnInit {
         this.totalItems = res.meta.totalItems;
         this.priceMin = res.meta.priceMin;
         this.priceMax = res.meta.priceMax;
+        this.widthMin = res.meta.widthMin;
+        this.widthMax = res.meta.widthMax;
+        this.heightMin = res.meta.heightMin;
+        this.heightMax = res.meta.heightMax;
+        this.depthMin = res.meta.depthMin;
+        this.depthMax = res.meta.depthMax;
         this.products = res.items;
         this.productsLoading = false;
         this.isLoading = false;

@@ -1,12 +1,17 @@
-<div class="room container" *ngIf="!isLoading">
+<div class="room container" *ngIf="!isLoading && room">
   <app-pagination
     [pageName]="room.name"
     [type]="'rooms'"
     [options]="options"
     [products]="products"
     [totalItems]="totalItems"
-    [priceMin]="priceMin"
     [priceMax]="priceMax"
+    [widthMin]="widthMin"
+    [widthMax]="widthMax"
+    [depthMin]="depthMin"
+    [depthMax]="depthMax"
+    [heightMin]="heightMin"
+    [heightMax]="heightMax"
     (newOptions)="search($event)"
     [productsLoading]="productsLoading"
   ></app-pagination>

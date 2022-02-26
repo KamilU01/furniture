@@ -102,27 +102,3 @@
     font-style: 1.6rem;
   }
 }
-
-.colors {
-  &__wrapper {
-    display: flex;
-    gap: 1.2rem;
-  }
-
-  &__header {
-    font-size: 1.6rem;
-    margin-bottom: 1.2rem;
-    font-weight: 400;
-  }
-}
-
-.color {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  cursor: pointer;
-
-  &.selected {
-    border: 3px solid var(--color-primary-darker);
-  }
-}

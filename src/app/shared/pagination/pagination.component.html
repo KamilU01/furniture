@@ -1,9 +1,9 @@
 <div class="pagination container">
-  <div class="pagination__header heading heading--primary">
+  <div class="pagination__header heading heading--primary" *ngIf="pageName">
     {{ pageName
     }}<span class="pagination__header__amount"> ({{ totalItems }})</span>
   </div>
-  <div class="pagination__sorting" *ngIf="products.length !== 0">
+  <div class="pagination__sorting">
     <div class="pagination__sorting__wrapper">
       <div class="pagination__price-range">
         <div class="pagination__price-range__wrapper">
@@ -59,18 +59,137 @@
 
   <div class="pagination__wrapper">
     <div class="pagination__filters">
-      <div class="pagination__filter">
+      <div class="pagination__filter" *ngIf="groups.length">
         <h3 class="pagination__filter__name">Kategoria</h3>
         <div class="pagination__filter__items">
           <div class="pagination__filter__item" *ngFor="let item of groups">
-            <input class="form__checkbox" [id]="item.name" type="checkbox" [(ngModel)]="item.isChecked">
-            <label [for]="item.name">{{item.name}}</label>
+            <label class="control control-checkbox">
+              {{ item.name }}
+              <input type="checkbox" (change)="search()" [(ngModel)]="item.isChecked" />
+              <div class="control_indicator"></div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="pagination__filter" *ngIf="rooms.length">
+        <h3 class="pagination__filter__name">Pomieszczenie</h3>
+        <div class="pagination__filter__items">
+          <div class="pagination__filter__item" *ngFor="let item of rooms">
+            <label class="control control-checkbox">
+              {{ item.name }}
+              <input type="checkbox" (change)="search()" [(ngModel)]="item.isChecked" />
+              <div class="control_indicator"></div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="pagination__filter">
+        <h3 class="pagination__filter__name">Szerokość [cm]</h3>
+        <div class="pagination__filter__sliders">
+          <div class="form__group">
+            <input
+              id="widthMin"
+              name="widthMin"
+              type="number"
+              min="0"
+              class="form__input"
+              (change)="search()"
+              [placeholder]="widthMin ? widthMin : 'od'"
+              [(ngModel)]="widthMinModel"
+            />
+          </div>
+          <div class="pagination__filter__sliders__seperator">-</div>
+          <div class="form__group">
+            <input
+              id="widthMax"
+              name="widthMax"
+              type="number"
+              min="0"
+              class="form__input"
+              (change)="search()"
+              [placeholder]="widthMax ? widthMax : 'do'"
+              [(ngModel)]="widthMaxModel"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="pagination__filter">
+        <h3 class="pagination__filter__name">Wysokość [cm]</h3>
+        <div class="pagination__filter__sliders">
+          <div class="form__group">
+            <input
+              id="heightMin"
+              name="heightMin"
+              type="number"
+              min="0"
+              class="form__input"
+              (change)="search()"
+              [placeholder]="heightMin ? heightMax : 'od'"
+              [(ngModel)]="heightMinModel"
+            />
+          </div>
+          <div class="pagination__filter__sliders__seperator">-</div>
+          <div class="form__group">
+            <input
+              id="heightMax"
+              name="heightMax"
+              type="number"
+              min="0"
+              class="form__input"
+              (change)="search()"
+              [placeholder]="heightMax ? heightMax : 'do'"
+              [(ngModel)]="heightMaxModel"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="pagination__filter">
+        <h3 class="pagination__filter__name">Głębokość [cm]</h3>
+        <div class="pagination__filter__sliders">
+          <div class="form__group">
+            <input
+              id="depthMin"
+              name="depthMin"
+              type="number"
+              min="0"
+              class="form__input"
+              (change)="search()"
+              [placeholder]="depthMin ? depthMin : 'od'"
+              [(ngModel)]="depthMinModel"
+            />
+          </div>
+          <div class="pagination__filter__sliders__seperator">-</div>
+          <div class="form__group">
+            <input
+              id="depthMax"
+              name="depthMax"
+              type="number"
+              min="0"
+              class="form__input"
+              (change)="search()"
+              [placeholder]="depthMax ? depthMax : 'do'"
+              [(ngModel)]="depthMaxModel"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="pagination__filter">
+        <h3 class="pagination__filter__name">Wybierz kolor:</h3>
+        <div class="form__group colors">
+          <div class="colors__wrapper">
+            <div
+              *ngFor="let color of colors"
+              class="color"
+              [ngClass]="{ selected: selectedColors.includes(color) }"
+              (click)="selectColor(color)"
+              [style.background-color]="color.colorCode"
+            ></div>
           </div>
         </div>
       </div>
     </div>
     <div class="pagination__products">
-      <div class="products-wrap products">
+      <div class="products-wrap--paginated products">
         <app-product-card
           *ngFor="let product of products"
           [product]="product"
