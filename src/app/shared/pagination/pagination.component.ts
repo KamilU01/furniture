@@ -47,6 +47,8 @@ export class PaginationComponent implements OnInit {
   rooms: any[] = [];
   selectedColors: Array<Color> = [];
 
+  isMobileFiltersOpen: boolean = true;
+
   constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
@@ -133,5 +135,9 @@ export class PaginationComponent implements OnInit {
 
   onPageChange(event: any) {
     this.search(event);
+  }
+
+  activeMobileFilters() {
+    this.isMobileFiltersOpen = !this.isMobileFiltersOpen;
   }
 }

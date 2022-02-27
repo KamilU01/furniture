@@ -79,14 +79,11 @@
       grid-column: 1/-1;
       display: flex;
       justify-content: center;
+      margin-top: 2rem;
     }
   }
 
   .products {
-    @media only screen and (max-width: 500px) {
-      margin-top: 3rem;
-    }
-    
     &__empty {
       font-size: 2rem;
       font-weight: 400;
@@ -122,6 +119,49 @@
     grid-template-columns: 22rem 1fr;
     gap: 3vw;
     margin-top: 6rem;
+
+    @media only screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__filters {
+    &__header,
+    &__close {
+      display: none;
+    }
+
+    &__header {
+      margin-bottom: 1.2rem;
+      font-size: 2.4rem;
+    }
+
+    &__close {
+      top: 1rem;
+      right: 1rem;
+      position: absolute;
+      filter: var(--color-dark-filter);
+    }
+
+    @media only screen and (max-width: 768px) {
+      &__header,
+      &__close {
+        display: initial;
+      }
+      box-shadow: 0px -2px 19px 0px rgba(33, 38, 38, 0.2);
+      background-color: var(--color-light);
+      position: fixed;
+      left: -400px;
+      background-color: var(--color-light);
+      z-index: 100000;
+      padding: 2rem;
+      overflow-y: scroll;
+      &.active {
+        display: block;
+        transition: 0.2s all;
+        left: 0;
+      }
+    }
   }
 }
 
@@ -138,10 +178,28 @@
     position: relative;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);    
+    transform: translate(-50%, -50%);
   }
 
   .lds-roller--dark div:after {
     background: var(--color-primary-darker) !important;
+  }
+}
+
+.mobile-filter {
+  background-color: var(--color-primary);
+  position: fixed;
+  right: 1rem;
+  bottom: 8rem;
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  img {
+    width: 3.5rem;
+    height: 3.5rem;
   }
 }

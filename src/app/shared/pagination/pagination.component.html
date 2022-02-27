@@ -58,7 +58,9 @@
   </div>
 
   <div class="pagination__wrapper">
-    <div class="pagination__filters">
+    <div class="pagination__filters" [ngClass]="{'active': isMobileFiltersOpen}">
+      <h2 class="pagination__filters__header">Filtruj</h2>
+      <div class="pagination__filters__close" (click)="activeMobileFilters()"><img src="assets/images/close.svg" alt="Zamknij"></div>
       <div class="pagination__filter" *ngIf="groups.length">
         <h3 class="pagination__filter__name">Kategoria</h3>
         <div class="pagination__filter__items">
@@ -223,6 +225,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="mobile-filter" (click)="activeMobileFilters()">
+  <img src="assets/images/filter_list.svg" alt="Filtruj listę produktów">
 </div>
 
 <div class="loading" *ngIf="productsLoading">
