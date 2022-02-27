@@ -65,7 +65,11 @@
           <div class="pagination__filter__item" *ngFor="let item of groups">
             <label class="control control-checkbox">
               {{ item.name }}
-              <input type="checkbox" (change)="search()" [(ngModel)]="item.isChecked" />
+              <input
+                type="checkbox"
+                (change)="search()"
+                [(ngModel)]="item.isChecked"
+              />
               <div class="control_indicator"></div>
             </label>
           </div>
@@ -77,7 +81,11 @@
           <div class="pagination__filter__item" *ngFor="let item of rooms">
             <label class="control control-checkbox">
               {{ item.name }}
-              <input type="checkbox" (change)="search()" [(ngModel)]="item.isChecked" />
+              <input
+                type="checkbox"
+                (change)="search()"
+                [(ngModel)]="item.isChecked"
+              />
               <div class="control_indicator"></div>
             </label>
           </div>
@@ -191,9 +199,24 @@
     <div class="pagination__products">
       <div class="products-wrap--paginated products">
         <app-product-card
-          *ngFor="let product of products"
+          *ngFor="
+            let product of products
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: currPage,
+                    totalItems: totalItems
+                  }
+          "
           [product]="product"
         ></app-product-card>
+        <div class="pagination__products__paginator">
+          <pagination-controls
+            (pageChange)="onPageChange($event)"
+            previousLabel="Poprzednia"
+            nextLabel="Następna"
+          ></pagination-controls>
+        </div>
       </div>
       <div class="products__empty" *ngIf="products.length == 0">
         <p>Przepraszamy, nie ma tutaj jeszcze żadnych produktów.</p>

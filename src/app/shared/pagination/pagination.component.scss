@@ -74,6 +74,14 @@
     }
   }
 
+  &__products {
+    &__paginator {
+      grid-column: 1/-1;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
   .products {
     @media only screen and (max-width: 500px) {
       margin-top: 3rem;

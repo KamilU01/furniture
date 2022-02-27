@@ -26,11 +26,12 @@ export class RoomComponent implements OnInit {
   isLoading: boolean = true;
   productsLoading: boolean = true;
 
-  itemsPerPage: number = 25;
+  itemsPerPage: number = 1;
   options: any = {
     limit: this.itemsPerPage,
     sortField: 'price'
   };
+  currPage!: number;
 
   room!: any;
   roomId!: string;
@@ -65,15 +66,19 @@ export class RoomComponent implements OnInit {
     .subscribe(
       (res: any) => {
         this.totalItems = res.meta.totalItems;
-        this.priceMin = res.meta.priceMin;
-        this.priceMax = res.meta.priceMax;
-        this.widthMin = res.meta.widthMin;
-        this.widthMax = res.meta.widthMax;
-        this.heightMin = res.meta.heightMin;
-        this.heightMax = res.meta.heightMax;
-        this.depthMin = res.meta.depthMin;
-        this.depthMax = res.meta.depthMax;
+
+        if(res.meta.data) {
+          this.priceMax = res.meta.priceMax;
+          this.widthMin = res.meta.widthMin;
+          this.widthMax = res.meta.widthMax;
+          this.heightMin = res.meta.heightMin;
+          this.heightMax = res.meta.heightMax;
+          this.depthMin = res.meta.depthMin;
+          this.depthMax = res.meta.depthMax;
+        }
+
         this.products = res.items;
+        this.currPage = res.meta.currentPage;
         this.productsLoading = false;
         this.isLoading = false;
       },

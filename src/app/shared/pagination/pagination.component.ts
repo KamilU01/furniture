@@ -22,7 +22,9 @@ export class PaginationComponent implements OnInit {
   @Input() heightMax!: number;
   @Input() depthMin!: number;
   @Input() depthMax!: number;
+  @Input() itemsPerPage!: number;
   @Input() productsLoading!: boolean;
+  @Input() currPage!: number;
   @Output() newOptions = new EventEmitter<Object>();
   priceMin: number = 0;
   widthMinModel!: number;
@@ -77,9 +79,10 @@ export class PaginationComponent implements OnInit {
     this.sliderOptions.ceil = this.priceMax;
   }
 
-  search() {
+  search(page?: number) {
     let options: any = {};
-    console.log(this.selectedColors)
+
+    if (page) options['page'] = page;
     if (this.priceMin) options['priceMin'] = this.priceMin;
     if (this.priceMax) options['priceMax'] = this.priceMax;
     if (this.sortDirection == 0) options['sortDirection'] = 0;
@@ -100,7 +103,8 @@ export class PaginationComponent implements OnInit {
         .filter((room) => room.isChecked == true)
         .map((room) => selectedRooms.push(room.id));
 
-      if (selectedRooms.length) options['selectedRooms'] = JSON.stringify(selectedRooms);
+      if (selectedRooms.length)
+        options['selectedRooms'] = JSON.stringify(selectedRooms);
     }
 
     if (this.type !== 'groups') {
@@ -109,7 +113,8 @@ export class PaginationComponent implements OnInit {
         .filter((group) => group.isChecked == true)
         .map((group) => selectedGroups.push(group.id));
 
-      if (selectedGroups.length) options['selectedGroups'] = JSON.stringify(selectedGroups);
+      if (selectedGroups.length)
+        options['selectedGroups'] = JSON.stringify(selectedGroups);
     }
 
     this.newOptions.emit(options);
@@ -124,5 +129,9 @@ export class PaginationComponent implements OnInit {
     }
 
     this.search();
+  }
+
+  onPageChange(event: any) {
+    this.search(event);
   }
 }

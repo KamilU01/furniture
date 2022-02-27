@@ -4,6 +4,7 @@ import { PaginationComponent } from './pagination.component';
 import { FormsModule } from '@angular/forms';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ProductCardModule } from '../product-card/product-card.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -15,7 +16,8 @@ import { ProductCardModule } from '../product-card/product-card.module';
     CommonModule,
     FormsModule,
     NgxSliderModule,
-    ProductCardModule
+    ProductCardModule,
+    NgxPaginationModule
   ],
   exports: [
     PaginationComponent

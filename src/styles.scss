@@ -177,3 +177,11 @@ a:visited {
     border: 3px solid var(--color-primary-darker);
   }
 }
+
+.ngx-pagination {
+  font-size: 1.6rem;
+}
+
+.ngx-pagination .current {
+  background-color: var(--color-primary-darker) !important;
+}
