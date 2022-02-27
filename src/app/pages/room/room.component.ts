@@ -26,7 +26,7 @@ export class RoomComponent implements OnInit {
   isLoading: boolean = true;
   productsLoading: boolean = true;
 
-  itemsPerPage: number = 1;
+  itemsPerPage: number = 25;
   options: any = {
     limit: this.itemsPerPage,
     sortField: 'price'
