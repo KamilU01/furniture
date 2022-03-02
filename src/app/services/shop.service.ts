@@ -29,6 +29,7 @@ import {
   GET_CATEGORY_PRODUCTS_QUERY,
   GET_FAQS_QUERY,
   GET_FILTER_RESULTS,
+  GET_GROUPS_CATEGORIES_QUERY,
   GET_GROUPS_PRODUCTS_QUERY,
   GET_GROUPS_QUERY,
   GET_NEWEST_PRODUCTS_QUERY,
@@ -93,6 +94,19 @@ export class ShopService {
         id,
       },
     });
+  }
+
+  getGroupCategories(id: string) {
+    return this.apollo.query<getGroupProductsResponse>({
+      query: GET_GROUPS_CATEGORIES_QUERY,
+      variables: {
+        id,
+      },
+    });
+  }
+
+  getGroupsProductsPaginated(id: string, options: any = {}) {
+    return this.http.get(`${this.url}groups/${id}`, {params: options});
   }
 
   getNewsetsProducts() {

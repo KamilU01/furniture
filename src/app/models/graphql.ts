@@ -413,6 +413,22 @@ query
 }
 `;
 
+export const GET_GROUPS_CATEGORIES_QUERY = gql`
+query 
+(
+  $id: String!
+)
+{
+    group(id: $id) {
+    categories {
+      id,
+      name,
+      icon,
+    }
+    }
+}
+`;
+
 export interface getCategoryProductsResponse {
     category: {
         id: string,

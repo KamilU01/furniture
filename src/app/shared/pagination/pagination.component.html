@@ -82,6 +82,22 @@
           </div>
         </div>
       </div>
+      <div class="pagination__filter" *ngIf="categories.length">
+        <h3 class="pagination__filter__name">Kategoria</h3>
+        <div class="pagination__filter__items">
+          <div class="pagination__filter__item" *ngFor="let item of categories">
+            <label class="control control-checkbox">
+              {{ item.name }}
+              <input
+                type="checkbox"
+                (change)="search()"
+                [(ngModel)]="item.isChecked"
+              />
+              <div class="control_indicator"></div>
+            </label>
+          </div>
+        </div>
+      </div>
       <div class="pagination__filter" *ngIf="rooms.length">
         <h3 class="pagination__filter__name">Pomieszczenie</h3>
         <div class="pagination__filter__items">

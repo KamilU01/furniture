@@ -60,7 +60,6 @@ export class RoomComponent implements OnInit {
     options['sortField'] = 'price';
 
     this.productsLoading = true;
-    console.log(options)
     this.shopService
     .getRoomProductsPaginated(this.roomId, options)
     .subscribe(

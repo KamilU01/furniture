@@ -11,6 +11,7 @@ import { Color, colors } from 'src/app/models/colors';
 })
 export class PaginationComponent implements OnInit {
   @Input() pageName!: string;
+  @Input() pageId!: string;
   @Input() type!: string;
   @Input() totalItems!: number;
   @Input() options: any = {};
@@ -40,10 +41,11 @@ export class PaginationComponent implements OnInit {
 
   sliderOptions: Options = {
     floor: 0,
-    ceil: 100,
+    ceil: 0,
   };
 
   groups: any[] = [];
+  categories: any[] = [];
   rooms: any[] = [];
   selectedColors: Array<Color> = [];
 
@@ -65,6 +67,19 @@ export class PaginationComponent implements OnInit {
       });
     }
 
+    if (this.type === 'groups') {
+      this.shopService.getGroupCategories(this.pageId).subscribe((res) => {
+        res.data.group.categories.forEach((category) => {
+          let object = {
+            name: category.name,
+            id: category.id,
+            isChecked: false,
+          };
+          this.categories.push(object);
+        });
+      });
+    }
+
     if (this.type !== 'rooms') {
       this.shopService.getAllRooms().subscribe((res) => {
         res.data.rooms.forEach((room) => {
@@ -78,7 +93,7 @@ export class PaginationComponent implements OnInit {
       });
     }
 
-    this.sliderOptions.ceil = this.priceMax;
+    if (this.priceMax) this.sliderOptions.ceil = this.priceMax;
   }
 
   search(page?: number) {
@@ -117,6 +132,16 @@ export class PaginationComponent implements OnInit {
 
       if (selectedGroups.length)
         options['selectedGroups'] = JSON.stringify(selectedGroups);
+    }
+
+    if (this.type === 'groups') {
+      let selectedCategories: string[] = [];
+      this.categories
+        .filter((category) => category.isChecked == true)
+        .map((category) => selectedCategories.push(category.id));
+
+      if (selectedCategories.length)
+        options['selectedCategories'] = JSON.stringify(selectedCategories);
     }
 
     this.newOptions.emit(options);

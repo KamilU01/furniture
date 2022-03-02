@@ -1,5 +1,5 @@
-<div class="group container" *ngIf="!isLoading">
-    <h1 class="group__heading heading heading--primary">{{group.name}}</h1>
+<div class="group container" *ngIf="!isLoading && group">
+  <!-- <h1 class="group__heading heading heading--primary">{{group.name}}</h1>
     <div class="group__categories">
       <a [routerLink]="['/kategoria', category.id]" class="group__category" *ngFor="let category of group.categories">
         <div *ngIf="category.icon" class="group__category__icon" [innerHtml]="category.icon | safe:'html'">
@@ -14,19 +14,37 @@
       <p>
         Przepraszamy, nie ma tutaj żadnych produktów.
       </p>
-    </div>
+    </div> -->
+  <app-pagination
+    [pageName]="group.name"
+    [pageId]="group.id"
+    [type]="'groups'"
+    [options]="options"
+    [products]="products"
+    [totalItems]="totalItems"
+    [priceMax]="priceMax"
+    [widthMin]="widthMin"
+    [widthMax]="widthMax"
+    [depthMin]="depthMin"
+    [depthMax]="depthMax"
+    [heightMin]="heightMin"
+    [heightMax]="heightMax"
+    [itemsPerPage]="itemsPerPage"
+    [currPage]="currPage"
+    (newOptions)="search($event)"
+    [productsLoading]="productsLoading"
+  ></app-pagination>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <div class="lds-roller lds-roller--dark">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
-  
-  <div class="loading" *ngIf="isLoading">
-    <div class="lds-roller lds-roller--dark">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  
+</div>
