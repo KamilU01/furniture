@@ -58,9 +58,14 @@
   </div>
 
   <div class="pagination__wrapper">
-    <div class="pagination__filters" [ngClass]="{'active': isMobileFiltersOpen}">
+    <div
+      class="pagination__filters"
+      [ngClass]="{ active: isMobileFiltersOpen }"
+    >
       <h2 class="pagination__filters__header">Filtruj</h2>
-      <div class="pagination__filters__close" (click)="activeMobileFilters()"><img src="assets/images/close.svg" alt="Zamknij"></div>
+      <div class="pagination__filters__close" (click)="activeMobileFilters()">
+        <img src="assets/images/close.svg" alt="Zamknij" />
+      </div>
       <div class="pagination__filter" *ngIf="groups.length">
         <h3 class="pagination__filter__name">Kategoria</h3>
         <div class="pagination__filter__items">
@@ -212,6 +217,9 @@
           "
           [product]="product"
         ></app-product-card>
+        <div class="products__empty" *ngIf="products.length == 0">
+          <p>Przepraszamy, nie ma tutaj jeszcze żadnych produktów.</p>
+        </div>
         <div class="pagination__products__paginator">
           <pagination-controls
             (pageChange)="onPageChange($event)"
@@ -220,15 +228,12 @@
           ></pagination-controls>
         </div>
       </div>
-      <div class="products__empty" *ngIf="products.length == 0">
-        <p>Przepraszamy, nie ma tutaj jeszcze żadnych produktów.</p>
-      </div>
     </div>
   </div>
 </div>
 
 <div class="mobile-filter" (click)="activeMobileFilters()">
-  <img src="assets/images/filter_list.svg" alt="Filtruj listę produktów">
+  <img src="assets/images/filter_list.svg" alt="Filtruj listę produktów" />
 </div>
 
 <div class="loading" *ngIf="productsLoading">

@@ -47,7 +47,7 @@ export class PaginationComponent implements OnInit {
   rooms: any[] = [];
   selectedColors: Array<Color> = [];
 
-  isMobileFiltersOpen: boolean = true;
+  isMobileFiltersOpen: boolean = false;
 
   constructor(private shopService: ShopService) {}
 

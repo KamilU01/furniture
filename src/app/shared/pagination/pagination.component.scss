@@ -86,6 +86,7 @@
   .products {
     &__empty {
       font-size: 2rem;
+      grid-column: 1/-1;
       font-weight: 400;
     }
   }
@@ -160,6 +161,7 @@
         display: block;
         transition: 0.2s all;
         left: 0;
+        right: 0;
       }
     }
   }
@@ -197,9 +199,14 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  cursor: pointer;
 
   img {
     width: 3.5rem;
     height: 3.5rem;
+  }
+
+  @media only screen and (min-width: 768px) {
+    display: none;
   }
 }
