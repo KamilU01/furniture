@@ -178,6 +178,10 @@ export class ShopService {
     });
   }
 
+  filterProductsPaginated(options: any = {}) {
+    return this.http.get(`${this.url}products/find`, {params: options});
+  }
+
   getLastViewedProducts() {
     return this.lastViewedList;
   }

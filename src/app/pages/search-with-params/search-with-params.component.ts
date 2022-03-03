@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Color, colors } from 'src/app/models/colors';
 import { Category, Product, Room } from 'src/app/models/graphql';
 import { ShopService } from 'src/app/services/shop.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-search-with-params',
@@ -11,9 +12,30 @@ import { ShopService } from 'src/app/services/shop.service';
   styleUrls: ['./search-with-params.component.scss'],
 })
 export class SearchWithParamsComponent implements OnInit {
-  query: any = {};
+  url = environment.apiUrl;
+
   products!: Product[];
+  totalItems!: number;
+  priceMin!: number;
+  priceMax!: number;
+  widthMin!: number;
+  widthMax!: number;
+  heightMin!: number;
+  heightMax!: number;
+  depthMin!: number;
+  depthMax!: number;
+
   isLoading: boolean = true;
+  productsLoading: boolean = true;
+
+  itemsPerPage: number = 25;
+  options: any = {
+    limit: this.itemsPerPage,
+    sortField: 'price',
+  };
+  currPage!: number;
+
+  query: any = {};
 
   colors: Array<Color> = colors;
   categories!: Array<Category>;
@@ -29,105 +51,77 @@ export class SearchWithParamsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.shopService.getAllCategories().subscribe((res) => {
-      this.categories = res.data.categories;
-    });
-
-    this.shopService.getAllRooms().subscribe((res) => {
-      this.rooms = res.data.rooms;
-    });
-
     const params = this.activatedRoute.snapshot.params;
 
-    if (params.categoryId) this.query['categoryId'] = params.categoryId;
-    if (params.roomId) this.query['roomId'] = params.roomId;
-    if (params.heightTo) this.query['heightFrom'] = +params.heightTo;
-    if (params.heightTo) this.query['heightTo'] = +params.heightTo;
-    if (params.widthFrom) this.query['widthFrom'] = +params.widthFrom;
-    if (params.widthTo) this.query['widthTo'] = +params.widthTo;
-    if (params.depthFrom) this.query['depthFrom'] = +params.depthFrom;
-    if (params.depthTo) this.query['depthTo'] = +params.depthTo;
-    if (params.color) this.query['colors'] = params.colors.split(/[,]+/);
+    if (params.selectedGroups)
+      this.options['selectedGroups'] = JSON.stringify([params.selectedGroups]);
+    if (params.selectedRooms)
+      this.options['selectedRooms'] = JSON.stringify([params.selectedRooms]);
+    if (params.heightFrom) {
+      this.heightMin = params.heightFrom;
+      this.options['heightMin'] = params.heightFrom;
+    }
+    if (params.heightTo) {
+      this.heightMax = params.heightTo;
+      this.options['heightMax'] = params.heightTo;
+    }
+    if (params.widthFrom) {
+      this.widthMin = params.widthFrom;
+      this.options['widthMin'] = params.widthFrom;
+    }
+    if (params.widthTo) {
+      this.widthMax = params.widthTo;
+      this.options['widthMax'] = params.widthTo;
+    }
+    if (params.depthFrom) {
+      this.depthMin = params.depthFrom;
+      this.options['depthMin'] = params.depthFrom;
+    }
+    if (params.depthTo) {
+      this.depthMax = params.depthTo;
+      this.options['depthMax'] = params.depthTo;
+    }
+    if (params.selectedColors) {
+      let selectedColorsFromForm = params.selectedColors.split(/[,]+/); 
+      let selectedColors: Color[] = [];
 
-    let colorsArray = params.colors.split(/[,]+/);
+      selectedColorsFromForm.forEach((color: any) => {
+        let selectedColor = colors.find((color2) => color2.colorCode === color);
+        if (selectedColor) selectedColors.push(selectedColor);
+      });
 
-    this.selectedCategory = params.categoryId;
-    this.selectedRoom = params.roomId;
+      this.options['selectedColors'] = JSON.stringify(selectedColors);
+    }
 
-    colors.forEach((color) => {
-      if (colorsArray.includes(color.colorCode))
-        this.selectedColors.push(color);
-    });
-
-    this.filterProducts(this.query);
+    this.search(this.options);
   }
 
-  filterProducts(query: any) {
-    this.isLoading = true;
-    this.shopService.filterProducts(query).valueChanges.subscribe(
-      (res) => {
-        this.products = res.data.findProductsWithQuery;
+  search(options: any) {
+    options['limit'] = this.itemsPerPage;
+    options['sortField'] = 'price';
+
+    this.productsLoading = true;
+
+    this.shopService.filterProductsPaginated(options).subscribe(
+      (res: any) => {
+        this.totalItems = res.meta.totalItems;
+
+        if (res.meta.data) {
+          this.priceMax = res.meta.priceMax;
+          this.widthMin = res.meta.widthMin;
+          this.widthMax = res.meta.widthMax;
+          this.heightMin = res.meta.heightMin;
+          this.heightMax = res.meta.heightMax;
+          this.depthMin = res.meta.depthMin;
+          this.depthMax = res.meta.depthMax;
+        }
+
+        this.products = res.items;
+        this.currPage = res.meta.currentPage;
+        this.productsLoading = false;
         this.isLoading = false;
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => this.router.navigate(['/'])
     );
-  }
-
-  onSearch(form: NgForm) {
-    if (!form.valid) {
-      return;
-    }
-
-    const categoryId = form.value.category;
-    const roomId = form.value.room;
-    const heightFrom = form.value.heightFrom;
-    const heightTo = form.value.heightTo;
-    const widthFrom = form.value.widthFrom;
-    const widthTo = form.value.widthTo;
-    const depthFrom = form.value.depthFrom;
-    const depthTo = form.value.depthTo;
-    const colors = this.selectedColors.map((color) => {
-      return color.colorCode;
-    });
-
-    const query = {
-      categoryId,
-      roomId,
-      heightFrom,
-      heightTo,
-      widthFrom,
-      widthTo,
-      depthFrom,
-      depthTo,
-      colors,
-    };
-
-    this.router.navigate([
-      '/filtruj',
-      {
-        categoryId,
-        roomId,
-        heightFrom,
-        heightTo,
-        widthFrom,
-        widthTo,
-        depthFrom,
-        depthTo,
-        colors,
-      },
-    ]);
-
-    this.filterProducts(query);
-  }
-
-  selectColor(color: Color) {
-    if (this.selectedColors.includes(color)) {
-      let index = this.selectedColors.indexOf(color);
-      this.selectedColors.splice(index, 1);
-    } else {
-      this.selectedColors.push(color);
-    }
   }
 }

@@ -62,6 +62,11 @@ export class PaginationComponent implements OnInit {
             id: group.id,
             isChecked: false,
           };
+          if (this.options.selectedGroups) {
+            if (JSON.parse(this.options.selectedGroups)[0] === group.id) {
+              object.isChecked = true;
+            }
+          }
           this.groups.push(object);
         });
       });
@@ -88,8 +93,22 @@ export class PaginationComponent implements OnInit {
             id: room.id,
             isChecked: false,
           };
+          if (this.options.selectedRooms) {
+            if (JSON.parse(this.options.selectedRooms)[0] === room.id) {
+              object.isChecked = true;
+            }
+          }
           this.rooms.push(object);
         });
+      });
+    }
+
+    if (this.options.selectedColors) {
+      JSON.parse(this.options.selectedColors).forEach((color: Color) => {
+        let selectedColor = colors.find(
+          (color2) => color2.colorCode === color.colorCode
+        );
+        if (selectedColor) this.selectedColors.push(selectedColor);
       });
     }
 
@@ -154,7 +173,6 @@ export class PaginationComponent implements OnInit {
     } else {
       this.selectedColors.push(color);
     }
-
     this.search();
   }
 

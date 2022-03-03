@@ -1,20 +1,4 @@
 <div class="group container" *ngIf="!isLoading && group">
-  <!-- <h1 class="group__heading heading heading--primary">{{group.name}}</h1>
-    <div class="group__categories">
-      <a [routerLink]="['/kategoria', category.id]" class="group__category" *ngFor="let category of group.categories">
-        <div *ngIf="category.icon" class="group__category__icon" [innerHtml]="category.icon | safe:'html'">
-        </div>
-        <div class="group__category__link">{{category.name}}</div>
-      </a>
-    </div>
-    <div class="products-wrap">
-      <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
-    </div>
-    <div class="group__empty" *ngIf="products.length == 0">
-      <p>
-        Przepraszamy, nie ma tutaj żadnych produktów.
-      </p>
-    </div> -->
   <app-pagination
     [pageName]="group.name"
     [pageId]="group.id"

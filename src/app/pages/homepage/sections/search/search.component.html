@@ -41,12 +41,19 @@
       #formSearch="ngForm"
       (ngSubmit)="onSearch(formSearch)"
     >
-      <select name="category" id="category" ngModel class="form__select">
+      <select name="group" id="group" ngModel class="form__select">
         <option value="" disabled>Wszystkie kategorie</option>
+        <option *ngFor="let group of groups" [value]="group.id">
+          {{ group.name }}
+        </option>
+      </select><!-- 
+
+      <select *ngIf="categories.length" name="category" id="category" ngModel class="form__select">
+        <option value="" disabled>Wszystkie podkategorie</option>
         <option *ngFor="let category of categories" [value]="category.id">
           {{ category.name }}
         </option>
-      </select>
+      </select> -->
 
       <select name="room" id="room" ngModel class="form__select">
         <option value="" disabled>Wszystkie pomieszczenia</option>

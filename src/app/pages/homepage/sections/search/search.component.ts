@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { Color, colors } from 'src/app/models/colors';
-import { Category, Room } from 'src/app/models/graphql';
+import { Category, Group, Room } from 'src/app/models/graphql';
 import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
@@ -13,21 +12,30 @@ import { ShopService } from 'src/app/services/shop.service';
 })
 export class SearchComponent implements OnInit {
   colors: Array<Color> = colors;
-  categories!: Array<Category>;
+  groups!: Array<Group>;
+  categories: Array<Category> = [];
   rooms!: Array<Room>;
-  selectedCategory!: string;
+  selectedGroup!: string;
   selectedColors: Array<Color> = [];
 
   constructor(private router: Router, private shopService: ShopService) {}
 
   ngOnInit(): void {
-    this.shopService.getAllCategories().subscribe((res) => {
-      this.categories = res.data.categories;
+    this.shopService.getAllGroups().subscribe((res) => {
+      this.groups = res.data.groups;
     });
 
     this.shopService.getAllRooms().subscribe((res) => {
       this.rooms = res.data.rooms;
     });
+  }
+
+  getCategoriesByGroupId(e: any) {
+    if (e.target.value) {
+      this.shopService.getGroupCategories(e.target.value).subscribe((res) => {
+        this.categories = res.data.group.categories;
+      });
+    }
   }
 
   onSimpleSearch(form: NgForm) {
@@ -45,19 +53,54 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    const categoryId = form.value.category;
-    const roomId = form.value.room;
-    const heightFrom = form.value.heightFrom;
-    const heightTo = form.value.heightTo;
-    const widthFrom = form.value.widthFrom;
-    const widthTo = form.value.widthTo;
-    const depthFrom = form.value.depthFrom;
-    const depthTo = form.value.depthTo;
-    const colors = this.selectedColors.map((color) => {
-      return color.colorCode;
-    });
+    let options: any = {};
 
-    this.router.navigate(['/filtruj', {categoryId, roomId, heightFrom, heightTo, widthFrom, widthTo, depthFrom, depthTo, colors}])
+    if (form.value.category) {
+      options['categoryId'] = form.value.category;
+    }
+
+    if (form.value.room) {
+      options['selectedRooms'] = form.value.room;
+    }
+
+    if (form.value.group) {
+      options['selectedGroups'] = form.value.group;
+    }
+
+    if (form.value.heightFrom) {
+      options['heightFrom'] = form.value.heightFrom;
+    }
+
+    if (form.value.heightTo) {
+      options['heightTo'] = form.value.heightTo;
+    }
+
+    if (form.value.widthFrom) {
+      options['widthFrom'] = form.value.widthFrom;
+    }
+
+    if (form.value.widthTo) {
+      options['widthTo'] = form.value.widthTo;
+    }
+
+    if (form.value.depthFrom) {
+      options['depthFrom'] = form.value.depthFrom;
+    }
+
+    if (form.value.depthTo) {
+      options['depthTo'] = form.value.depthTo;
+    }
+
+    if (this.selectedColors.length) {
+      options['selectedColors'] = this.selectedColors.map((color) => {
+        return color.colorCode;
+      });
+    }
+
+    this.router.navigate([
+      '/filtruj',
+      options,
+    ]);
   }
 
   selectColor(color: Color) {

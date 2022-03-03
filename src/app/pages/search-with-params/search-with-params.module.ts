@@ -4,6 +4,7 @@ import { SearchWithParamsComponent } from './search-with-params.component';
 import { SearchWithParamsRoutingModule } from './search-with-params-routing.module';
 import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
 import { FormsModule } from '@angular/forms';
+import { PaginationModule } from 'src/app/shared/pagination/pagination.module';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SearchWithParamsRoutingModule,
     ProductCardModule,
-    FormsModule
+    FormsModule,
+    PaginationModule
   ]
 })
 export class SearchWithParamsModule { }
