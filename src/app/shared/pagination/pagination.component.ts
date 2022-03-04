@@ -112,7 +112,10 @@ export class PaginationComponent implements OnInit {
       });
     }
 
-    if (this.priceMax) this.sliderOptions.ceil = Math.ceil(+this.priceMax);
+    if (this.priceMax) {
+      this.priceMax = Math.ceil(+this.priceMax);
+      this.sliderOptions.ceil = this.priceMax;
+    };
   }
 
   search(page?: number) {
