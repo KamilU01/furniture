@@ -135,6 +135,10 @@ export class ShopService {
     return this.http.get(`${this.url}rooms/${id}`, {params: options});
   }
 
+  filterProductsSearchPaginated(phrase: string, options: any = {}) {
+    return this.http.get(`${this.url}products/${phrase}`, {params: options});
+  }
+
   getArrangments() {
     return this.apollo.query<getArrangments>({
       query: GET_ARRANGMENTS_QUERY,

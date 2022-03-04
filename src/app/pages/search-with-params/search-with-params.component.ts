@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Color, colors } from 'src/app/models/colors';
 import { Category, Product, Room } from 'src/app/models/graphql';
 import { ShopService } from 'src/app/services/shop.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-search-with-params',
@@ -12,8 +10,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./search-with-params.component.scss'],
 })
 export class SearchWithParamsComponent implements OnInit {
-  url = environment.apiUrl;
-
   products!: Product[];
   totalItems!: number;
   priceMin!: number;
@@ -34,8 +30,6 @@ export class SearchWithParamsComponent implements OnInit {
     sortField: 'price',
   };
   currPage!: number;
-
-  query: any = {};
 
   colors: Array<Color> = colors;
   categories!: Array<Category>;

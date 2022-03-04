@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search.component';
 import { SearchRoutingModule } from './search-routing.module';
 import { ProductCardModule } from 'src/app/shared/product-card/product-card.module';
+import { PaginationModule } from 'src/app/shared/pagination/pagination.module';
 
 
 
@@ -13,7 +14,8 @@ import { ProductCardModule } from 'src/app/shared/product-card/product-card.modu
   imports: [
     CommonModule,
     SearchRoutingModule,
-    ProductCardModule
+    ProductCardModule,
+    PaginationModule
   ]
 })
 export class SearchModule { }

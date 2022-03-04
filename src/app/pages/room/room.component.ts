@@ -10,8 +10,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./room.component.scss'],
 })
 export class RoomComponent implements OnInit {
-  url = environment.apiUrl;
-
   products!: Product[];
   totalItems!: number;
   priceMin!: number;

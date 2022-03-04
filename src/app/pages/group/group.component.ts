@@ -10,8 +10,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./group.component.scss'],
 })
 export class GroupComponent implements OnInit {
-  url = environment.apiUrl;
-
   products!: Product[];
   totalItems!: number;
   priceMin!: number;

@@ -1,5 +1,5 @@
 <div class="search container" *ngIf="!isLoading">
-  <h1 class="search__heading heading heading--primary">
+  <!-- <h1 class="search__heading heading heading--primary">
     Wyniki wyszukiwania dla: {{phrase}}
   </h1>
   <div class="products-wrap">
@@ -9,7 +9,25 @@
     <p>
       Przepraszamy, nie znaleźliśmy żadnych produktów.
     </p>
-  </div>
+  </div> -->
+  <app-pagination
+    [pageName]="phrase"
+    [type]="'search'"
+    [options]="options"
+    [products]="products"
+    [totalItems]="totalItems"
+    [priceMax]="priceMax"
+    [widthMin]="widthMin"
+    [widthMax]="widthMax"
+    [depthMin]="depthMin"
+    [depthMax]="depthMax"
+    [heightMin]="heightMin"
+    [heightMax]="heightMax"
+    [itemsPerPage]="itemsPerPage"
+    [currPage]="currPage"
+    (newOptions)="search($event)"
+    [productsLoading]="productsLoading"
+  ></app-pagination>
 </div>
 
 <div class="loading" *ngIf="isLoading">
