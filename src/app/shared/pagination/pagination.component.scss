@@ -152,16 +152,18 @@
       box-shadow: 0px -2px 19px 0px rgba(33, 38, 38, 0.2);
       background-color: var(--color-light);
       position: fixed;
-      left: -400px;
+      left: -2000px;
+      width: 100vw;
       background-color: var(--color-light);
       z-index: 100000;
+      max-height: 50vh;
       padding: 2rem;
       overflow-y: scroll;
       &.active {
         display: block;
         transition: 0.2s all;
         left: 0;
-        right: 0;
+        bottom: 0;
       }
     }
   }
