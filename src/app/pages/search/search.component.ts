@@ -37,13 +37,13 @@ export class SearchComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.isLoading = true;
       this.phrase = params['phrase'];
-      this.options['phrase'] = this.phrase;
       this.search(this.options);
     }, err => this.router.navigate(['/']))
   }
 
   search(options: any) {
     options['limit'] = this.itemsPerPage;
+    options['phrase'] = this.phrase;
     options['sortField'] = 'price';
 
     this.productsLoading = true;

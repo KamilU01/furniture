@@ -119,8 +119,8 @@ export class PaginationComponent implements OnInit {
     let options: any = {};
 
     if (page) options['page'] = page;
-    if (this.priceMin) options['priceMin'] = this.priceMin;
-    if (this.priceMax) options['priceMax'] = this.priceMax;
+    if (this.priceMin) options['priceMin'] = Math.ceil(this.priceMin);
+    if (this.priceMax) options['priceMax'] = Math.ceil(this.priceMax);
     if (this.sortDirection == 0) options['sortDirection'] = 0;
     if (this.sortDirection == 1) options['sortDirection'] = 'ASC';
     if (this.sortDirection == 2) options['sortDirection'] = 'DESC';
