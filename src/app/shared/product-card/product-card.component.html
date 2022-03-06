@@ -11,7 +11,7 @@
   </div>
   <div class="product__promo-discount" *ngIf="isPromo">-{{ promoPercentage }}%</div>
   <a [routerLink]="['/produkt', product.id]" class="product__name">{{ product.name }}</a>
-  <div [routerLink]="['/produkt', product.id]" class="product__price" *ngIf="!isPromo">{{ product.price }} zł</div>
+  <div [routerLink]="['/produkt', product.id]" class="product__price" *ngIf="!isPromo">{{ product.price| number : '1.2-2' }} zł</div>
   <div [routerLink]="['/produkt', product.id]" class="product__promo" *ngIf="isPromo">
     <div class="product__promo__price">{{ product.promoPrice| number : '1.2-2' }} zł</div>
     <div class="product__promo__old-price">{{ product.price| number : '1.2-2' }} zł</div>

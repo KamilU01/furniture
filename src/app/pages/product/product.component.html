@@ -40,14 +40,14 @@
                 "
               ></div>
               <ng-template #normalPrice>
-                <span class="f-700">{{ $any(similarProduct.price) }} zł</span>
+                <span class="f-700">{{ $any(similarProduct.price)| number : '1.2-2' }} zł</span>
               </ng-template>
               <ng-template #discount>
                 <span class="new-price"
-                  >{{ $any(similarProduct.promoPrice) }} zł</span
+                  >{{ $any(similarProduct.promoPrice| number : '1.2-2') }} zł</span
                 >
                 <span class="old-price"
-                  >{{ $any(similarProduct.price) }} zł</span
+                  >{{ $any(similarProduct.price)| number : '1.2-2' }} zł</span
                 >
               </ng-template>
             </div>
@@ -127,7 +127,7 @@
         <div class="product__promo__old-price">{{ product.price | number : '1.2-2'}} zł</div>
       </div>
     </div>
-    <div class="product__price" *ngIf="!isPromo">{{ product.price }} zł</div>
+    <div class="product__price" *ngIf="!isPromo">{{ product.price| number : '1.2-2' }} zł</div>
     <a class="btn btn--secondary" (click)="addToCart(product)"
       >Dodaj do koszyka</a
     >
