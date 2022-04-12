@@ -2,6 +2,7 @@
   <div class="product__left">
     <div class="product__img">
       <img
+      class="product__img__current"
         [src]="
           currPhoto
             ? url + 'photos/' + currPhoto
@@ -9,6 +10,9 @@
         "
         [alt]="product.name"
       />
+      <div class="product__img__minatures">
+        <img *ngFor="let photo of product.photos" [src]="url + 'photos/' + photo.id" [alt]="product.name">
+      </div>
     </div>
     <div class="products__similar">
       <h3 class="products__similar__heading heading heading--tertiary">
