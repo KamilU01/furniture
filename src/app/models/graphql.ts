@@ -244,6 +244,7 @@ export interface Product {
     description: string,
     amount: number,
     photo: string,
+    photos: Photo[],
     room: Room | null,
     width: number,
     height: number,
@@ -319,6 +320,11 @@ query
     description,
     amount,
     photo,
+    photos {
+        id,
+        url,
+        isMainPhoto
+    },
     height,
     width,
     depth,
@@ -702,4 +708,10 @@ query
 
 export interface getPromotionById {
     promotion: Promotion
+}
+
+export interface Photo {
+    id: string,
+    url: string,
+    isMainPhoto: boolean
 }

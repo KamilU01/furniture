@@ -185,3 +185,13 @@ a:visited {
 .ngx-pagination .current {
   background-color: var(--color-primary-darker) !important;
 }
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-wrapper {
+  justify-content: space-between;
+}

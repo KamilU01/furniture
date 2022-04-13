@@ -1,12 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { Location } from '@angular/common';
 import { ShopService } from 'src/app/services/shop.service';
-import { Product, productVersion } from 'src/app/models/graphql';
+import { Photo, Product, productVersion } from 'src/app/models/graphql';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AlertService } from 'src/app/services/alert/alert.service';
+import { SwiperOptions } from 'swiper';
+import { SwiperComponent } from 'swiper/angular';
 
 @Component({
   selector: 'app-product',
@@ -14,6 +16,7 @@ import { AlertService } from 'src/app/services/alert/alert.service';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit, OnDestroy {
+  @ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
   isLoading: boolean = true;
 
   product!: Product;
@@ -37,6 +40,11 @@ export class ProductComponent implements OnInit, OnDestroy {
   dimensionsProductVersions!: Product[];
 
   currPhoto!: string;
+  selectedProductPhoto!: string;
+
+  config: SwiperOptions = {
+    slidesPerView: 4,
+  };
 
   constructor(
     private router: Router,
@@ -55,6 +63,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             (res) => {
               this.product = res.data.product;
               this.currPhoto = this.product.photo;
+              this.selectedProductPhoto = this.product.photo;
               this.shopService.addToLastViewedProducts(this.product);
 
               if (this.product.productVersions)
@@ -107,7 +116,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   sortProductVersions(productVersions: productVersion[]) {
-    productVersions.forEach(productVersion => {
+    productVersions.forEach((productVersion) => {
       switch (productVersion.versionType) {
         case 1:
           this.dimensionsProductVersions = productVersion.products;
@@ -116,14 +125,19 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.colorsProductVersions = productVersion.products;
           break;
       }
-    })
+    });
   }
 
   changeCurrPhoto(photo: string, mouseEnter: boolean) {
-    if(mouseEnter) {
+    if (mouseEnter) {
       this.currPhoto = photo;
     } else {
-      this.currPhoto = this.product.photo;
+      this.currPhoto = this.selectedProductPhoto;
     }
+  }
+
+  onSlideChange(photo: Photo) {
+    this.currPhoto = photo.id;
+    this.selectedProductPhoto = photo.id;
   }
 }
