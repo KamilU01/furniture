@@ -7,7 +7,7 @@
             : 'assets/images/logo.svg'
         " [alt]="product.name" />
     </div>
-    <div class="product__photos">
+    <div class="product__photos" *ngIf="product.photos.length > 1">
       <swiper #swiperRef [config]="config">
         <ng-template *ngFor="let photo of product.photos; let i = index" swiperSlide>
           <div (click)="onSlideChange(photo)">
