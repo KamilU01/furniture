@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 import { Category, Product, Room } from 'src/app/models/graphql';
 import { ShopService } from 'src/app/services/shop.service';
@@ -9,7 +9,7 @@ import { Color, colors } from 'src/app/models/colors';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnChanges {
   @Input() pageName!: string;
   @Input() pageId!: string;
   @Input() type!: string;
@@ -72,19 +72,6 @@ export class PaginationComponent implements OnInit {
       });
     }
 
-    if (this.type === 'groups') {
-      this.shopService.getGroupCategories(this.pageId).subscribe((res) => {
-        res.data.group.categories.forEach((category) => {
-          let object = {
-            name: category.name,
-            id: category.id,
-            isChecked: false,
-          };
-          this.categories.push(object);
-        });
-      });
-    }
-
     if (this.type !== 'rooms') {
       this.shopService.getAllRooms().subscribe((res) => {
         res.data.rooms.forEach((room) => {
@@ -116,6 +103,22 @@ export class PaginationComponent implements OnInit {
       this.priceMax = Math.ceil(+this.priceMax);
       this.sliderOptions.ceil = this.priceMax;
     };
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.type === 'groups' && changes.pageId) {
+      this.shopService.getGroupCategories(this.pageId).subscribe((res) => {
+        this.categories = [];
+        res.data.group.categories.forEach((category) => {
+          let object = {
+            name: category.name,
+            id: category.id,
+            isChecked: false,
+          };
+          this.categories.push(object);
+        });
+      });
+    }
   }
 
   search(page?: number) {
