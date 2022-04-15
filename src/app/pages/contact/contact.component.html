@@ -3,82 +3,157 @@
   <div class="content">
     <div class="contact__details">
       <div class="contact__detail">
-        <img src="assets/images/phone.svg" alt="Telefon do Maxii Home" class="contact__detail__img">
+        <img
+          src="assets/images/phone.svg"
+          alt="Telefon do Maxii Home"
+          class="contact__detail__img"
+        />
         <div class="contact__detail__text">
-          <a href="tel:+32/415 30 02"><strong>tel:</strong> 32/415 30 02</a><br>
+          <a href="tel:+32/415 30 02"><strong>tel:</strong> 32/415 30 02</a
+          ><br />
           <a href="tel:+48 885 855 755"><strong>kom.</strong> 885 855 755</a>
         </div>
       </div>
 
       <div class="contact__detail">
-        <img src="assets/images/email.svg" alt="Mail do Maxii Home" class="contact__detail__img">
+        <img
+          src="assets/images/email.svg"
+          alt="Mail do Maxii Home"
+          class="contact__detail__img"
+        />
         <div class="contact__detail__text">
           <a href="mailto:rametasklep1@wp.pl">rametasklep1@wp.pl</a>
         </div>
       </div>
 
       <div class="contact__detail">
-        <img src="assets/images/clock.svg" alt="Godziny otwarcia Maxii Home" class="contact__detail__img">
+        <img
+          src="assets/images/clock.svg"
+          alt="Godziny otwarcia Maxii Home"
+          class="contact__detail__img"
+        />
         <div class="contact__detail__text">
-          Poniedziałek - Piątek: <strong>8:00 - 16:00</strong> <br>
+          Poniedziałek - Piątek: <strong>8:00 - 16:00</strong> <br />
           Sobota - Niedziela: <strong>9:00 - 18:00</strong>
         </div>
       </div>
 
       <div class="contact__detail">
-        <img src="assets/images/location.svg" alt="Lokalizacja Maxii Home" class="contact__detail__img">
-        <div class="contact__detail__text">
-          Kościuszki 32, 47-400 Racibórz
-        </div>
+        <img
+          src="assets/images/location.svg"
+          alt="Lokalizacja Maxii Home"
+          class="contact__detail__img"
+        />
+        <div class="contact__detail__text">Kościuszki 32, 47-400 Racibórz</div>
       </div>
 
       <div class="contact__detail">
-        <img src="assets/images/facebook.svg" alt="Facebook Maxii Home" class="contact__detail__img">
+        <img
+          src="assets/images/facebook.svg"
+          alt="Facebook Maxii Home"
+          class="contact__detail__img"
+        />
         <div class="contact__detail__text">
-          <a href="https://www.facebook.com/Maxiihome/" target="_blank">Facebook - Salon Meblowy Maxii Home Rameta</a>
+          <a href="https://www.facebook.com/Maxiihome/" target="_blank"
+            >Facebook - Salon Meblowy Maxii Home Rameta</a
+          >
         </div>
       </div>
     </div>
     <div class="contact__localization">
-      <iframe class="contact__map"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2152.9801731379184!2d18.212912947592038!3d50.07993321714619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471168025c8b2899%3A0xd241189a8e1435b1!2sTadeusza%20Ko%C5%9Bciuszki%2047%2C%2047-400%20Racib%C3%B3rz!5e0!3m2!1spl!2spl!4v1625918398867!5m2!1spl!2spl"
-        height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <iframe
+        class="contact__map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.1195583425806!2d18.21646961594827!3d50.08404837942649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711681d6921b15b%3A0x3d771e0d9b460884!2sTadeusza%20Ko%C5%9Bciuszki%2032%2C%2047-400%20Racib%C3%B3rz!5e0!3m2!1spl!2spl!4v1650039423742!5m2!1spl!2spl"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
     <form class="contact__form" #form="ngForm" (ngSubmit)="onSubmit(form)">
       <h3 class="contact__form__header">Formularz kontaktowy</h3>
       <div class="form">
         <div class="form__group form__group--name">
-          <input id="name" name="name" type="text" class="form__input" placeholder="Imię i nazwisko" ngModel required
-            #name="ngModel">
+          <input
+            id="name"
+            name="name"
+            type="text"
+            class="form__input"
+            placeholder="Imię i nazwisko"
+            ngModel
+            required
+            #name="ngModel"
+          />
           <label for="name" class="form__label">Imię i nazwisko</label>
         </div>
 
         <div class="form__group form__group--phone">
-          <input id="phone" name="phone" type="phone" class="form__input" placeholder="Numer telefonu" ngModel required
-            #phone="ngModel">
+          <input
+            id="phone"
+            name="phone"
+            type="phone"
+            class="form__input"
+            placeholder="Numer telefonu"
+            ngModel
+            required
+            #phone="ngModel"
+          />
           <label for="phone" class="form__label">Numer telefonu</label>
         </div>
 
         <div class="form__group form__group--email">
-          <input id="email" name="email" type="email" class="form__input" placeholder="Adres email" ngModel required
-            #email="ngModel">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="form__input"
+            placeholder="Adres email"
+            ngModel
+            required
+            #email="ngModel"
+          />
           <label for="email" class="form__label">Adres email</label>
         </div>
 
         <div class="form__group form__group--text">
-          <textarea id="text" cols="100" name="text" type="text" class="form__input" placeholder="Treść wiadomości"
-            ngModel required #text="ngModel"></textarea>
+          <textarea
+            id="text"
+            cols="100"
+            name="text"
+            type="text"
+            class="form__input"
+            placeholder="Treść wiadomości"
+            ngModel
+            required
+            #text="ngModel"
+          ></textarea>
           <label for="text" class="form__label">Treść wiadomości</label>
         </div>
 
-        <div class="form__group--validation" *ngIf="isNotValid">Proszę poprawnie uzupełnić wszystkie pola!</div>
+        <div class="form__group--validation" *ngIf="isNotValid">
+          Proszę poprawnie uzupełnić wszystkie pola!
+        </div>
 
         <div class="form__group form__group--btn">
-          <button type="submit" class="contact__btn btn btn--primary btn--animated">Wyślij wiadomość</button>
+          <button
+            type="submit"
+            class="contact__btn btn btn--primary btn--animated"
+          >
+            Wyślij wiadomość
+          </button>
         </div>
 
         <div class="form__group form__group--regulations">
-          <input type="checkbox" name="regulations" id="regulations" ngModel #regulations="ngModel" required>
+          <input
+            type="checkbox"
+            name="regulations"
+            id="regulations"
+            ngModel
+            #regulations="ngModel"
+            required
+          />
           Wyrażam zgodę na przetwarzanie danych osobowych.
         </div>
       </div>
@@ -98,12 +173,19 @@
   </div>
 </div>
 
-<div class="alert alert--success" *ngIf="isSuccess == true && isError == false"
-  (click)="isSuccess = false; isError = false;">
+<div
+  class="alert alert--success"
+  *ngIf="isSuccess == true && isError == false"
+  (click)="isSuccess = false; isError = false"
+>
   Wiadomość została wysłana. Skontaktujemy się najszybciej jak to możliwe!
 </div>
 
-<div class="alert alert--error" *ngIf="isSuccess == false && isError == true"
-  (click)="isSuccess = false; isError = false;">
-  Wiadomość nie została wysłana :( Prosimy o ponowną wiadomość lub wybór innej formy kontaku.
+<div
+  class="alert alert--error"
+  *ngIf="isSuccess == false && isError == true"
+  (click)="isSuccess = false; isError = false"
+>
+  Wiadomość nie została wysłana :( Prosimy o ponowną wiadomość lub wybór innej
+  formy kontaku.
 </div>
