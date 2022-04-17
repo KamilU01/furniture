@@ -61,3 +61,20 @@
     transform: translateY(0);
   }
 }
+
+.work-in-progress-info {
+  position: fixed;
+  bottom: 0;
+  left: 0%;
+  width: 100%;
+  color: var(--color-light);
+  background-color: var(--color-danger);
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 1rem 0.8rem;
+  z-index: 1000000000;
+  
+  @media only screen and (max-width: 768px) {
+    bottom: 6rem;
+  }
+}

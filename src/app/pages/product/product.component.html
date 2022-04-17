@@ -60,7 +60,9 @@
     <h2 class="product__heading heading heading--primary">
       {{ product.name }}
     </h2>
-    <p class="product__desc" [innerHtml]="product.description"></p>
+    <p *ngIf="!truncateText" class="product__desc" [innerHtml]="product.description"></p>
+    <p *ngIf="truncateText" class="product__desc product__desc--truncate" [innerHtml]="truncateText"></p>
+    <a *ngIf="truncateText" class="product__load-more" (click)="truncateText = null">Zobacz więcej</a>
     <div class="product__dimensions">
       <div class="product__dimension">
         <strong>Wysokość [cm]: </strong> {{ product.height }}

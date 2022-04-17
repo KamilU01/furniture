@@ -86,6 +86,23 @@
     margin-top: 2.4rem;
     margin-bottom: 6rem;
 
+    &--truncate {
+      margin-bottom: 1rem;
+    }
+
+    @media only screen and (max-width: 500px) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__load-more {
+    margin-bottom: 4rem;
+    font-size: 1.6rem;
+    display: block;
+    font-weight: 700;
+    color: var(--color-primary-darker);
+    cursor: pointer;
+
     @media only screen and (max-width: 500px) {
       margin-bottom: 2rem;
     }

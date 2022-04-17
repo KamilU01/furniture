@@ -696,6 +696,7 @@ query
             id,
             photo,
             name,
+            price,
             promoPrice,
             promoEndDate,
         },

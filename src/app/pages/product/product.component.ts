@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   isPromo!: boolean;
 
-  promoPercentage!: string;
+  promoPercentage!: string | null;
 
   colorsProductVersions!: Product[];
   dimensionsProductVersions!: Product[];
@@ -45,6 +45,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   config: SwiperOptions = {
     slidesPerView: 4,
   };
+
+  truncateText!: string | null;
 
   constructor(
     private router: Router,
@@ -71,7 +73,13 @@ export class ProductComponent implements OnInit, OnDestroy {
 
               if (this.product.amount < 5) this.amountText = 'na wyczerpaniu';
               if (this.product.amount >= 5) this.amountText = 'dostępny';
-              this.isLoading = false;
+
+              if(this.product.description.length > 300) {
+                this.truncateDesc(this.product.description);
+              } else {
+                this.truncateText = null;
+              }
+
               if (this.product.promoEndDate) {
                 let currDate: Date = new Date();
                 let promoDate: Date = new Date(this.product.promoEndDate);
@@ -81,7 +89,10 @@ export class ProductComponent implements OnInit, OnDestroy {
                   ((this.product.price - this.product.promoPrice) * 100) /
                   this.product.price
                 ).toFixed(0);
+              } else {
+                this.isPromo = false;
               }
+              this.isLoading = false;
             },
             (err) => this.router.navigate(['/'])
           );
@@ -139,5 +150,9 @@ export class ProductComponent implements OnInit, OnDestroy {
   onSlideChange(photo: Photo) {
     this.currPhoto = photo.id;
     this.selectedProductPhoto = photo.id;
+  }
+
+  truncateDesc(desc: string) {
+    this.truncateText =  `${desc.substring(0, 800)}...`;
   }
 }
