@@ -129,6 +129,20 @@
   }
 }
 
+.item__text__version {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  
+  &__img {
+    background: center center/cover;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
 .old-price {
   color: var(--color-grey-dark-2);
   font-size: 1.2rem;

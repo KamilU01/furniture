@@ -18,6 +18,9 @@
         </div>
         <div class="item__text">
           <div class="item__text__name" [routerLink]="['/produkt', product.product.id]">{{product.product.name}}</div>
+          <div class="item__text__version" *ngIf="product.productVersion">
+            <div class="item__text__version__img" [ngStyle]="{'background-image': 'url(' + url+'photos/'+product.productVersion.material.photo + ')'}"></div>
+          {{product.productVersion.material.name}}</div>
         </div>
       </div>
       <div class="cart__row__item">

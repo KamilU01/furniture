@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { Location } from '@angular/common';
 import { ShopService } from 'src/app/services/shop.service';
-import { Photo, Product, productVersion } from 'src/app/models/graphql';
+import { cartItem, Color, Photo, Product, productVersion } from 'src/app/models/graphql';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AlertService } from 'src/app/services/alert/alert.service';
@@ -48,6 +48,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   truncateText!: string | null;
 
+  selectedColorVersion?: Color;
+
   constructor(
     private router: Router,
     protected alertService: AlertService,
@@ -80,6 +82,10 @@ export class ProductComponent implements OnInit, OnDestroy {
                 this.truncateText = null;
               }
 
+              if (this.product.colors) {
+                this.selectedColorVersion = this.product.colors.find(item => item.isMainPhoto);
+              }
+
               if (this.product.promoEndDate) {
                 let currDate: Date = new Date();
                 let promoDate: Date = new Date(this.product.promoEndDate);
@@ -107,7 +113,16 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart({ product: product, quantity: 1 });
+    let newCartProduct: cartItem = {
+      product: product, 
+      quantity: 1,
+    }
+    
+    if(this.selectedColorVersion) {
+      newCartProduct['productVersion'] = this.selectedColorVersion;
+    }
+
+    this.cartService.addToCart(newCartProduct);
     this.alertService.success(
       'Produkt został dodany do koszyka!',
       this.options
@@ -154,5 +169,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   truncateDesc(desc: string) {
     this.truncateText =  `${desc.substring(0, 800)}...`;
+  }
+
+  selectVersion(color: Color) {
+    this.selectedColorVersion = color;
   }
 }

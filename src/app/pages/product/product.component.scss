@@ -216,13 +216,33 @@
 
     &--colors {
       .product__version__content__item {
-        width: 20px;
-        height: 20px;
+        width: 5rem;
+        height: 5rem;
         border-radius: 50%;
         cursor: pointer;
+        background: center center/cover;
+        position: relative;
+
+        &:hover {
+          .preview {
+            display: initial;
+          }
+        }
+
+        .preview {
+          position: absolute;
+          display: none;
+          bottom: 2rem;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 12rem;
+          height: 12rem;
+          border-radius: 2px;
+          background: center center/cover;
+        }
 
         &.selected {
-          border: 3px solid var(--color-primary);
+          border: 3px solid var(--color-danger);
         }
       }
     }

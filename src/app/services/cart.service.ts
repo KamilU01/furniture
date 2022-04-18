@@ -20,7 +20,18 @@ export class CartService {
     );
 
     if (duplicateItem) {
-      duplicateItem.quantity += cartItem.quantity;
+      if (cartItem.productVersion) {
+        let duplicateItemByVersion = currentCart.find(
+          (c) => c.productVersion?.id === cartItem.productVersion?.id
+        );
+        if (duplicateItemByVersion) {
+          duplicateItemByVersion.quantity += cartItem.quantity;
+        } else {
+          currentCart.push(cartItem);
+        }
+      } else {
+        duplicateItem.quantity += cartItem.quantity;
+      }
     } else {
       currentCart.push(cartItem);
     }

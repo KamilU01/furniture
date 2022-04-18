@@ -89,14 +89,18 @@
         </div>
       </div>
       <div class="product__version product__version--colors"
-        *ngIf="colorsProductVersions && colorsProductVersions.length > 0">
-        <div class="product__version__name">Kolory:</div>
+        *ngIf="product.colors && product.colors.length > 0">
+        <div class="product__version__name">Wybierz materiał:</div>
         <div class="product__version__content">
-          <a [routerLink]="['/produkt', product.id]" [style.background-color]="product.colorCode"
+          <div class="product__version__content__item" (click)="selectVersion(color)" [ngClass]="{ selected: color.id === selectedColorVersion!.id }" [ngStyle]="{'background-image': 'url(' + url+'photos/'+color.material.photo + ')'}" *ngFor="let color of product.colors">
+            <div class="product__version__content__item preview" [ngStyle]="{'background-image': 'url(' + url+'photos/'+color.material.photo + ')'}">
+            </div>
+          </div>
+          <!-- <a [style.background-color]="product.colorCode"
             routerLinkActive="selected" class="product__version__content__item"
             *ngFor="let product of colorsProductVersions" (mouseenter)="changeCurrPhoto(product.photo, true)"
             (mouseleave)="changeCurrPhoto(product.photo, false)">
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
