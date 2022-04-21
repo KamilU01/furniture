@@ -1,21 +1,28 @@
 <div class="product container" *ngIf="!isLoading">
   <div class="product__left">
     <div class="product__img">
-      <img [src]="
-          currPhoto
-            ? url + 'photos/' + currPhoto
-            : 'assets/images/logo.svg'
-        " [alt]="product.name" />
+      <img
+        [src]="
+          currPhoto ? url + 'photos/' + currPhoto : 'assets/images/logo.svg'
+        "
+        [alt]="product.name"
+      />
     </div>
     <div class="product__photos" *ngIf="product.photos.length > 1">
       <swiper #swiperRef [config]="config">
-        <ng-template *ngFor="let photo of product.photos; let i = index" swiperSlide>
+        <ng-template
+          *ngFor="let photo of product.photos; let i = index"
+          swiperSlide
+        >
           <div (click)="onSlideChange(photo)">
-            <img class="photo__image" [title]="product.name" [src]="
-                  photo.id
-                    ? url + 'photos/' + photo.id
-                    : 'assets/images/logo.svg'
-                " [alt]="product.name" />
+            <img
+              class="photo__image"
+              [title]="product.name"
+              [src]="
+                photo.id ? url + 'photos/' + photo.id : 'assets/images/logo.svg'
+              "
+              [alt]="product.name"
+            />
           </div>
         </ng-template>
       </swiper>
@@ -25,27 +32,45 @@
         Podobne produkty
       </h3>
       <div class="products__similar__wrap">
-        <a [routerLink]="['/produkt', similarProduct.id]" *ngFor="let similarProduct of product.similarProducts"
-          class="product__similar">
-          <img [src]="
+        <a
+          [routerLink]="['/produkt', similarProduct.id]"
+          *ngFor="let similarProduct of product.similarProducts"
+          class="product__similar"
+        >
+          <img
+            [src]="
               similarProduct.photo
                 ? url + 'photos/' + similarProduct.photo
                 : 'assets/images/logo.svg'
-            " [alt]="similarProduct.name" class="product__similar__img" />
+            "
+            [alt]="similarProduct.name"
+            class="product__similar__img"
+          />
           <div class="product__similar__content">
             <div class="product__similar__name">{{ similarProduct.name }}</div>
             <div class="product__similar__price">
-              <div *ngIf="
+              <div
+                *ngIf="
                   isStillPromo(similarProduct.promoEndDate);
                   then discount;
                   else normalPrice
-                "></div>
+                "
+              ></div>
               <ng-template #normalPrice>
-                <span class="f-700">{{ $any(similarProduct.price)| number : '1.2-2' }} zł</span>
+                <span class="f-700"
+                  >{{ $any(similarProduct.price) | number: "1.2-2" }} zł</span
+                >
               </ng-template>
               <ng-template #discount>
-                <span class="new-price">{{ $any(similarProduct.promoPrice| number : '1.2-2') }} zł</span>
-                <span class="old-price">{{ $any(similarProduct.price)| number : '1.2-2' }} zł</span>
+                <span class="new-price"
+                  >{{
+                    $any(similarProduct.promoPrice | number: "1.2-2")
+                  }}
+                  zł</span
+                >
+                <span class="old-price"
+                  >{{ $any(similarProduct.price) | number: "1.2-2" }} zł</span
+                >
               </ng-template>
             </div>
           </div>
@@ -55,14 +80,31 @@
   </div>
   <div class="product__right">
     <div class="product__favourite">
-      <img src="assets/images/favourite.svg" alt="Dodaj do polubionych" (click)="addToFavourites(product)" />
+      <img
+        src="assets/images/favourite.svg"
+        alt="Dodaj do polubionych"
+        (click)="addToFavourites(product)"
+      />
     </div>
     <h2 class="product__heading heading heading--primary">
       {{ product.name }}
     </h2>
-    <p *ngIf="!truncateText" class="product__desc" [innerHtml]="product.description"></p>
-    <p *ngIf="truncateText" class="product__desc product__desc--truncate" [innerHtml]="truncateText"></p>
-    <a *ngIf="truncateText" class="product__load-more" (click)="truncateText = null">Zobacz więcej</a>
+    <p
+      *ngIf="!truncateText"
+      class="product__desc"
+      [innerHtml]="product.description"
+    ></p>
+    <p
+      *ngIf="truncateText"
+      class="product__desc product__desc--truncate"
+      [innerHtml]="truncateText"
+    ></p>
+    <a
+      *ngIf="truncateText"
+      class="product__load-more"
+      (click)="truncateText = null"
+      >Zobacz więcej</a
+    >
     <div class="product__dimensions">
       <div class="product__dimension">
         <strong>Wysokość [cm]: </strong> {{ product.height }}
@@ -76,25 +118,54 @@
     </div>
     <div class="product__version product__version--colors"></div>
     <div class="product__versions" *ngIf="product.productVersions">
-      <div class="product__version product__version--dimensions" *ngIf="
+      <div
+        class="product__version product__version--dimensions"
+        *ngIf="
           dimensionsProductVersions && dimensionsProductVersions.length > 0
-        ">
-        <div class="product__version__name">Wymiary [szer. x wys. x głęb.]cm:</div>
+        "
+      >
+        <div class="product__version__name">
+          Wymiary [szer. x wys. x głęb.]cm:
+        </div>
         <div class="product__version__content">
-          <a [routerLink]="['/produkt', product.id]" routerLinkActive="selected" class="product__version__content__item"
-            *ngFor="let product of dimensionsProductVersions" (mouseenter)="changeCurrPhoto(product.photo, true)"
-            (mouseleave)="changeCurrPhoto(product.photo, false)">
+          <a
+            [routerLink]="['/produkt', product.id]"
+            routerLinkActive="selected"
+            class="product__version__content__item"
+            *ngFor="let product of dimensionsProductVersions"
+            (mouseenter)="changeCurrPhoto(product.photo, true)"
+            (mouseleave)="changeCurrPhoto(product.photo, false)"
+          >
             {{ product.width }}x{{ product.height }}x{{ product.depth }}
           </a>
         </div>
       </div>
-      <div class="product__version product__version--colors"
-        *ngIf="product.colors && product.colors.length > 0">
+      <div
+        class="product__version product__version--colors"
+        *ngIf="product.colors && product.colors.length > 0"
+      >
         <div class="product__version__name">Wybierz materiał:</div>
         <div class="product__version__content">
-          <div class="product__version__content__item" (click)="selectVersion(color)" [ngClass]="{ selected: color.id === selectedColorVersion!.id }" [ngStyle]="{'background-image': 'url(' + url+'photos/'+color.material.photo + ')'}" *ngFor="let color of product.colors">
-            <div class="product__version__content__item preview" [ngStyle]="{'background-image': 'url(' + url+'photos/'+color.material.photo + ')'}">
-            </div>
+          <div
+            class="product__version__content__item"
+            (mouseenter)="changeCurrPhotoForColor(color, true)"
+            (mouseleave)="changeCurrPhotoForColor(color, false)"
+            (click)="selectVersion(color)"
+            [ngClass]="{ selected: color.id === selectedColorVersion!.id }"
+            [ngStyle]="{
+              'background-image':
+                'url(' + url + 'photos/' + color.material.photo + ')'
+            }"
+            *ngFor="let color of colors"
+          >
+            <div
+              *ngIf="!color.isHidden"
+              class="product__version__content__item preview"
+              [ngStyle]="{
+                'background-image':
+                  'url(' + url + 'photos/' + color.material.photo + ')'
+              }"
+            ></div>
           </div>
           <!-- <a [style.background-color]="product.colorCode"
             routerLinkActive="selected" class="product__version__content__item"
@@ -107,12 +178,20 @@
     <div class="product__promo" *ngIf="isPromo">
       <div class="product__promo__percentage">-{{ promoPercentage }}%</div>
       <div class="product__promo__prices">
-        <div class="product__promo__new-price">{{ product.promoPrice | number : '1.2-2'}} zł</div>
-        <div class="product__promo__old-price">{{ product.price | number : '1.2-2'}} zł</div>
+        <div class="product__promo__new-price">
+          {{ product.promoPrice | number: "1.2-2" }} zł
+        </div>
+        <div class="product__promo__old-price">
+          {{ product.price | number: "1.2-2" }} zł
+        </div>
       </div>
     </div>
-    <div class="product__price" *ngIf="!isPromo">{{ product.price| number : '1.2-2' }} zł</div>
-    <a class="btn btn--secondary" (click)="addToCart(product)">Dodaj do koszyka</a>
+    <div class="product__price" *ngIf="!isPromo">
+      {{ product.price | number: "1.2-2" }} zł
+    </div>
+    <a class="btn btn--secondary" (click)="addToCart(product)"
+      >Dodaj do koszyka</a
+    >
     <div class="product__amount">
       Dostępność: <span>{{ amountText }}</span>
     </div>

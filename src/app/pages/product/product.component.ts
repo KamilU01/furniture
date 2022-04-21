@@ -50,6 +50,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   selectedColorVersion?: Color;
 
+  colors!: Color[];
+
   constructor(
     private router: Router,
     protected alertService: AlertService,
@@ -84,6 +86,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
               if (this.product.colors) {
                 this.selectedColorVersion = this.product.colors.find(item => item.isMainPhoto);
+                this.colors = this.product.colors.filter(color => color.isHidden === false);
               }
 
               if (this.product.promoEndDate) {
@@ -162,6 +165,16 @@ export class ProductComponent implements OnInit, OnDestroy {
     }
   }
 
+  changeCurrPhotoForColor(color: Color, mouseEnter: boolean) {
+    if (mouseEnter) {
+      if (!color.isMainPhoto && color.photo) {
+        this.currPhoto = color.photo;
+      } 
+    } else {
+      this.currPhoto = this.selectedProductPhoto;
+    }
+  }
+
   onSlideChange(photo: Photo) {
     this.currPhoto = photo.id;
     this.selectedProductPhoto = photo.id;
@@ -172,6 +185,11 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   selectVersion(color: Color) {
+    if (!color.isMainPhoto && color.photo) {
+      this.selectedProductPhoto = color.photo;
+    } else {
+      this.selectedProductPhoto = this.product.photo;
+    }
     this.selectedColorVersion = color;
   }
 }

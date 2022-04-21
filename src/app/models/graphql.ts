@@ -259,6 +259,8 @@ export interface Product {
 export interface Color {
   id: string;
   isMainPhoto: boolean;
+  isHidden: boolean;
+  photo: string;
   product: Product;
   material: Material;
 }
@@ -332,6 +334,8 @@ export const GET_PRODUCT_QUERY = gql`
       colors {
         id
         isMainPhoto
+        photo
+        isHidden
         material {
           id
           name
