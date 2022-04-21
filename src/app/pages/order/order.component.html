@@ -32,6 +32,20 @@
             <div class="product__name__text">
               <h3>{{ product.product.name }}</h3>
               <h4>{{ product.amount }} szt.</h4>
+              <div class="version" *ngIf="product.color">
+                <div
+                  class="version__img"
+                  [ngStyle]="{
+                    'background-image':
+                      'url(' +
+                      url +
+                      'photos/' +
+                      product.color.material.photo +
+                      ')'
+                  }"
+                ></div>
+                {{ product.color.material.name }}
+              </div>
             </div>
           </div>
           <div class="product__value">{{ product.totalPrice | number : '1.2-2'}} zł

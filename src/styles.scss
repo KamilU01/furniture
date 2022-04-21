@@ -41,6 +41,10 @@ body {
   background-color: var(--color-light-2);
 }
 
+button {
+  font-family: inherit;
+}
+
 /* Works on Firefox */
 * {
   scrollbar-width: thin;

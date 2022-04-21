@@ -317,7 +317,7 @@ export interface cartItem {
   quantity: number;
   value?: number;
   promoValue?: number;
-  productVersion?: Color
+  productVersion?: Color;
 }
 
 export const GET_PRODUCT_QUERY = gql`
@@ -330,8 +330,8 @@ export const GET_PRODUCT_QUERY = gql`
       amount
       photo
       colors {
-        id,
-        isMainPhoto,
+        id
+        isMainPhoto
         material {
           id
           name
@@ -601,6 +601,16 @@ export const GET_ORDER_BY_ID = gql`
         id
         totalPrice
         amount
+        color {
+          id
+          isMainPhoto
+          isHidden
+          material {
+            id
+            photo
+            name
+          }
+        }
         product {
           id
           name
@@ -629,6 +639,7 @@ export interface Order {
     totalPrice: number;
     amount: number;
     product: Product;
+    color: Color;
   }>;
 }
 

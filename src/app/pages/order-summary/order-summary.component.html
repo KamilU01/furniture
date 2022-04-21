@@ -27,10 +27,13 @@
               "
               [alt]="product.product.name"
             />
-            <p>
-              <span class="name">{{ product.product.name }}</span
-              ><br /><span class="quantity">{{ product.quantity }} szt.</span>
-            </p>
+            <div>
+              <span class="name">{{ product.product.name }}</span>
+              <span class="version" *ngIf="product.productVersion">&nbsp;
+                <span class="version__img" [ngStyle]="{'background-image': 'url(' + url+'photos/'+product.productVersion.material.photo + ')'}"></span>
+              {{product.productVersion.material.name}}</span><br>
+              <span class="quantity">{{ product.quantity }} szt.</span>
+            </div>
           </div>
           <div class="item__price">
             <div

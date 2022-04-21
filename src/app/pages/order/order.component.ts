@@ -23,11 +23,11 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.urlSubscription = this.route.params.subscribe(params => {
-      this.subscription = this.shopService.getOrderById(params['id']).subscribe(res => {
-        this.order = res.data.order;
+      this.subscription = this.shopService.getOrderById(params['id']).subscribe((res: any) => {
+        this.order = res;
         this.isLoading = false;
-      }, err => this.router.navigate(['/']))
-    }, err => this.router.navigate(['/']))
+      }, () => this.router.navigate(['/']))
+    }, () => this.router.navigate(['/']))
   }
 
   invoiceDownload() {

@@ -69,7 +69,8 @@ export class OrderSummaryComponent implements OnInit {
     this.cart.forEach(cartItem => {
       let newItem = {
         id: cartItem.product.id,
-        amount: cartItem.quantity
+        amount: cartItem.quantity,
+        colorId: cartItem.productVersion?.id
       };
 
       products.push(newItem);

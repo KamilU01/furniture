@@ -191,13 +191,7 @@ export class ShopService {
   }
 
   getOrderById(id: string) {
-    return this.apollo.query<getOrderById>({
-      query: GET_ORDER_BY_ID,
-      fetchPolicy: 'no-cache',
-      variables: {
-        id,
-      },
-    });
+    return this.http.get(`${this.url}orders/${id}`);
   }
 
   addToLastViewedProducts(product: Product) {
