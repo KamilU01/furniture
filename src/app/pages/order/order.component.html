@@ -18,6 +18,10 @@
         <li>Data złożenia: <span class="f--700">{{ order.orderStart }}</span></li>
         <li>Data zakończenia: <span class="f--700">{{ order.orderEnd }}</span></li>
         <li>Wartość: <span class="f--700">{{ order.totalPrice | number : '1.2-2'}} zł</span></li>
+        <li>
+          <span class="f--700">Uwagi:</span> <br>
+          {{ order.description }}
+        </li>
         <li><a (click)="invoiceDownload()">Pobierz fakturę</a></li>
       </ul>
     </div>
@@ -27,7 +31,7 @@
         <div class="product" *ngFor="let product of order.orderProducts">
           <div class="product__name">
             <img class="product__img"
-              [src]="product.product.photo ? url+'photos/'+product.product.photo : 'assets/images/logo.svg'"
+              [src]="getProductPhoto(product)"
               [alt]="product.product.name">
             <div class="product__name__text">
               <h3>{{ product.product.name }}</h3>

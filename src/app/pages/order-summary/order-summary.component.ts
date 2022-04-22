@@ -84,6 +84,7 @@ export class OrderSummaryComponent implements OnInit {
       postCode: form.value.postCode,
       email: form.value.email,
       phone: form.value.phone,
+      description: form.value.description,
       pickupInPerson: pickupInPerson,
       products: products
     }

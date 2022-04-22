@@ -155,6 +155,20 @@
             <label for="postCode" class="form__label">Kod pocztowy</label>
           </div>
 
+          <div class="form__group form__group--text">
+            <textarea
+              id="description"
+              cols="100"
+              name="description"
+              type="text"
+              class="form__input"
+              placeholder="Uwagi do zamówienia"
+              ngModel
+              #description="ngModel"
+            ></textarea>
+            <label for="text" class="form__label">Uwagi do zamówienia</label>
+          </div>
+
           <div class="form__group u-margin-bottom-medium">
             <div class="form__radio-group">
               <input

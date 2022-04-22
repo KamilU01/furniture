@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Order } from 'src/app/models/graphql';
+import { Order, Product } from 'src/app/models/graphql';
 import { ShopService } from 'src/app/services/shop.service';
 import { environment } from 'src/environments/environment';
 
@@ -34,5 +34,15 @@ export class OrderComponent implements OnInit {
     this.shopService.invoiceDownload(this.order.id).subscribe(res => {
       this.shopService.saveToFileSystem(res, this.order.name + ".pdf")
     })
+  }
+
+  getProductPhoto(product: any) {
+    if (!product.color?.isMainPhoto && product.color?.photo) {
+      return this.url + 'photos/' + product.color?.photo;
+    } else {
+      return product.product.photo
+        ? this.url + 'photos/' + product.product.photo
+        : 'assets/images/logo.svg';
+    }
   }
 }

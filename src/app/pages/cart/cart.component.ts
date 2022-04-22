@@ -30,6 +30,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartList.subscribe((res) => {
       this.cart = res;
+      console.log(res)
       this.isLoading = false;
     });
 
@@ -66,5 +67,15 @@ export class CartComponent implements OnInit {
     let promoDate: Date = new Date(dateToCheck);
 
     return currDate <= promoDate;
+  }
+
+  getProductPhoto(product: cartItem) {
+    if (!product.productVersion?.isMainPhoto && product.productVersion?.photo) {
+      return this.url + 'photos/' + product.productVersion?.photo;
+    } else {
+      return product.product.photo
+        ? this.url + 'photos/' + product.product.photo
+        : 'assets/images/logo.svg';
+    }
   }
 }

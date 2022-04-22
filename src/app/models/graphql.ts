@@ -638,6 +638,7 @@ export interface Order {
   postCode: string;
   email: string;
   phone: string;
+  description: string;
   orderProducts: Array<{
     id: string;
     totalPrice: number;

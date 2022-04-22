@@ -13,7 +13,7 @@
     <div class="cart__row" *ngFor="let product of cart; let i = index">
       <div class="cart__row__item row--name">
         <div class="item__image">
-          <img [src]="product.product.photo ? url+'photos/'+product.product.photo : 'assets/images/logo.svg'"
+            <img [src]="getProductPhoto(product)"
             [alt]="product.product.name">
         </div>
         <div class="item__text">
