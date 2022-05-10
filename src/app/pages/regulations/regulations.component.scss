@@ -18,18 +18,25 @@
   }
 
   .list {
-    font-weight: 700;
-    color: var(--color-primary-darker);
-    font-size: 1.8rem;
-  }
+    & > ul {
+      margin-left: 2rem;
+    }
 
-  .list__secondary {
-    font-weight: 400;
-    color: var(--color-dark);
-    font-size: 1.6rem;
+    ul li ul li {
+      margin-left: 2rem;
+    }
 
-    &__item:first-of-type {
-      margin-top: .8rem;
+    a {
+      color: var(--color-primary-darker);
+      font-weight: 700;
+    }
+
+    &__item {
+      margin-bottom: 1rem;
+    }
+
+    &__item:not(:first-of-type) {
+      margin-top: 2rem;
     }
   }
 }

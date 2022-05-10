@@ -23,6 +23,10 @@ const routes: Routes = [
         loadChildren: () => import("./pages/privacy-policy/privacy-policy.module").then(m => m.PrivacyPolicyModule)
     },
     {
+        path: 'rodo',
+        loadChildren: () => import("./pages/rodo/rodo.module").then(m => m.RodoModule)
+    },
+    {
         path: 'regulamin',
         loadChildren: () => import("./pages/regulations/regulations.module").then(m => m.RegulationsModule)
     },
