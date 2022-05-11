@@ -249,6 +249,7 @@ export interface Product {
   depth: number;
   colorCode: string;
   promoPrice: number;
+  deliveryCost: number;
   promoEndDate: Date;
   category: Category | null;
   similarProducts: Array<Product>;
@@ -296,6 +297,7 @@ export const GET_NEWEST_PRODUCTS_QUERY = gql`
       photo
       promoPrice
       promoEndDate
+      deliveryCost
     }
   }
 `;
@@ -329,6 +331,7 @@ export const GET_PRODUCT_QUERY = gql`
       name
       price
       description
+      deliveryCost
       amount
       photo
       colors {
@@ -629,6 +632,7 @@ export interface Order {
   id: string;
   name: string;
   pickupInPerson: number;
+  deliveryCost: number;
   orderStart: Date;
   orderEnd: Date;
   totalPrice: number;

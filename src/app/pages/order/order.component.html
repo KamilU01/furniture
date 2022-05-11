@@ -55,6 +55,17 @@
           <div class="product__value">{{ product.totalPrice | number : '1.2-2'}} zł
           </div>
         </div>
+        
+        <div class="product">
+          <div class="product__name">
+            <div class="product__name__text">
+              <h3 class="name">Dostawa</h3>
+            </div>
+          </div>
+          <div class="product__value">
+            <span class="f-700">{{ order.deliveryCost | number: "1.2-2" }} zł</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

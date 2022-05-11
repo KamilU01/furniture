@@ -52,6 +52,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   colors!: Color[];
 
+  deliveryCostText!: string;
+
   constructor(
     private router: Router,
     protected alertService: AlertService,
@@ -71,6 +73,8 @@ export class ProductComponent implements OnInit, OnDestroy {
               this.currPhoto = this.product.photo;
               this.selectedProductPhoto = this.product.photo;
               this.shopService.addToLastViewedProducts(this.product);
+              
+              this.product.deliveryCost ? this.deliveryCostText = `+ dostawa ${this.product.deliveryCost} zł` : this.deliveryCostText = 'i darmowa dostawa';
 
               if (this.product.productVersions)
                 this.sortProductVersions(this.product.productVersions);

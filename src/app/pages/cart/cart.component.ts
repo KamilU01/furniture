@@ -30,7 +30,6 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartList.subscribe((res) => {
       this.cart = res;
-      console.log(res)
       this.isLoading = false;
     });
 

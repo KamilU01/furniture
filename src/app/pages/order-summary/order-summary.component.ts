@@ -14,7 +14,8 @@ import { environment } from 'src/environments/environment';
 })
 export class OrderSummaryComponent implements OnInit {
   cart!: Array<cartItem>;
-  totalValue!: number;
+  totalValue: number = 0;
+  deliveryCost: number = 0;
   isLoading: boolean = true;
   url = environment.apiUrl;
   errorMessage!: string;
@@ -34,14 +35,22 @@ export class OrderSummaryComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartList.subscribe(res => {
       if (res.length == 0) this.router.navigate(['/']);
-
       this.cart = res;
+
+      res.forEach(item => {
+        if (item.product.deliveryCost) {
+          this.deliveryCost += +item.product.deliveryCost;
+        }
+      })
+
+      this.totalValue += this.deliveryCost;
+
       this.isLoading = false;
 
     }, err => this.router.navigate(['/']))
 
     this.cartService.totalValue.subscribe(res => {
-      this.totalValue = res;
+      this.totalValue += res;
     })
   }
 

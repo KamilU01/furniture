@@ -185,9 +185,10 @@
           {{ product.price | number: "1.2-2" }} zł
         </div>
       </div>
+      <div class="product__price__delivery-cost">{{ deliveryCostText }}</div>
     </div>
     <div class="product__price" *ngIf="!isPromo">
-      {{ product.price | number: "1.2-2" }} zł
+      {{ product.price | number: "1.2-2" }} zł <span class="product__price__delivery-cost">{{ deliveryCostText }}</span>
     </div>
     <a class="btn btn--secondary" (click)="addToCart(product)"
       >Dodaj do koszyka</a

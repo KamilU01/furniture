@@ -17,7 +17,7 @@
         <div class="item" *ngFor="let product of cart">
           <div
             class="item__name"
-            [routerLink]="['/product', product.product.id]"
+            [routerLink]="['/produkt', product.product.id]"
           >
             <img
               [src]="
@@ -29,9 +29,21 @@
             />
             <div>
               <span class="name">{{ product.product.name }}</span>
-              <span class="version" *ngIf="product.productVersion">&nbsp;
-                <span class="version__img" [ngStyle]="{'background-image': 'url(' + url+'photos/'+product.productVersion.material.photo + ')'}"></span>
-              {{product.productVersion.material.name}}</span><br>
+              <span class="version" *ngIf="product.productVersion"
+                >&nbsp;
+                <span
+                  class="version__img"
+                  [ngStyle]="{
+                    'background-image':
+                      'url(' +
+                      url +
+                      'photos/' +
+                      product.productVersion.material.photo +
+                      ')'
+                  }"
+                ></span>
+                {{ product.productVersion.material.name }}</span
+              ><br />
               <span class="quantity">{{ product.quantity }} szt.</span>
             </div>
           </div>
@@ -56,6 +68,17 @@
                 >{{ $any(product.promoValue) | number: "1.2-2" }} zł</span
               >
             </ng-template>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item__name">
+            <div>
+              <span class="name">Dostawa</span>
+            </div>
+          </div>
+          <div class="item__price">
+            <span class="f-700">{{ deliveryCost | number: "1.2-2" }} zł</span>
           </div>
         </div>
 
