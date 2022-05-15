@@ -3,7 +3,7 @@
     [ngStyle]="{'background-image': 'url(' + url+'photos/'+item.photo + ')'}">
     <div class="arrangment__name">{{item.name}}</div>
     <div class="arrangment__link">
-      <a [routerLink]="['/aranzacja', item.id]" class="btn btn--tertiary">Zobacz aranżację</a>
+      <a [routerLink]="['/aranzacja', item.shortenUrl]" class="btn btn--tertiary">Zobacz aranżację</a>
     </div>
   </div>
   <a class="arrangment--more" routerLink="/aranzacje">

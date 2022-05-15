@@ -160,6 +160,7 @@ export const GET_GROUPS_QUERY = gql`
   query {
     groups {
       id
+      shortenUrl
       name
     }
   }
@@ -167,6 +168,7 @@ export const GET_GROUPS_QUERY = gql`
 
 export interface Group {
   id?: string;
+  shortenUrl?: string;
   name: string;
   categories: Array<Category>;
 }
@@ -220,6 +222,7 @@ export interface MutationArrangamentResponse {
 
 export interface Room {
   id: string;
+  shortenUrl: string;
   name: string;
   icon: string;
   products: Array<Product>;
@@ -237,6 +240,7 @@ export interface MutationRoomResponse {
 
 export interface Product {
   id?: string;
+  shortenUrl?: string;
   name: string;
   price: number;
   description: string;
@@ -292,6 +296,7 @@ export const GET_NEWEST_PRODUCTS_QUERY = gql`
   query {
     newestProducts {
       id
+      shortenUrl
       name
       price
       photo
@@ -310,6 +315,7 @@ export const GET_ROOMS_QUERY = gql`
   query {
     rooms {
       id
+      shortenUrl
       name
       icon
     }
@@ -328,6 +334,7 @@ export const GET_PRODUCT_QUERY = gql`
   query ($id: String!) {
     product(id: $id) {
       id
+      shortenUrl
       name
       price
       description
@@ -368,6 +375,7 @@ export const GET_PRODUCT_QUERY = gql`
         versionType
         products {
           id
+          shortenUrl
           name
           photo
           width
@@ -378,6 +386,7 @@ export const GET_PRODUCT_QUERY = gql`
       }
       similarProducts {
         id
+        shortenUrl
         name
         price
         photo
@@ -400,6 +409,7 @@ export const GET_CATEGORY_PRODUCTS_QUERY = gql`
       icon
       products {
         id
+        shortenUrl
         name
         price
         description
@@ -423,6 +433,7 @@ export const GET_GROUPS_PRODUCTS_QUERY = gql`
         icon
         products {
           id
+          shortenUrl
           name
           price
           description
@@ -468,10 +479,12 @@ export const GET_ROOM_PRODUCTS_QUERY = gql`
   query ($id: String!) {
     room(id: $id) {
       id
+      shortenUrl
       name
       icon
       products {
         id
+        shortenUrl
         name
         price
         description
@@ -487,6 +500,7 @@ export const GET_ROOM_PRODUCTS_QUERY = gql`
 export interface getRoomProductsResponse {
   room: {
     id: string;
+    shortenUrl: string;
     name: string;
     icon: string;
     products: Array<Product>;
@@ -497,6 +511,7 @@ export const GET_ARRANGMENTS_QUERY = gql`
   query {
     arrangments {
       id
+      shortenUrl
       name
       photo
     }
@@ -512,6 +527,7 @@ export const GET_ARRANGMENT_PRODUCTS_QUERY = gql`
       description
       products {
         id
+        shortenUrl
         name
         price
         description
@@ -526,6 +542,7 @@ export const GET_ARRANGMENT_PRODUCTS_QUERY = gql`
 
 export interface Arrangment {
   id: string;
+  shortenUrl: string;
   photo: string;
   name: string;
   description: string;

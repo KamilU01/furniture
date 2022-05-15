@@ -13,7 +13,7 @@
             <div class="categories">
               <div class="categories__header">Kategorie</div>
               <div class="categories__content">
-                <a [routerLink]="['/grupa', group.id]" class="categories__item"
+                <a [routerLink]="['/grupa', group.shortenUrl]" class="categories__item"
                   *ngFor="let group of groups">{{ group.name }}</a>
               </div>
             </div>

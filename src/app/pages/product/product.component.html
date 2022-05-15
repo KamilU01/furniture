@@ -33,7 +33,7 @@
       </h3>
       <div class="products__similar__wrap">
         <a
-          [routerLink]="['/produkt', similarProduct.id]"
+          [routerLink]="['/produkt', similarProduct.shortenUrl ? similarProduct.shortenUrl : similarProduct.id]"
           *ngFor="let similarProduct of product.similarProducts"
           class="product__similar"
         >
@@ -129,7 +129,7 @@
         </div>
         <div class="product__version__content">
           <a
-            [routerLink]="['/produkt', product.id]"
+            [routerLink]="['/produkt', product.shortenUrl ? product.shortenUrl : product.id]"
             routerLinkActive="selected"
             class="product__version__content__item"
             *ngFor="let product of dimensionsProductVersions"

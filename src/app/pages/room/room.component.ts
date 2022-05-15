@@ -44,7 +44,7 @@ export class RoomComponent implements OnInit {
     this.route.params.subscribe(
       (params) => {
         this.shopService.getAllRooms().subscribe((res) => {
-          this.room = res.data.rooms.find((room) => room.id === params['id']);
+          this.room = res.data.rooms.find((room) => room.shortenUrl === params['id']);
         });
         this.roomId = params['id'];
         this.search(this.options);
@@ -63,7 +63,6 @@ export class RoomComponent implements OnInit {
     .subscribe(
       (res: any) => {
         this.totalItems = res.meta.totalItems;
-
         if(res.meta.data) {
           this.priceMax = res.meta.priceMax;
           this.widthMin = res.meta.widthMin;

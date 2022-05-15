@@ -6,13 +6,13 @@
     <img src="assets/images/close.svg" alt="Usuń z zapisanych">
   </div>
   <div class="product__img">
-    <img [routerLink]="['/produkt', product.id]"
+    <img [routerLink]="['/produkt',  product.shortenUrl ? product.shortenUrl : product.id]"
       [src]="product.photo ? url+'photos/'+product.photo : 'assets/images/logo.svg'" [alt]="product.name">
   </div>
   <div class="product__promo-discount" *ngIf="isPromo">-{{ promoPercentage }}%</div>
-  <a [routerLink]="['/produkt', product.id]" class="product__name">{{ product.name }}</a>
-  <div [routerLink]="['/produkt', product.id]" class="product__price" *ngIf="!isPromo">{{ product.price| number : '1.2-2' }} zł</div>
-  <div [routerLink]="['/produkt', product.id]" class="product__promo" *ngIf="isPromo">
+  <a [routerLink]="['/produkt', product.shortenUrl ? product.shortenUrl : product.id]" class="product__name">{{ product.name }}</a>
+  <div [routerLink]="['/produkt', product.shortenUrl ? product.shortenUrl : product.id]" class="product__price" *ngIf="!isPromo">{{ product.price| number : '1.2-2' }} zł</div>
+  <div [routerLink]="['/produkt', product.shortenUrl ? product.shortenUrl : product.id]" class="product__promo" *ngIf="isPromo">
     <div class="product__promo__price">{{ product.promoPrice| number : '1.2-2' }} zł</div>
     <div class="product__promo__old-price">{{ product.price| number : '1.2-2' }} zł</div>
   </div>

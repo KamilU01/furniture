@@ -44,7 +44,7 @@ export class GroupComponent implements OnInit {
     this.route.params.subscribe(
       (params) => {
         this.shopService.getAllGroups().subscribe((res) => {
-          this.group = res.data.groups.find((group) => group.id === params['id']);
+          this.group = res.data.groups.find((group) => group.shortenUrl === params['id']);
         });
         this.groupId = params['id'];
         this.search(this.options);
