@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-rodo',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RodoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private seoService: SeoService) {
+    this.seoService.changeSeoTags('RODO', undefined, 'rodo');
+  }
 
   ngOnInit(): void {
   }

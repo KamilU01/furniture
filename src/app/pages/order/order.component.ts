@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Order, Product } from 'src/app/models/graphql';
+import { Order } from 'src/app/models/graphql';
+import { SeoService } from 'src/app/services/seo.service';
 import { ShopService } from 'src/app/services/shop.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss']
+  styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
   order!: Order;
@@ -19,21 +20,39 @@ export class OrderComponent implements OnInit {
 
   url = environment.apiUrl;
 
-  constructor(private shopService: ShopService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private shopService: ShopService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private seoService: SeoService
+  ) {}
 
   ngOnInit(): void {
-    this.urlSubscription = this.route.params.subscribe(params => {
-      this.subscription = this.shopService.getOrderById(params['id']).subscribe((res: any) => {
-        this.order = res;
-        this.isLoading = false;
-      }, () => this.router.navigate(['/']))
-    }, () => this.router.navigate(['/']))
+    this.urlSubscription = this.route.params.subscribe(
+      (params) => {
+        this.subscription = this.shopService
+          .getOrderById(params['id'])
+          .subscribe(
+            (res: any) => {
+              this.order = res;
+              this.seoService.changeSeoTags(
+                `Zamówienie ${this.order.name}`,
+                undefined,
+                `zamowienie/${this.order.id}`
+              );
+              this.isLoading = false;
+            },
+            () => this.router.navigate(['/'])
+          );
+      },
+      () => this.router.navigate(['/'])
+    );
   }
 
   invoiceDownload() {
-    this.shopService.invoiceDownload(this.order.id).subscribe(res => {
-      this.shopService.saveToFileSystem(res, this.order.name + ".pdf")
-    })
+    this.shopService.invoiceDownload(this.order.id).subscribe((res) => {
+      this.shopService.saveToFileSystem(res, this.order.name + '.pdf');
+    });
   }
 
   getProductPhoto(product: any) {

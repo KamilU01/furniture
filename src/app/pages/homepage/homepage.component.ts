@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
   isPromotionsAvailable: boolean = true;
 
-  constructor() {}
+  constructor(private seoService: SeoService) {
+    this.seoService.changeSeoTags();
+  }
 
   ngOnInit(): void {}
 

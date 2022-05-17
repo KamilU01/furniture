@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ContactService } from 'src/app/services/contact.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
   isSuccess: boolean = false;
@@ -13,15 +14,19 @@ export class ContactComponent implements OnInit {
   isLoading: boolean = false;
   isNotValid: boolean = false;
 
-  constructor(private contactService: ContactService) { }
-
-  ngOnInit(): void {
+  constructor(
+    private contactService: ContactService,
+    private seoService: SeoService
+  ) {
+    this.seoService.changeSeoTags('Kontakt', undefined, 'kontakt');
   }
+
+  ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
     if (!form.valid) {
       this.isNotValid = true;
-      return
+      return;
     }
 
     const name = form.value.name;
@@ -31,16 +36,19 @@ export class ContactComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.contactService.sendMessage(name, phone, email, message).subscribe(res => {
-      this.isNotValid = false;
-      this.isLoading = false;
-      this.isSuccess = true;
-      this.isError = false;
-    }, err => {
-      this.isNotValid = false;
-      this.isLoading = false;
-      this.isSuccess = false;
-      this.isError = true;
-    })
+    this.contactService.sendMessage(name, phone, email, message).subscribe(
+      (res) => {
+        this.isNotValid = false;
+        this.isLoading = false;
+        this.isSuccess = true;
+        this.isError = false;
+      },
+      (err) => {
+        this.isNotValid = false;
+        this.isLoading = false;
+        this.isSuccess = false;
+        this.isError = true;
+      }
+    );
   }
 }

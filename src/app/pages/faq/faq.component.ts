@@ -1,23 +1,30 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { faq } from 'src/app/models/graphql';
+import { SeoService } from 'src/app/services/seo.service';
 import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.scss']
+  styleUrls: ['./faq.component.scss'],
 })
 export class FaqComponent implements OnInit {
   faqs!: Array<faq>;
   isLoading: boolean = true;
 
-  constructor(private renderer: Renderer2, private shopService: ShopService) { }
-
+  constructor(
+    private renderer: Renderer2,
+    private shopService: ShopService,
+    private seoService: SeoService
+  ) {
+    this.seoService.changeSeoTags('FAQ', undefined, 'faq');
+  }
+  
   ngOnInit(): void {
-    this.shopService.getAllFaqs().subscribe(res => {
+    this.shopService.getAllFaqs().subscribe((res) => {
       this.faqs = res.data.faqs;
       this.isLoading = false;
-    })
+    });
   }
 
   toggleClass(event: any, className: string) {

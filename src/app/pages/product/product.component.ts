@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
-import { Location } from '@angular/common';
 import { ShopService } from 'src/app/services/shop.service';
 import { cartItem, Color, Photo, Product, productVersion } from 'src/app/models/graphql';
 import { Subscription } from 'rxjs';
@@ -9,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-product',
@@ -59,7 +59,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     protected alertService: AlertService,
     private cartService: CartService,
     private route: ActivatedRoute,
-    private shopService: ShopService
+    private shopService: ShopService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
@@ -70,10 +71,12 @@ export class ProductComponent implements OnInit, OnDestroy {
           .subscribe(
             (res) => {
               this.product = res.data.product;
+
+              this.seoService.changeSeoTags(this.product.name, this.product.description.slice(0, 200).replace(/<[^>]*>?/gm, ''), `produkt/${this.product.shortenUrl}`);
+
               this.currPhoto = this.product.photo;
               this.selectedProductPhoto = this.product.photo;
               this.shopService.addToLastViewedProducts(this.product);
-              
               this.product.deliveryCost ? this.deliveryCostText = `+ dostawa ${this.product.deliveryCost} zł` : this.deliveryCostText = 'i darmowa dostawa';
 
               if (this.product.productVersions)

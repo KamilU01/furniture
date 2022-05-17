@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Group, Product } from 'src/app/models/graphql';
+import { Product } from 'src/app/models/graphql';
+import { SeoService } from 'src/app/services/seo.service';
 import { ShopService } from 'src/app/services/shop.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-group',
@@ -37,6 +37,7 @@ export class GroupComponent implements OnInit {
   constructor(
     private shopService: ShopService,
     private route: ActivatedRoute,
+    private seoService: SeoService,
     private router: Router
   ) {}
 
@@ -45,6 +46,7 @@ export class GroupComponent implements OnInit {
       (params) => {
         this.shopService.getAllGroups().subscribe((res) => {
           this.group = res.data.groups.find((group) => group.shortenUrl === params['id']);
+          this.seoService.changeSeoTags(this.group.name, undefined, `grupa/${this.group.shortenUrl}`);
         });
         this.groupId = params['id'];
         this.search(this.options);

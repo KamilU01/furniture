@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { cartItem } from 'src/app/models/graphql';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { SeoService } from 'src/app/services/seo.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -24,8 +25,11 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private router: Router,
+    private seoService: SeoService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.seoService.changeSeoTags('Koszyk', undefined);
+  }
 
   ngOnInit(): void {
     this.cartService.cartList.subscribe((res) => {

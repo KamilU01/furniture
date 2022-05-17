@@ -74,7 +74,7 @@
       <span (click)="isDropdownActive = !isDropdownActive"><img alt="meble" src="assets/images/categories.svg">meble <img
           class="arrow" alt=">" src="assets/images/arrow-light.svg"></span>
       <ul *ngIf="isDropdownActive">
-        <li *ngFor="let group of groups"><a [routerLink]="['/grupa', group.id]"
+        <li *ngFor="let group of groups"><a [routerLink]="['/grupa', group.shortenUrl]"
             class="category__item">{{ group.name }}</a></li>
       </ul>
     </div>

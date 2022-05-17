@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/graphql';
+import { SeoService } from 'src/app/services/seo.service';
 import { ShopService } from 'src/app/services/shop.service';
 import { environment } from 'src/environments/environment';
 
@@ -37,6 +39,7 @@ export class RoomComponent implements OnInit {
   constructor(
     private shopService: ShopService,
     private route: ActivatedRoute,
+    private seoService: SeoService,
     private router: Router
   ) {}
 
@@ -45,6 +48,11 @@ export class RoomComponent implements OnInit {
       (params) => {
         this.shopService.getAllRooms().subscribe((res) => {
           this.room = res.data.rooms.find((room) => room.shortenUrl === params['id']);
+          this.seoService.changeSeoTags(
+            this.room.name,
+            undefined,
+            `pomieszczenie/${this.room.shortenUrl}`
+          );
         });
         this.roomId = params['id'];
         this.search(this.options);

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/graphql';
+import { SeoService } from 'src/app/services/seo.service';
 import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
   products!: Product[];
@@ -31,14 +33,27 @@ export class SearchComponent implements OnInit {
   };
   currPage!: number;
 
-  constructor(private shopService: ShopService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private shopService: ShopService,
+    private route: ActivatedRoute,
+    private seoService: SeoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.isLoading = true;
-      this.phrase = params['phrase'];
-      this.search(this.options);
-    }, err => this.router.navigate(['/']))
+    this.route.params.subscribe(
+      (params) => {
+        this.isLoading = true;
+        this.phrase = params['phrase'];
+        this.seoService.changeSeoTags(
+          this.phrase,
+          undefined,
+          `szukaj/${this.phrase}`
+        );
+        this.search(this.options);
+      },
+      (err) => this.router.navigate(['/'])
+    );
   }
 
   search(options: any) {
@@ -48,26 +63,28 @@ export class SearchComponent implements OnInit {
 
     this.productsLoading = true;
 
-    this.shopService.filterProductsSearchPaginated(this.phrase, options).subscribe(
-      (res: any) => {
-        this.totalItems = res.meta.totalItems;
+    this.shopService
+      .filterProductsSearchPaginated(this.phrase, options)
+      .subscribe(
+        (res: any) => {
+          this.totalItems = res.meta.totalItems;
 
-        if (res.meta.data) {
-          this.priceMax = res.meta.priceMax;
-          this.widthMin = res.meta.widthMin;
-          this.widthMax = res.meta.widthMax;
-          this.heightMin = res.meta.heightMin;
-          this.heightMax = res.meta.heightMax;
-          this.depthMin = res.meta.depthMin;
-          this.depthMax = res.meta.depthMax;
-        }
+          if (res.meta.data) {
+            this.priceMax = res.meta.priceMax;
+            this.widthMin = res.meta.widthMin;
+            this.widthMax = res.meta.widthMax;
+            this.heightMin = res.meta.heightMin;
+            this.heightMax = res.meta.heightMax;
+            this.depthMin = res.meta.depthMin;
+            this.depthMax = res.meta.depthMax;
+          }
 
-        this.products = res.items;
-        this.currPage = res.meta.currentPage;
-        this.productsLoading = false;
-        this.isLoading = false;
-      },
-      (err) => this.router.navigate(['/'])
-    );
+          this.products = res.items;
+          this.currPage = res.meta.currentPage;
+          this.productsLoading = false;
+          this.isLoading = false;
+        },
+        (err) => this.router.navigate(['/'])
+      );
   }
 }

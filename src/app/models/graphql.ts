@@ -522,6 +522,7 @@ export const GET_ARRANGMENT_PRODUCTS_QUERY = gql`
   query ($id: String!) {
     arrangment(id: $id) {
       id
+      shortenUrl
       name
       photo
       description
