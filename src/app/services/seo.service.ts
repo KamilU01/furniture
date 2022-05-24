@@ -121,11 +121,11 @@ export class SeoService {
     } else {
       this.meta.updateTag({
         property: 'og:image',
-        content: 'assets/images/maxiihome_card.jpg',
+        content: 'www.maxiihome.pl/assets/images/maxiihome_card.jpg',
       });
       this.meta.updateTag({
         property: 'twitter:image',
-        content: 'assets/images/maxiihome_card.jpg',
+        content: 'www.maxiihome.pl/assets/images/maxiihome_card.jpg',
       });
     }
   }
