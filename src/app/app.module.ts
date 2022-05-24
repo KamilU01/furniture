@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
     NavComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     GraphQLModule,
     HttpClientModule,
     AppRoutingModule,

@@ -14,7 +14,7 @@
 # Stage 1: Compile and Build angular codebase
 
 # Use official node image as the base image
-FROM node:15.4 as build
+FROM node:15.4
 
 # Set the working directory
 WORKDIR /usr/local/app
@@ -26,19 +26,8 @@ COPY ./ /usr/local/app/
 RUN npm install
 
 # Generate the build of the application
-RUN npm run prod
+RUN npm run build:ssr
 
+EXPOSE 4000
 
-# Stage 2: Serve app with nginx server
-
-# Use official nginx image as the base image
-FROM nginx:1.19
-
-# Copy the build output to replace the default nginx contents.
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /usr/local/app/dist/furniture /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD [ "node", "dist/furniture/server/main.js"]

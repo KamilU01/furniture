@@ -33,7 +33,8 @@ export class ArrangmentComponent implements OnInit {
             this.seoService.changeSeoTags(
               this.arrangment.name,
               this.arrangment.description.slice(0, 200).replace(/<[^>]*>?/gm, ''),
-              `aranzacja/${this.arrangment.shortenUrl}`
+              `aranzacja/${this.arrangment.shortenUrl}`,
+              this.url + 'photos/' + this.arrangment.photo
             );
             this.isLoading = false;
           },

@@ -678,6 +678,7 @@ export const GET_PROMOTIONS_QUERY = gql`
   query {
     promotions {
       id
+      shortenUrl
       name
       description
       photo
@@ -689,6 +690,7 @@ export const GET_PROMOTIONS_QUERY = gql`
 
 export interface Promotion {
   id: string;
+  shortenUrl: string;
   name: string;
   description: string;
   photo: string;
@@ -705,6 +707,7 @@ export const GET_PROMOTION_BY_ID = gql`
   query ($id: String!) {
     promotion(id: $id) {
       id
+      shortenUrl
       name
       description
       photo

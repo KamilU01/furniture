@@ -72,7 +72,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             (res) => {
               this.product = res.data.product;
 
-              this.seoService.changeSeoTags(this.product.name, this.product.description.slice(0, 200).replace(/<[^>]*>?/gm, ''), `produkt/${this.product.shortenUrl}`);
+              this.seoService.changeSeoTags(this.product.name, this.product.description.slice(0, 200).replace(/<[^>]*>?/gm, ''), `produkt/${this.product.shortenUrl}`, this.url + 'photos/' + this.product.photo);
 
               this.currPhoto = this.product.photo;
               this.selectedProductPhoto = this.product.photo;

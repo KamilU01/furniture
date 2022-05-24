@@ -34,7 +34,8 @@ export class PromotionComponent implements OnInit {
             this.seoService.changeSeoTags(
               this.promotion.name,
               undefined,
-              `promocja/${this.promotion.id}`
+              `promocja/${this.promotion.id}`, 
+              this.url + 'photos/' + this.promotion.photo
             );
             this.isLoading = false;
           },
