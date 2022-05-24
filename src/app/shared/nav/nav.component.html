@@ -6,7 +6,7 @@
       </div>
 
       <div class="control__popout">
-        <a>meble<img class="arrow" src="assets/images/arrow.svg" alt=">"></a>
+        <span class="control__popout__name">meble<img class="arrow" src="assets/images/arrow.svg" alt=">"></span>
         <div class="control__popout__pad"></div>
         <div class="control__popout__window">
           <div class="window__content">
@@ -23,13 +23,13 @@
         </div>
       </div>
 
-      <div class="nav__item" routerLink="/o-nas" routerLinkActive="active">
-        <a>o nas</a>
-      </div>
+      <a class="nav__item" routerLink="/o-nas" routerLinkActive="active">
+        <span>o nas</span>
+      </a>
 
-      <div class="nav__item" routerLink="/kontakt" routerLinkActive="active">
-        <a>kontakt</a>
-      </div>
+      <a class="nav__item" routerLink="/kontakt" routerLinkActive="active">
+        <span>kontakt</span>
+      </a>
     </div>
 
     <img src="assets/images/logo.svg" routerLink="/" alt="Logo sklepu meblowego Maxii Home" class="nav__logo">
@@ -47,13 +47,13 @@
         </button>
       </form>
 
-      <a class="nav__action__link">
-        <img class="nav__action__img" routerLink="/zapisane-produkty" src="assets/images/favourite.svg"
+      <a class="nav__action__link" routerLink="/zapisane-produkty">
+        <img class="nav__action__img" src="assets/images/favourite.svg"
           alt="Zapisane produkty">
       </a>
 
-      <a class="nav__action__link">
-        <img class="nav__action__img" routerLink="/konto" src="assets/images/person.svg" alt="Dane konta">
+      <a class="nav__action__link" routerLink="/konto">
+        <img class="nav__action__img" src="assets/images/person.svg" alt="Dane konta">
       </a>
 
       <a class="nav__action__link nav__action__link--cart" routerLink="/koszyk">

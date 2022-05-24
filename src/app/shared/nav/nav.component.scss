@@ -83,7 +83,7 @@
   }
 
   &__item {
-    a {
+    span {
       font-size: 2.2rem;
       font-weight: 400;
       cursor: pointer;
@@ -170,7 +170,7 @@
       }
     }
 
-    a {
+    &__name, &__window a {
       font-size: 2.2rem;
       font-weight: 400;
       cursor: pointer;
