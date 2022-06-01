@@ -32,6 +32,7 @@
     "file-saver": "^2.0.5",
     "graphql": "^15.0.0",
     "localstorage-polyfill": "^1.0.1",
+    "mock-browser": "^0.92.14",
     "ngx-pagination": "^5.1.1",
     "rxjs": "~6.6.0",
     "swiper": "^7.3.0",
