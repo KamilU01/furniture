@@ -2,15 +2,9 @@
 
 .arrangment {
   &__header {
-    display: flex;
     padding: 0 5vw;
     max-width: 130rem;
     margin: 0 auto;
-    gap: 1.6rem;
-
-    @media only screen and (max-width: 900px) {
-      flex-direction: column;
-    }
   }
 
   &__heading {
@@ -24,23 +18,8 @@
   }
 
   &__img {
-    max-width: 60%;
-    min-width: 40%;
-    margin-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    justify-self: center;
-    align-self: flex-start;
-    float: right;
-
-    @media only screen and (max-width: 900px) {
-      width: 100%;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    width: 100%;
+    margin: 1.2rem auto 2rem auto;
   }
 }
 

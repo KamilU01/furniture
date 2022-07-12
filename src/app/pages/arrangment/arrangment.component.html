@@ -1,21 +1,30 @@
 <div class="arrangment container" *ngIf="!isLoading">
   <div class="arrangment__header">
     <div class="arrangment__content">
-      <h1 class="arrangment__heading heading heading--primary">{{arrangment.name}}</h1>
+      <h1 class="arrangment__heading heading heading--primary">
+        {{ arrangment.name }}
+      </h1>
+      <img
+        class="arrangment__img"
+        [src]="
+          arrangment.photo
+            ? url + 'photos/' + arrangment.photo
+            : 'assets/images/logo.svg'
+        "
+        [alt]="arrangment.name"
+      />
       <p class="arrangment__desc" [innerHtml]="arrangment.description"></p>
-    </div>
-    <div class="arrangment__img">
-      <img [src]="arrangment.photo ? url+'photos/'+arrangment.photo : 'assets/images/logo.svg'" [alt]="arrangment.name">
     </div>
   </div>
   <div class="products-wrap__heading heading heading--secondary">Produkty</div>
   <div class="products-wrap">
-    <app-product-card *ngFor="let product of arrangment.products" [product]="product"></app-product-card>
+    <app-product-card
+      *ngFor="let product of arrangment.products"
+      [product]="product"
+    ></app-product-card>
   </div>
   <div class="arrangment__empty" *ngIf="arrangment.products.length == 0">
-    <p>
-      Przepraszamy, nie ma żadnych produktów w tej kolekcji.
-    </p>
+    <p>Przepraszamy, nie ma żadnych produktów w tej kolekcji.</p>
   </div>
 </div>
 
